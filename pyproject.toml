@@ -1,0 +1,19 @@
+[project]
+name = "onepager"
+version = "0.1.0"
+requires-python = ">=3.12"
+# The Lambda itself has no third-party dependencies (boto3 ships with the runtime).
+
+[tool.pytest.ini_options]
+pythonpath = ["backend"]
+testpaths = ["backend/tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["onepager"]

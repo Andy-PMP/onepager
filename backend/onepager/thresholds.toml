@@ -1,0 +1,21 @@
+# Tunable thresholds for the status rules (backend/onepager/rules.py).
+# Edit, then rerun the tests and the eval: the expected statuses in evals/labels assume these values.
+
+[schedule]
+# A critical milestone slipping by more than this many days is Red. Any smaller slip,
+# or a slip of any size on a non-critical milestone, is Amber.
+critical_slip_red_days = 14
+
+[budget]
+# Overrun against plan, as a percentage. Up to green_max is Green, up to amber_max is Amber,
+# anything above is Red. Underspend is Green.
+green_max_overrun_pct = 5
+amber_max_overrun_pct = 10
+
+[risk]
+# Impact levels that count as "high-impact".
+high_impact_levels = ["high"]
+
+[overall]
+# When this many dimensions (or more) are Unknown, the overall status is marked low-confidence.
+low_confidence_unknown_count = 2
