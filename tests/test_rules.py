@@ -6,6 +6,7 @@ import pytest
 from onepager.rules import (
     Status,
     Thresholds,
+    has_estimate,
     load_thresholds,
     report_gaps,
     score,
@@ -14,7 +15,7 @@ from onepager.rules import (
     score_schedule,
     score_scope,
 )
-from onepager.schema import Budget, Facts, Milestone, Risk, ScopeChange
+from onepager.schema import Budget, Facts, Milestone, Risk, ScopeChange, UnforecastCost
 
 T = Thresholds()
 AS_OF = date(2026, 6, 1)
@@ -277,7 +278,6 @@ class TestRisk:
 def full_facts(**overrides):
     base = Facts(
         project_name="Atlas",
-        reporting_period="Week 22",
         as_of_date=AS_OF,
         milestones=[ms(planned=date(2026, 7, 1))],
         budget=Budget(planned=100, forecast=100),
@@ -338,12 +338,81 @@ class TestReportGaps:
     def test_missing_basics(self):
         gaps = report_gaps(Facts())
         assert "No project name" in gaps
-        assert "No reporting period or report date" in gaps
+        assert "No report date" in gaps
         assert "No accomplishments listed for the period" in gaps
         assert "No next steps listed" in gaps
 
-    def test_report_date_counts_as_period(self):
-        assert "No reporting period or report date" not in report_gaps(full_facts(reporting_period=None))
+    def test_open_risk_without_owner_is_named(self):
+        gaps = report_gaps(full_facts(risks=[Risk("Vendor attrition", impact="medium"), Risk("Done", owner="A"),
+                                             Risk("Minor leave cover", impact="low")]))
+        assert "No owner for: Vendor attrition" in gaps
+        assert not any("Minor leave cover" in g for g in gaps)
 
-    def test_open_risk_without_owner(self):
-        assert "Some risks or issues have no owner" in report_gaps(full_facts(risks=[Risk("x", impact="low")]))
+    def test_owner_gap_skips_items_a_rule_already_named(self):
+        facts = full_facts(risks=[Risk("Scanner firmware", impact="high"), Risk("Leave cover", impact="medium")])
+        card = score(facts)
+        assert "Scanner firmware" in card.dimensions[3].reason
+        assert "No owner for: Leave cover" in card.gaps
+        assert not any("Scanner firmware" in g and g.startswith("No owner") for g in card.gaps)
+
+
+class TestNewGaps:
+    def test_undated_milestones_are_named(self):
+        r = schedule(ms("Raleigh go-live", planned=date(2026, 7, 1)), ms("Greensboro phase 2", planned=None),
+                     # Regressions from the regenerated samples: these have dates, just not planned ones.
+                     ms("Wave 2", planned=None, forecast=date(2026, 11, 6)),
+                     ms("Contract signed", planned=None, actual=date(2026, 9, 4)))
+        assert "No date for: Greensboro phase 2" in r.gaps
+
+    def test_unforecast_costs_show_adjusted_figure_without_changing_status(self):
+        b = Budget(planned=1_200_000, forecast=1_284_000, currency="$",
+                   unforecast_costs=[UnforecastCost("weekend overtime for cutover", 18_000)])
+        r = score_budget(Facts(budget=b), T)
+        assert r.status is Status.AMBER
+        assert r.reason == "Forecast $1,284,000 vs plan $1,200,000 (+7.0%)."
+        assert r.gaps == ["The forecast excludes $18,000 of known costs (weekend overtime for cutover). "
+                          "Including them: $1,302,000 vs plan $1,200,000 (+8.5%)."]
+
+    def test_unpriced_unforecast_costs_are_listed(self):
+        b = Budget(planned=100, forecast=100, unforecast_costs=[UnforecastCost("legal review")])
+        assert score_budget(Facts(budget=b), T).gaps == [
+            "Known costs not in the forecast, with no amount given: legal review"]
+
+    @pytest.mark.parametrize("text, expected", [
+        ("$20K", True), ("€1.2M extra", True), ("adds 2 weeks", True), ("+10 days", True), ("3 wks", True),
+        ("new date 2027-02-15", True), ("about 40k", True),
+        # Regression from the user's WMS test: naming a phase isn't an estimate, even with a digit in it.
+        ("Would affect UAT phase 2 timing only", False), ("minor", False), (None, False), ("CR-14", False),
+    ])
+    def test_what_counts_as_an_estimate(self, text, expected):
+        assert has_estimate(text) is expected
+
+    def test_pending_change_without_estimate(self):
+        r = scope(ScopeChange("CR-14 returns module", "pending"),
+                  ScopeChange("CR-15 dashboards", "pending", impact_estimate="$20K, 2 weeks"),
+                  ScopeChange("CR-12 report", "approved"))
+        assert "No cost or schedule estimate for: CR-14 returns module" in r.gaps
+        assert not any("CR-15" in g or "CR-12" in g for g in r.gaps)
+
+    def test_high_risk_without_timing(self):
+        r = risk(Risk("Firmware not certified", impact="high"),
+                 Risk("Peak season", impact="high", owner="Dana", mitigation="No-go call", resolve_by="2027-01-15"),
+                 Risk("Minor", impact="low"))
+        assert "No target date for resolving: Firmware not certified" in r.gaps
+        assert not any("Peak season" in g or "Minor" in g for g in r.gaps)
+
+    def test_titles_are_used_in_reasons_and_gaps(self):
+        # Regression from the WMS review: "…firmware update that…" read as broken.
+        r = risk(Risk("Handheld scanner firmware: units need an update the vendor hasn't certified", kind="issue",
+                      impact="high", title="Scanner firmware certification"))
+        assert r.reason == "High-impact issue 'Scanner firmware certification' has no owner and mitigation."
+        assert "No target date for resolving: Scanner firmware certification" in r.gaps
+        s = scope(ScopeChange("CR-14: Add returns processing to phase 1", "pending", title="CR-14 returns module"))
+        assert "No cost or schedule estimate for: CR-14 returns module" in s.gaps
+
+    def test_long_descriptions_are_shortened_in_reasons(self):
+        long = "Handheld scanner firmware: units need an update the vendor hasn't certified, so pickers can't " \
+               "use the new system at go-live"
+        reason = risk(Risk(long, kind="issue", impact="high")).reason
+        assert len(reason) < 140
+        assert "…" in reason and reason.startswith("High-impact issue 'Handheld scanner firmware")

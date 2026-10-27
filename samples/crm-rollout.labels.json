@@ -11,7 +11,7 @@
   "expected_overall": "amber",
   "low_confidence": false,
   "must_mention_risks": [
-    {"label": "Data migration dedupe failures", "all_of": [["dedupe", "duplicate", "migration"]]}
+    {"label": "Data migration dedupe failures", "all_of": [["dedup", "duplicate", "migration"]]}
   ],
   "must_include_asks": [
     {"label": "Decision on CR-14", "all_of": [["CR-14", "email plugin", "change request"]]},

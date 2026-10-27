@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chip, clipboardHtml, esc, renderExplanation, renderOnePager } from "./render";
+import { chip, clipboardHtml, esc, icon, renderExplanation, renderOnePager } from "./render";
 import type { OnePager } from "./types";
 
 const EVIL = `<img src=x onerror="alert(1)">`;
@@ -7,7 +7,6 @@ const EVIL = `<img src=x onerror="alert(1)">`;
 function onepager(overrides: Partial<OnePager> = {}): OnePager {
   return {
     project_name: "Atlas",
-    reporting_period: null,
     as_of_date: "2026-10-15",
     overall: "red",
     overall_reason: "Worst known dimension: budget (red).",
@@ -42,11 +41,11 @@ describe("renderOnePager", () => {
   it("never emits markup from the notes, in any field", () => {
     const p = onepager({
       project_name: EVIL,
-      reporting_period: EVIL,
       executive_summary: EVIL,
       accomplishments: [EVIL],
       next_steps: [EVIL],
       asks: [EVIL],
+      open_decisions: [EVIL],
       gaps: [EVIL],
       warnings: [EVIL],
       validation_problems: [EVIL],
@@ -67,7 +66,21 @@ describe("renderOnePager", () => {
       expect(html).toContain(text);
     }
     expect(html).toContain(`chip chip-red chip-large`);
-    expect(html).toMatch(/<span class="dot" aria-hidden="true"><\/span>Unknown/);
+    expect(html).toMatch(/<\/svg>Unknown<\/span>/);
+  });
+
+  it("puts a status strip with icons above the summary, readable by screen readers", () => {
+    const html = renderOnePager(onepager(), "live");
+    expect(html.indexOf('class="strip"')).toBeLessThan(html.indexOf("Executive summary"));
+    expect(html).toContain('<li class="strip-item strip-red">');
+    expect(html).toContain('<span>Budget</span><span class="visually-hidden">: Red</span>');
+    expect(html.match(/class="strip-item/g)).toHaveLength(4);
+  });
+
+  it("gives each status its own icon shape", () => {
+    const shapes = (["green", "amber", "red", "unknown"] as const).map((s) => icon(s));
+    expect(new Set(shapes).size).toBe(4);
+    for (const svg of shapes) expect(svg).toContain('aria-hidden="true"');
   });
 
   it("states missing owner and mitigation explicitly", () => {
@@ -89,10 +102,18 @@ describe("renderOnePager", () => {
     expect(renderOnePager(onepager(), "live")).toContain("Generated in 4.2s · 6,000 tokens · about 1.0¢");
   });
 
-  it("uses the reporting period when there is one", () => {
-    expect(renderOnePager(onepager({ reporting_period: "Week ending 9 October 2026" }), "live")).toContain(
-      "Reporting period: Week ending 9 October 2026",
-    );
+  it("labels the date as of the report, never as a period", () => {
+    const html = renderOnePager(onepager(), "live");
+    expect(html).toContain("As of 15 October 2026");
+    expect(html).not.toContain("Reporting period");
+  });
+
+  it("shows open decisions under the asks, only when there are some", () => {
+    const html = renderOnePager(onepager({ open_decisions: ["Absorb the overage or push back"] }), "live");
+    expect(html).toContain("Open decisions, not yet put to leadership:");
+    expect(html).toContain("<li>Absorb the overage or push back</li>");
+    expect(clipboardHtml(onepager({ open_decisions: ["Absorb"] }))).toContain("Open decisions");
+    expect(renderOnePager(onepager(), "live")).not.toContain("Open decisions");
   });
 
   it("handles empty lists", () => {
@@ -118,6 +139,8 @@ describe("clipboardHtml", () => {
     expect(html).not.toContain("class=");
     expect(html).toContain("<table");
     expect(html).toContain("font-weight:600");
+    expect(html).toContain("✕ Red");
+    expect(html).toContain("▲ Risk");
   });
 });
 

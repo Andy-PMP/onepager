@@ -156,18 +156,18 @@ def test_counter_failure_fails_closed(env, monkeypatch):
 
 
 def test_pipeline_failure_is_502_and_log_has_no_text(env, monkeypatch, capsys):
-    bad = {"executive_summary": "Atlas is green. Forecast 999k."}
+    bad = {"headline": "Atlas is green. Forecast 999k."}
     bedrock = FakeClient({"risks": "none"}, {"risks": "none"})
     status, payload = call(monkeypatch, {"notes": NOTES}, bedrock)
     assert status == 502 and "try a sample" in payload["error"]
     out = capsys.readouterr().out
     assert '"stage": "extract retry"' in out
-    assert NOTES not in out and "Atlas" not in out and bad["executive_summary"] not in out
+    assert NOTES not in out and "Atlas" not in out and bad["headline"] not in out
 
 
 def test_logs_never_contain_notes_or_output(env, monkeypatch, capsys):
     call(monkeypatch, {"notes": NOTES})
     out = capsys.readouterr().out
     assert NOTES not in out
-    assert "Atlas" not in out and GOOD_NARRATIVE["executive_summary"] not in out
+    assert "Atlas" not in out and GOOD_NARRATIVE["headline"] not in out
     assert "1.2.3.4" not in out

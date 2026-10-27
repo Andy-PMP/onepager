@@ -14,6 +14,7 @@ DIMENSIONS = ["schedule", "budget", "scope", "risk"]
 MAX_INPUT_CHARS = 6000
 KEYS = {"id", "description", "expected", "expected_overall", "low_confidence",
         "must_mention_risks", "must_include_asks", "injection"}
+OPTIONAL_KEYS = {"title", "must_include_decisions", "expected_gaps", "must_not_accomplish", "conditional_risks"}
 
 _SEVERITY = {"green": 0, "amber": 1, "red": 2}
 
@@ -24,7 +25,7 @@ def options(value):
 
 def test_expected_counts():
     assert len(list(ROOT.glob("samples/*.labels.json"))) == 4
-    assert 10 <= len(list(ROOT.glob("evals/cases/*.labels.json"))) <= 12
+    assert 10 <= len(list(ROOT.glob("evals/cases/*.labels.json"))) <= 15
 
 
 @pytest.mark.parametrize("path", LABEL_FILES, ids=lambda p: p.name.removesuffix(".labels.json"))
@@ -43,9 +44,15 @@ def test_label_file(path: Path):
     for value in label["expected"].values():
         assert set(options(value)) <= valid
 
-    for item in label["must_mention_risks"] + label["must_include_asks"]:
+    assert set(label) <= KEYS | OPTIONAL_KEYS, f"unknown keys: {set(label) - KEYS - OPTIONAL_KEYS}"
+    items = label["must_mention_risks"] + label["must_include_asks"]
+    items += [i for key in OPTIONAL_KEYS - {"title", "conditional_risks"} for i in label.get(key, [])]
+    for item in items:
         assert item["label"] and item["all_of"]
         assert all(isinstance(group, list) and group for group in item["all_of"])
+    # Graded by the LLM grader, so they carry a condition in words instead of keyword groups.
+    for item in label.get("conditional_risks", []):
+        assert set(item) == {"label", "condition"} and item["label"] and item["condition"]
 
     # The expected overall status and low-confidence flag must follow from the per-dimension
     # labels, for every combination of accepted values.

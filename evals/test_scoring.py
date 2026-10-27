@@ -18,10 +18,12 @@ def onepager(**overrides):
         "low_confidence": False,
         "dimensions": [{"dimension": d, "status": s, "reason": "r"} for d, s in
                        [("schedule", "red"), ("budget", "amber"), ("scope", "green"), ("risk", "amber")]],
-        "executive_summary": "Red because of the storage delay.",
+        "executive_summary": "The schedule slipped on the storage delay, the budget is over and a risk is open.",
         "accomplishments": [],
         "next_steps": [],
         "asks": ["Approve $170K from contingency"],
+        "open_decisions": [],
+        "gaps": [],
         "risks": [{"summary": "Storage array late", "mitigation": "Loaner"}],
     }
     return p | overrides
@@ -55,18 +57,48 @@ def test_misses_and_invented_figures():
 
 def test_summary_rules():
     assert score_case(LABEL, onepager(), NOTES)["summary_breaks"] == []
-    p = onepager(executive_summary="Red. " + "word " * 110, low_confidence=True, asks=[])
+    p = onepager(executive_summary="Red. " + "word " * 130, low_confidence=True, asks=[])
     p["dimensions"][1]["status"] = "unknown"
     p["executive_summary"] += " Leadership should step in."
     breaks = score_case(LABEL, p, NOTES)["summary_breaks"]
-    assert len(breaks) == 4
-    assert any("budget is unknown" in b for b in breaks)
+    for expected in ["words; keep it under", "don't cover budget", "low-confidence", "leadership action"]:
+        assert any(expected in b for b in breaks), expected
 
 
 def test_invented_asks():
     label = LABEL | {"must_include_asks": []}
     assert score_case(label, onepager(asks=[]), NOTES)["invented_asks"] == []
     assert score_case(label, onepager(asks=["Confirm slot"]), NOTES)["invented_asks"] == ["Confirm slot"]
+
+
+def test_summary_must_cover_non_green_dimensions_without_colours():
+    p = onepager(executive_summary="The schedule slipped and a risk has no owner.")
+    assert score_case(LABEL, p, NOTES)["summary_breaks"] == [
+        "The summary doesn't cover what's behind the budget problem"]
+    p = onepager(executive_summary="Schedule is red, budget is amber and a risk is open.")
+    assert score_case(LABEL, p, NOTES)["summary_breaks"] == [
+        "The summary names status colours (amber, red); describe the problems instead"]
+
+
+def test_open_decisions_gaps_and_out_of_period():
+    label = LABEL | {
+        "must_include_decisions": [{"label": "Absorb or push back", "all_of": [["absorb", "push back"]]}],
+        "expected_gaps": [{"label": "Overtime", "all_of": [["overtime"]]},
+                          {"label": "Greensboro", "all_of": [["Greensboro"]]}],
+        "must_not_accomplish": [{"label": "CR-12", "all_of": [["CR-12"]]}],
+    }
+    p = onepager(open_decisions=["Push back on the vendor or absorb the cost"],
+                 gaps=["The forecast excludes $18,000 of known costs (overtime)."],
+                 accomplishments=["CR-12 report approved", "Printers installed"])
+    s = score_case(label, p, NOTES)
+    assert s["decisions_found"] == ["Absorb or push back"] and s["invented_decisions"] == []
+    assert s["gaps_found"] == ["Overtime"] and s["gaps_missed"] == ["Greensboro"]
+    assert s["out_of_period"] == ["CR-12"]
+
+
+def test_open_decision_without_label_is_invented():
+    s = score_case(LABEL, onepager(open_decisions=["Decide on X"]), NOTES)
+    assert s["invented_decisions"] == ["Decide on X"]
 
 
 def test_failed_pipeline_scores_zero():

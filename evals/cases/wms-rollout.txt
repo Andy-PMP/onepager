@@ -1,0 +1,35 @@
+Lighthouse WMS rollout - weekly sync 10/26
+attendees: Dana R (PM), Marcus (IT infra), Priya (finance), Tom from Ostrander Systems (vendor), Keisha (ops/Raleigh DC)
+
+- quick recap: we're replacing the old warehouse mgmt system at Raleigh DC first, then Greensboro in phase 2
+- data migration dry run #2 done last thurs, 98.7% records clean, remaining are mostly dup SKUs. Marcus says fix is scripted, not worried
+- label printer install done at all 14 dock stations (finally)
+
+schedule stuff
+- go-live for Raleigh DC was Jan 11 2027 -- this is THE milestone, everything else hangs off it
+- Tom says integration w/ the carrier rating API is behind, realistic go-live now Feb 1 2027. Dana pushed back, Tom held firm. nobody loves this
+- end user training was supposed to wrap Dec 4, now Dec 11 bc trainer availability. keisha says thats fine, not on critical path
+- UAT phase 1 still on track for Nov 20
+
+budget
+- approved budget $1.2M
+- priya's current forecast $1,284,000 -- overage mostly vendor change fees + extra contractor hours on the API work
+- priya wants to know if we eat that or push back on ostrander. tbd
+
+scope
+- CR-14: Keisha wants returns processing module added to phase 1 instead of phase 2. would affect UAT phase 2 timing only. submitted to steering, NOT approved yet
+- CR-12 (custom pick-path report) approved last month, already in build
+
+risks / issues
+- BIG one: handheld scanner firmware. Zebra-equivalent units we bought need a firmware update Ostrander hasn't certified yet. if not certified, pickers can't use the new system at go-live. high impact. Tom says "working on it" but no date. we don't actually have an owner on our side for this, Marcus thinks it's ops, Keisha thinks it's IT. need to sort out
+- peak season overlap - if go-live slips past Feb we hit spring inventory count. high impact. Dana owns, mitigation is a hard no-go decision by Jan 15 + fallback to stay on legacy until April
+- minor: two DC supervisors on leave in Dec, Keisha covering
+
+asks / decisions
+- need steering to approve or defer CR-14 by Nov 7
+- need approval for weekend overtime for cutover (~$18K, not in forecast yet)
+
+next steps
+- Tom to send revised integration plan by Fri
+- Dana to set up no-go criteria doc
+- Priya to model the overtime into forecast

@@ -9,8 +9,39 @@ export function esc(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
 
+// Each status has its own shape, so it reads without colour (colour-blind readers, black-and-white print).
+const ICON_PATHS: Record<Status, string> = {
+  green:
+    '<circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.6"/>' +
+    '<path d="M5 8.3l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  amber:
+    '<path d="M8 1.9l6.5 11.6h-13z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+    '<path d="M8 6.2v3.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="11.5" r="1" fill="currentColor"/>',
+  red:
+    '<path d="M5.3 1.5h5.4l3.8 3.8v5.4l-3.8 3.8H5.3l-3.8-3.8V5.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>' +
+    '<path d="M5.8 5.8l4.4 4.4M10.2 5.8l-4.4 4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  unknown:
+    '<circle cx="8" cy="8" r="6.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="2.6 2"/>' +
+    '<text x="8" y="11.4" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor">?</text>',
+};
+
+export function icon(status: Status): string {
+  return `<svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">${ICON_PATHS[status]}</svg>`;
+}
+
 export function chip(status: Status, size: "" | "large" = ""): string {
-  return `<span class="chip chip-${status}${size ? ` chip-${size}` : ""}"><span class="dot" aria-hidden="true"></span>${STATUS_LABEL[status]}</span>`;
+  return `<span class="chip chip-${status}${size ? ` chip-${size}` : ""}">${icon(status)}${STATUS_LABEL[status]}</span>`;
+}
+
+/** One row of icons, right above the summary, so the prose doesn't have to say "scope is amber". */
+function statusStrip(p: OnePager): string {
+  const items = p.dimensions
+    .map(
+      (d) =>
+        `<li class="strip-item strip-${d.status}">${icon(d.status)}<span>${DIMENSION_LABEL[d.dimension]}</span><span class="visually-hidden">: ${STATUS_LABEL[d.status]}</span></li>`,
+    )
+    .join("");
+  return `<ul class="strip" aria-label="Status by dimension">${items}</ul>`;
 }
 
 function list(items: string[], empty: string): string {
@@ -25,6 +56,12 @@ function riskMeta(r: RiskItem): string {
     `Mitigation: ${r.mitigation ?? "not stated"}`,
   ];
   return parts.map((x) => esc(x)).join(" · ");
+}
+
+function openDecisions(p: OnePager): string {
+  const items = p.open_decisions ?? [];
+  if (!items.length) return "";
+  return `<p class="section-note open-decisions">Open decisions, not yet put to leadership:</p>${list(items, "")}`;
 }
 
 /** The one-pager itself: what gets printed and copied. */
@@ -71,6 +108,7 @@ export function renderOnePager(p: OnePager, source: "sample" | "live"): string {
   </header>
   ${lowConfidence}
   ${warnings}
+  ${statusStrip(p)}
   <section><h3>Executive summary</h3><p class="summary">${esc(p.executive_summary)}</p></section>
   <section>
     <h3>Status by dimension</h3>
@@ -84,7 +122,7 @@ export function renderOnePager(p: OnePager, source: "sample" | "live"): string {
     <section><h3>Next steps</h3>${list(p.next_steps, "None listed.")}</section>
   </div>
   <section><h3>Top risks and issues</h3>${risks}</section>
-  <section><h3>Decisions and asks for leadership</h3>${list(p.asks, "None.")}</section>
+  <section><h3>Decisions and asks for leadership</h3>${list(p.asks, "None.")}${openDecisions(p)}</section>
   ${gaps}
   <p class="provenance">${provenance}</p>
 </article>`;
@@ -115,10 +153,12 @@ const PASTE_COLORS: Record<Status, [string, string]> = {
   red: ["#a32019", "#fbe4e2"],
   unknown: ["#4a5060", "#eceef2"],
 };
+// Text symbols with the same shapes as the page icons; SVG doesn't survive pasting into Word or Outlook.
+export const PASTE_SYMBOL: Record<Status, string> = { green: "✓", amber: "▲", red: "✕", unknown: "?" };
 
-function pasteChip(status: Status): string {
+function pasteChip(status: Status, label = STATUS_LABEL[status]): string {
   const [fg, bg] = PASTE_COLORS[status];
-  return `<span style="color:${fg};background:${bg};font-weight:600;padding:1px 6px;border-radius:4px">${STATUS_LABEL[status]}</span>`;
+  return `<span style="color:${fg};background:${bg};font-weight:600;padding:1px 6px;border-radius:4px">${PASTE_SYMBOL[status]} ${label}</span>`;
 }
 
 export function clipboardHtml(p: OnePager): string {
@@ -129,6 +169,7 @@ export function clipboardHtml(p: OnePager): string {
   return `<div style="font-family:Calibri,Arial,sans-serif;font-size:11pt">
 <h1>${esc(p.project_name ?? "Project status")}</h1>
 <p>${period ? `${esc(period)}<br>` : ""}<b>Overall status:</b> ${pasteChip(p.overall)}${p.low_confidence ? " (low confidence)" : ""}</p>
+<p>${p.dimensions.map((d) => pasteChip(d.status, DIMENSION_LABEL[d.dimension])).join(" ")}</p>
 <h2>Executive summary</h2><p>${esc(p.executive_summary)}</p>
 <h2>Status by dimension</h2>
 <table style="border-collapse:collapse"><tr><th style="${cell}">Dimension</th><th style="${cell}">Status</th><th style="${cell}">Why</th></tr>
@@ -141,7 +182,9 @@ ${p.dimensions.map((d) => `<tr><td style="${cell}">${DIMENSION_LABEL[d.dimension
       ? `<ul>${p.risks.map((r) => `<li><b>${esc(r.summary)}</b><br>${riskMeta(r)}</li>`).join("")}</ul>`
       : "<p><i>None listed</i></p>"
   }
-<h2>Decisions and asks for leadership</h2>${ul(p.asks, "None")}
+<h2>Decisions and asks for leadership</h2>${ul(p.asks, "None")}${
+    p.open_decisions?.length ? `<p><b>Open decisions, not yet put to leadership:</b></p>${ul(p.open_decisions, "")}` : ""
+  }
 ${p.gaps.length ? `<h2>Gaps in the notes</h2>${ul(p.gaps, "")}` : ""}
 </div>`;
 }

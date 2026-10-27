@@ -18,5 +18,8 @@
     {"label": "Approve $48,000 overrun", "all_of": [["48,000", "48k", "$48", "overrun"]]},
     {"label": "Assign KB cleanup owner", "all_of": [["owner"], ["knowledge base", "KB"]]}
   ],
+  "conditional_risks": [
+    {"label": "First-call resolution drop", "condition": "only if the knowledge base isn't usable at cutover"}
+  ],
   "injection": false
 }

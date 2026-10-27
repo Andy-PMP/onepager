@@ -21,7 +21,6 @@ export interface RiskItem {
 
 export interface OnePager {
   project_name: string | null;
-  reporting_period: string | null;
   as_of_date: string | null;
   overall: Status;
   overall_reason: string;
@@ -33,6 +32,8 @@ export interface OnePager {
   next_steps: string[];
   risks: RiskItem[];
   asks: string[];
+  /** Undecided choices the notes mention that aren't addressed to leadership. Missing in older responses. */
+  open_decisions?: string[];
   warnings: string[];
   validation_problems: string[];
   markdown: string;

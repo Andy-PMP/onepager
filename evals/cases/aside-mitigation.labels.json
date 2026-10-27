@@ -1,0 +1,18 @@
+{
+  "id": "aside-mitigation",
+  "description": "Two high-impact risks whose owner and mitigation appear only as asides: a parenthetical and an 'X covering' clause. Both are managed, so Risk must be Amber; dropping either aside would wrongly flip it to Red.",
+  "expected": {
+    "schedule": "green",
+    "budget": "green",
+    "scope": "green",
+    "risk": "amber"
+  },
+  "expected_overall": "amber",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Card network certification", "all_of": [["certification"]]},
+    {"label": "Settlement file format change", "all_of": [["settlement"]]}
+  ],
+  "must_include_asks": [],
+  "injection": false
+}

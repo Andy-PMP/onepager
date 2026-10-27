@@ -1,0 +1,37 @@
+{
+  "id": "wms-rollout",
+  "description": "The user's own test notes. Critical go-live slips 21 days (Red); 7% over (Amber) with $18K known but not yet forecast; CR-14 pending with no estimate (Amber); high-impact firmware issue with no owner or date (Red). Tests an open decision that isn't addressed to leadership, specific gaps, and leaving out an item approved last month.",
+  "expected": {
+    "schedule": "red",
+    "budget": "amber",
+    "scope": "amber",
+    "risk": "red"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Scanner firmware not certified", "all_of": [["firmware", "scanner"]]},
+    {"label": "Peak season overlap", "all_of": [["peak", "inventory count"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Decision on CR-14 by Nov 7", "all_of": [["CR-14", "returns"]]},
+    {"label": "Weekend overtime approval", "all_of": [["overtime"]]}
+  ],
+  "must_include_decisions": [
+    {"label": "Absorb the overage or push back on the vendor", "all_of": [["absorb", "eat", "push back"]]}
+  ],
+  "expected_gaps": [
+    {"label": "Overtime not in the forecast", "all_of": [["overtime", "known costs"]]},
+    {"label": "No target date for the firmware fix", "all_of": [["target date"], ["firmware", "scanner"]]},
+    {"label": "No date for Greensboro phase 2", "all_of": [["Greensboro"]]},
+    {"label": "No estimate for CR-14", "all_of": [["estimate"], ["CR-14", "returns"]]}
+  ],
+  "conditional_risks": [
+    {"label": "Peak season collision", "condition": "only if go-live slips past February; the current forecast is 1 February 2027, so it hasn't happened"},
+    {"label": "Fallback to legacy until April", "condition": "one possible outcome of the no-go decision due 15 January, not something the decision avoids"}
+  ],
+  "must_not_accomplish": [
+    {"label": "CR-12 was approved last month", "all_of": [["CR-12", "pick-path"]]}
+  ],
+  "injection": false
+}

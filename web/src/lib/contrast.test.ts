@@ -43,6 +43,9 @@ const PAIRS: [string, string, number, string][] = [
   ["red", "red-soft", 4.5, "Red chip"],
   ["unknown", "unknown-soft", 4.5, "Unknown chip"],
   ["red", "surface", 4.5, "over-limit counter, error message"],
+  ["green", "surface", 3, "status strip icon (WCAG 1.4.11 graphics)"],
+  ["amber", "surface", 3, "status strip icon"],
+  ["unknown", "surface", 3, "status strip icon"],
   ["control-border", "bg", 3, "textarea outline (WCAG 1.4.11)"],
 ];
 

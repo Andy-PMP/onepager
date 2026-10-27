@@ -408,7 +408,9 @@ textarea {
   box-shadow: 0 12px 32px -20px rgb(0 0 0 / 0.25);
 }
 
-.doc:focus {
+.doc:focus,
+#doc-title:focus {
+  /* Focus moves here so screen readers announce the result; it isn't something to click. */
   outline: none;
 }
 
@@ -479,6 +481,10 @@ textarea {
 .provenance {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.open-decisions {
+  margin: 0.75rem 0 0.3rem;
 }
 
 .provenance {
@@ -586,12 +592,43 @@ textarea {
   white-space: nowrap;
 }
 
-.chip .dot {
-  width: 0.55em;
-  height: 0.55em;
-  border-radius: 50%;
-  background: currentColor;
+.icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
 }
+
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 0 1rem !important;
+}
+
+.strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.strip-item::marker {
+  content: none;
+}
+
+.strip-item .icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.strip-green .icon { color: var(--green); }
+.strip-amber .icon { color: var(--amber); }
+.strip-red .icon { color: var(--red); }
+.strip-unknown .icon { color: var(--unknown); }
 
 .chip-large {
   font-size: 1.1rem;

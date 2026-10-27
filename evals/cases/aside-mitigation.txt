@@ -1,0 +1,17 @@
+Payments platform upgrade - status, 9 Sept 2026
+
+Done this week: load test #3 passed at 2x peak volume, fraud rules migrated to the new engine.
+
+Dates
+- Cutover (critical) 10/4, holding
+- Old platform switch-off 10/25, holding
+
+Budget: $420k approved, forecast $428k.
+Scope: no changes.
+
+Risks
+- Card network certification could lapse before cutover if the renewal paperwork isn't accepted. HIGH impact. (Marta already resubmitted the paperwork and is chasing the network daily.)
+- Bank is changing the settlement file format, high impact if we miss it -- Ines covering, parser update in test this week
+- On-call rota thin in October, medium, Sam handling
+
+Next: final dress rehearsal 9/27, switch-off runbook review.

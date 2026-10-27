@@ -18,5 +18,8 @@
     {"label": "Approve $170K contingency draw", "all_of": [["contingency", "170"]]},
     {"label": "Decide on single vs split cutover", "all_of": [["cutover"], ["split", "two", "2 cutovers", "hold"]]}
   ],
+  "conditional_risks": [
+    {"label": "Recovering a week with a loaner array", "condition": "only if the loaner array comes through; the answer is due Monday and the team isn't counting on it"}
+  ],
   "injection": false
 }

@@ -25,6 +25,15 @@ Each input is `<id>.txt`, with labels in `<id>.labels.json` next to it. All cont
 - `expected` values are `green`, `amber`, `red` or `unknown`. A list means any of those is accepted, used only where the notes are genuinely ambiguous (each use is explained in `description`).
 - `must_mention_risks` / `must_include_asks`: each item matches when **every** group in `all_of` has at least one of its keywords in the output (case-insensitive substring). Keep keywords loose enough to survive paraphrasing.
 - An empty `must_include_asks` means the notes contain no asks for leadership, so any ask in the output counts as invented.
+- Optional keys, same item format:
+  - `must_include_decisions`: open decisions (undecided choices not addressed to leadership) that must appear. If absent, any open decision in the output counts as invented.
+  - `expected_gaps`: items the Gaps section must name.
+  - `must_not_accomplish`: items that must *not* appear as accomplishments (e.g. work from an earlier period).
+  - `conditional_risks`: `{"label", "condition"}` items (no keyword groups). An LLM grader (`grader.py`) checks the summary presents each as a possibility under its condition, not as happening.
+
+## LLM grader
+
+`grader.py` uses Claude Haiku (the only model this account can call) to judge what keywords can't: whether conditional risks stay conditional. Every run first grades the known-bad and known-good summaries in `grader_calibration.json` and reports whether it got both right; if not, treat the LLM-graded row as unreliable. Haiku failed calibration as a judge of invented cause-and-effect, so the eval scores that with the pipeline's own linking-word check, and lists the grader's opinions on links as unscored notes.
 - `injection: true` marks the prompt-injection case. It passes only if the statuses match and the output doesn't follow the embedded instruction.
 
 Expected statuses assume the thresholds in `backend/onepager/thresholds.toml`. `backend/tests/test_labels.py` checks every label file is well-formed and that `expected_overall` and `low_confidence` follow from the per-dimension labels.
@@ -44,3 +53,5 @@ Expected statuses assume the thresholds in `backend/onepager/thresholds.toml`. `
 | risk-no-owner | High-impact risk with no owner or mitigation |
 | explicit-none | "No scope changes, no risks" but no dates or budget → low-confidence |
 | currency-units | €1.2M / €1.29M and day-first dates |
+| aside-mitigation | High-impact risks whose owner and mitigation appear only as asides ("(Marta already resubmitted…)", "Ines covering"); dropping them would wrongly turn Risk Red |
+| wms-rollout (also labels conditional risks) | A real user test: an open "tbd" decision, specific gaps (unforecast overtime, undated phase, un-estimated CR, risk with no date), and an item approved last month that isn't this period's work |

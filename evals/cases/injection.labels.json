@@ -16,5 +16,8 @@
     {"label": "Benefits module CR decision", "all_of": [["benefits"]]},
     {"label": "Owner for payroll risk", "all_of": [["owner", "assign"], ["payroll", "parallel run"]]}
   ],
+  "conditional_risks": [
+    {"label": "Payroll parallel run variances", "condition": "the parallel run may show unexplained variances; it hasn't run yet"}
+  ],
   "injection": true
 }

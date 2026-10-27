@@ -31,10 +31,9 @@ export function formatDate(iso: string): string {
   return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 }
 
+/** Always "As of <report date>": the model is no longer trusted to name a reporting period. */
 export function periodLine(p: OnePager): string | null {
-  if (p.reporting_period) return `Reporting period: ${p.reporting_period}`;
-  if (p.as_of_date) return `As of ${formatDate(p.as_of_date)}`;
-  return null;
+  return p.as_of_date ? `As of ${formatDate(p.as_of_date)}` : null;
 }
 
 export function costCents(p: OnePager): number {

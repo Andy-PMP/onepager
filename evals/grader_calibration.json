@@ -1,0 +1,22 @@
+[
+  {
+    "id": "wms-known-bad",
+    "notes": "cases/wms-rollout.txt",
+    "headline": "Raleigh DC go-live has slipped 21 days to 1 February 2027, creating risk of collision with spring inventory count; a hard no-go decision is required by 15 January 2027 to avoid April fallback.",
+    "summary": "Raleigh DC go-live has slipped 21 days to 1 February 2027, creating risk of collision with spring inventory count; a hard no-go decision is required by 15 January 2027 to avoid April fallback. High-impact risk Handheld scanner firmware certification has no owner and mitigation. The budget forecast is $1,284,000 against a $1,200,000 plan (+7.0%), and 1 change request awaits approval (CR-14 returns processing module).",
+    "conditional_risks": [
+      {"label": "Peak season collision", "condition": "only if go-live slips past February; the current forecast is 1 February 2027, so it hasn't happened"}
+    ],
+    "expect": {"conditional_correct": [false]}
+  },
+  {
+    "id": "wms-known-good",
+    "notes": "cases/wms-rollout.txt",
+    "headline": "Raleigh DC go-live has slipped 21 days to 1 February 2027; if it slips past February it will collide with the spring inventory count, and a no-go decision is due 15 January.",
+    "summary": "Raleigh DC go-live has slipped 21 days to 1 February 2027; if it slips past February it will collide with the spring inventory count, and a no-go decision is due 15 January. High-impact risk Handheld scanner firmware certification has no owner and mitigation. The budget forecast is $1,284,000 against a $1,200,000 plan (+7.0%), and 1 change request awaits approval (CR-14 returns processing module).",
+    "conditional_risks": [
+      {"label": "Peak season collision", "condition": "only if go-live slips past February; the current forecast is 1 February 2027, so it hasn't happened"}
+    ],
+    "expect": {"conditional_correct": [true]}
+  }
+]

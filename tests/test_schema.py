@@ -8,17 +8,20 @@ from onepager.schema import EXTRACTION_JSON_SCHEMA, Facts, SchemaError, parse_fa
 
 VALID = {
     "project_name": "Atlas DC Migration",
-    "reporting_period": "Week of 1 June 2026",
     "as_of_date": "2026-06-05",
     "milestones": [
         {"name": "Cutover", "planned_date": "2026-06-20", "forecast_date": "2026-07-10", "is_critical": True},
     ],
-    "budget": {"planned": 1200000, "actual": None, "forecast": 1310000.5, "currency": "USD"},
-    "scope_changes": [{"description": "Add DR site", "status": "pending", "affected_milestone": "Cutover"}],
-    "risks": [{"description": "Vendor late", "kind": "risk", "impact": "high", "owner": "Sam", "mitigation": None}],
+    "budget": {"planned": 1200000, "actual": None, "forecast": 1310000.5, "currency": "USD",
+               "unforecast_costs": [{"description": "Overtime", "amount": 18000}, {"description": "Legal"}]},
+    "scope_changes": [{"description": "Add DR site", "status": "pending", "affected_milestone": "Cutover",
+                       "impact_estimate": "$40K"}],
+    "risks": [{"title": "Vendor delivery delay", "description": "Vendor late", "kind": "risk", "impact": "high",
+               "owner": "Sam", "mitigation": None, "resolve_by": "by Friday"}],
     "accomplishments": ["Racked servers"],
     "next_steps": ["Test failover"],
     "asks": ["Approve DR budget"],
+    "open_decisions": ["Absorb the overage or push back on the vendor"],
 }
 
 
@@ -29,7 +32,23 @@ def test_parses_valid_facts():
     assert f.milestones[0].is_critical is True
     assert f.budget.forecast == 1310000.5
     assert f.scope_changes[0].status == "pending"
+    assert f.scope_changes[0].impact_estimate == "$40K"
     assert f.risks[0].mitigation is None
+    assert f.risks[0].resolve_by == "by Friday"
+    assert f.risks[0].title == "Vendor delivery delay"
+    assert [(c.description, c.amount) for c in f.budget.unforecast_costs] == [("Overtime", 18000), ("Legal", None)]
+    assert f.open_decisions == ["Absorb the overage or push back on the vendor"]
+
+
+def test_single_string_is_accepted_as_a_one_item_list():
+    # Seen from the model on the very-short case; cheaper to accept than to retry.
+    f = parse_facts({"accomplishments": [], "next_steps": "More next week", "asks": []})
+    assert f.next_steps == ["More next week"]
+
+
+def test_new_fields_default_to_empty():
+    f = parse_facts({"budget": {"planned": 1}, "accomplishments": [], "next_steps": [], "asks": []})
+    assert f.budget.unforecast_costs == [] and f.open_decisions == []
 
 
 def test_round_trips_through_to_dict():
@@ -62,6 +81,9 @@ def test_blank_strings_become_none_and_lists_are_trimmed():
         ({"asks": [1, 2]}, "asks"),
         ({"overall_status": "green"}, "unknown fields"),
         ({"milestones": [{"name": "x", "slip": 3}]}, "unknown fields"),
+        ({"budget": {"unforecast_costs": [{"amount": 5}]}}, "unforecast_costs[0].description"),
+        ({"budget": {"unforecast_costs": [{"description": "x", "amount": "5k"}]}}, "unforecast_costs[0].amount"),
+        ({"open_decisions": [1]}, "open_decisions"),
     ],
 )
 def test_rejects_invalid(patch, message):

@@ -30,11 +30,19 @@ class Milestone:
 
 
 @dataclass(frozen=True)
+class UnforecastCost:
+    description: str
+    amount: float | None = None
+
+
+@dataclass(frozen=True)
 class Budget:
     planned: float | None = None
     actual: float | None = None
     forecast: float | None = None
     currency: str | None = None
+    # Costs the notes say aren't in the forecast yet. Reported as a gap; they don't change the status.
+    unforecast_costs: list[UnforecastCost] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -42,22 +50,32 @@ class ScopeChange:
     description: str
     status: str | None = None
     affected_milestone: str | None = None
+    impact_estimate: str | None = None
+    # 3-6 words ("CR-9 audit dashboard"), used in reasons and gaps where the description is too long.
+    title: str | None = None
 
 
 @dataclass(frozen=True)
 class Risk:
     description: str
+    title: str | None = None
     kind: str | None = None
     impact: str | None = None
     owner: str | None = None
     mitigation: str | None = None
     state: str | None = None
+    # When the notes say it will be resolved or decided, as written ("by Monday", "2026-11-15").
+    resolve_by: str | None = None
+    # What has to happen first for a risk to hit ("if go-live slips past February"). Kept separate so the
+    # summary can't present a possibility as something already happening.
+    condition: str | None = None
 
 
 @dataclass(frozen=True)
 class Facts:
     project_name: str | None = None
-    reporting_period: str | None = None
+    # No reporting period: the model kept inventing one ("week ending" a Monday), so the page shows
+    # "As of <as_of_date>", built in code.
     as_of_date: date | None = None
     milestones: list[Milestone] | None = None
     budget: Budget | None = None
@@ -66,6 +84,7 @@ class Facts:
     accomplishments: list[str] = field(default_factory=list)
     next_steps: list[str] = field(default_factory=list)
     asks: list[str] = field(default_factory=list)
+    open_decisions: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return _jsonable(asdict(self))
@@ -86,6 +105,7 @@ def _jsonable(value: Any) -> Any:
 _STR = {"type": ["string", "null"]}
 _DATE = {"type": ["string", "null"], "description": "YYYY-MM-DD, only if the notes give a specific date"}
 _NUM = {"type": ["number", "null"]}
+_TITLE = {"type": ["string", "null"]}
 
 
 def _enum(values: tuple[str, ...]) -> dict[str, Any]:
@@ -99,7 +119,6 @@ def _obj(props: dict[str, Any], required: list[str]) -> dict[str, Any]:
 EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
     {
         "project_name": _STR,
-        "reporting_period": _STR,
         "as_of_date": {**_DATE, "description": "Date of the notes or report, YYYY-MM-DD"},
         "milestones": {
             "type": ["array", "null"],
@@ -119,7 +138,20 @@ EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
         "budget": {
             "anyOf": [
                 {"type": "null"},
-                _obj({"planned": _NUM, "actual": _NUM, "forecast": _NUM, "currency": _STR}, []),
+                _obj(
+                    {
+                        "planned": _NUM,
+                        "actual": _NUM,
+                        "forecast": _NUM,
+                        "currency": _STR,
+                        "unforecast_costs": {
+                            "type": "array",
+                            "description": "Costs the notes say are NOT yet included in the forecast",
+                            "items": _obj({"description": {"type": "string"}, "amount": _NUM}, ["description"]),
+                        },
+                    },
+                    [],
+                ),
             ],
             "description": "null if the notes give no budget figures. Never estimate numbers.",
         },
@@ -128,9 +160,15 @@ EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
             "description": "null if scope isn't mentioned; [] if the notes say there are no changes",
             "items": _obj(
                 {
+                    "title": {**_TITLE, "description": "3-6 word title, e.g. \"CR-9 audit dashboard\""},
                     "description": {"type": "string"},
                     "status": _enum(SCOPE_STATUSES),
                     "affected_milestone": {**_STR, "description": "Exact name from milestones, if any"},
+                    "impact_estimate": {
+                        **_STR,
+                        "description": "The cost or schedule estimate the notes give for this change "
+                                       "(an amount, a number of days, a new date); null if none is given",
+                    },
                 },
                 ["description"],
             ),
@@ -140,12 +178,23 @@ EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
             "description": "Risks and issues. null if not mentioned; [] if the notes say there are none",
             "items": _obj(
                 {
+                    "title": {**_TITLE, "description": "3-6 word title, e.g. \"Badge printer shortage\""},
                     "description": {"type": "string"},
                     "kind": _enum(RISK_KINDS),
                     "impact": _enum(IMPACTS),
                     "owner": _STR,
                     "mitigation": _STR,
                     "state": _enum(RISK_STATES),
+                    "resolve_by": {
+                        **_STR,
+                        "description": "When the notes say it will be resolved or decided, as written "
+                                       "(\"by Monday\", YYYY-MM-DD); null if no timing is given",
+                    },
+                    "condition": {
+                        **_STR,
+                        "description": "What has to happen first for the risk to hit, as the notes state it "
+                                       "(\"if the vendor misses the March delivery\"); null if none is stated",
+                    },
                 },
                 ["description"],
             ),
@@ -158,6 +207,12 @@ EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
             "description": "Only decisions or requests the notes explicitly direct at leadership, a sponsor or a "
                            "steering committee. A team member asking a vendor or colleague something is not an "
                            "ask. Often empty.",
+        },
+        "open_decisions": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Choices the notes say are still undecided (tbd, open question, need to decide), "
+                           "that aren't already in asks. Not questions put to vendors or colleagues. Often empty.",
         },
     },
     ["accomplishments", "next_steps", "asks"],
@@ -173,7 +228,6 @@ def parse_facts(data: Any) -> Facts:
     budget = obj.get("budget")
     return Facts(
         project_name=_opt_str(obj, "project_name", "facts"),
-        reporting_period=_opt_str(obj, "reporting_period", "facts"),
         as_of_date=_opt_date(obj, "as_of_date", "facts"),
         milestones=_opt_list(obj, "milestones", _milestone),
         budget=None if budget is None else _budget(budget),
@@ -182,6 +236,7 @@ def parse_facts(data: Any) -> Facts:
         accomplishments=_str_list(obj, "accomplishments"),
         next_steps=_str_list(obj, "next_steps"),
         asks=_str_list(obj, "asks"),
+        open_decisions=_str_list(obj, "open_decisions"),
     )
 
 
@@ -207,7 +262,13 @@ def _budget(data: Any) -> Budget:
         actual=_opt_num(obj, "actual", "budget"),
         forecast=_opt_num(obj, "forecast", "budget"),
         currency=_opt_str(obj, "currency", "budget"),
+        unforecast_costs=_opt_list(obj, "unforecast_costs", _unforecast_cost) or [],
     )
+
+
+def _unforecast_cost(data: Any, where: str) -> UnforecastCost:
+    obj = _expect_obj(data, where, UnforecastCost)
+    return UnforecastCost(description=_req_str(obj, "description", where), amount=_opt_num(obj, "amount", where))
 
 
 def _scope_change(data: Any, where: str) -> ScopeChange:
@@ -216,6 +277,8 @@ def _scope_change(data: Any, where: str) -> ScopeChange:
         description=_req_str(obj, "description", where),
         status=_opt_enum(obj, "status", where, SCOPE_STATUSES),
         affected_milestone=_opt_str(obj, "affected_milestone", where),
+        impact_estimate=_opt_str(obj, "impact_estimate", where),
+        title=_opt_str(obj, "title", where),
     )
 
 
@@ -223,11 +286,14 @@ def _risk(data: Any, where: str) -> Risk:
     obj = _expect_obj(data, where, Risk)
     return Risk(
         description=_req_str(obj, "description", where),
+        title=_opt_str(obj, "title", where),
         kind=_opt_enum(obj, "kind", where, RISK_KINDS),
         impact=_opt_enum(obj, "impact", where, IMPACTS),
         owner=_opt_str(obj, "owner", where),
         mitigation=_opt_str(obj, "mitigation", where),
         state=_opt_enum(obj, "state", where, RISK_STATES),
+        resolve_by=_opt_str(obj, "resolve_by", where),
+        condition=_opt_str(obj, "condition", where),
     )
 
 
@@ -295,6 +361,8 @@ def _str_list(obj: dict[str, Any], key: str) -> list[str]:
     value = obj.get(key)
     if value is None:
         return []
+    if isinstance(value, str):  # a single item sent without the list; not worth a retry
+        value = [value]
     if not isinstance(value, list) or not all(isinstance(v, str) for v in value):
         raise SchemaError(f"{key} must be a list of strings")
     return [v.strip() for v in value if v.strip()]
