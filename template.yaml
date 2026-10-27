@@ -25,11 +25,26 @@ Parameters:
     NoEcho: true
     MinLength: 32
     Description: Random secret mixed into visitor IP hashes. Generate once and keep it.
+  ApiDomainName:
+    Type: String
+    Default: ""
+    Description: Custom domain for the API (e.g. api.amandapatricks.com). Leave empty to skip.
+  CertificateArn:
+    Type: String
+    Default: ""
+    Description: ACM certificate for ApiDomainName, in this region, already validated (see docs/deploy.md).
+
+Conditions:
+  HasCustomDomain: !And
+    - !Not [!Equals [!Ref ApiDomainName, ""]]
+    - !Not [!Equals [!Ref CertificateArn, ""]]
 
 Resources:
   Api:
     Type: AWS::Serverless::HttpApi
     Properties:
+      # With a custom domain, it's the only way in; without one, keep the default URL so the API stays reachable.
+      DisableExecuteApiEndpoint: !If [HasCustomDomain, true, false]
       CorsConfiguration:
         AllowOrigins: !Ref AllowedOrigins
         AllowMethods: [POST]
@@ -38,6 +53,27 @@ Resources:
       DefaultRouteSettings:
         ThrottlingRateLimit: 2
         ThrottlingBurstLimit: 5
+
+  # DNS is at the registrar, not Route 53: after deploy, point a CNAME for ApiDomainName at the
+  # CustomDomainTarget output.
+  ApiDomain:
+    Type: AWS::ApiGatewayV2::DomainName
+    Condition: HasCustomDomain
+    Properties:
+      DomainName: !Ref ApiDomainName
+      DomainNameConfigurations:
+        - CertificateArn: !Ref CertificateArn
+          EndpointType: REGIONAL
+          SecurityPolicy: TLS_1_2
+
+  ApiDomainMapping:
+    Type: AWS::ApiGatewayV2::ApiMapping
+    Condition: HasCustomDomain
+    DependsOn: ApiApiGatewayDefaultStage
+    Properties:
+      DomainName: !Ref ApiDomain
+      ApiId: !Ref Api
+      Stage: $default
 
   UsageTable:
     Type: AWS::DynamoDB::Table
@@ -101,8 +137,15 @@ Resources:
 
 Outputs:
   ApiUrl:
-    Description: Base URL for the frontend until the custom domain is ready
-    Value: !Sub https://${Api}.execute-api.${AWS::Region}.amazonaws.com
+    Description: Base URL for the frontend (PUBLIC_API_BASE)
+    Value: !If
+      - HasCustomDomain
+      - !Sub https://${ApiDomainName}
+      - !Sub https://${Api}.execute-api.${AWS::Region}.amazonaws.com
+  CustomDomainTarget:
+    Condition: HasCustomDomain
+    Description: Point the API domain's CNAME at this
+    Value: !GetAtt ApiDomain.RegionalDomainName
   LogGroup:
     Value: !Ref GenerateLogGroup
   UsageTableName:

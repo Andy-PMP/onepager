@@ -15,7 +15,8 @@ Paste messy project notes, get an executive one-pager with RAG status. Portfolio
 - Pause after phase 4 (evals) to show results before deploying.
 
 ## Deployed (phase 5, 2026-10-27)
-- Stack `onepager` (us-east-1). API: `https://iw277o42g3.execute-api.us-east-1.amazonaws.com` (`POST /generate`), until `api.amandapatricks.com` is set up in phase 7.
+- Stack `onepager` (us-east-1). API: `https://api.amandapatricks.com/generate` (custom domain, phase 7). The default execute-api URL (`iw277o42g3`) is disabled whenever the custom domain is configured, so test against the custom domain.
+- Custom domain: ACM cert `arn:aws:acm:us-east-1:733294945955:certificate/bfce77c3-65cc-4f30-8943-c47b73792bcd` (DNS-validated; the `_88e1…api` validation CNAME at Namecheap must stay for auto-renewal). Namecheap CNAME `api` → `d-f6jydwa0ed.execute-api.us-east-1.amazonaws.com`. Domain + cert ARN are in `samconfig.toml` parameter_overrides, so plain deploys keep them.
 - Log group `/aws/lambda/onepager-generate`; usage table `onepager-UsageTable-LCZJ7LKDD0TQ`.
 - `sam deploy` asks for confirmation interactively, which the agent shell can't answer: run `sam deploy --no-execute-changeset`, review with `aws cloudformation describe-change-set`, then `aws cloudformation execute-change-set`.
 - API Gateway throttling (2 rps / burst 5) is approximate; large bursts also hit the account's Lambda concurrency limit (503). The exact cost control is the DynamoDB caps.
@@ -28,6 +29,12 @@ Paste messy project notes, get an executive one-pager with RAG status. Portfolio
 - `?sample=<id>` deep-links a sample (for links from the project write-up).
 - Visual check without chromium-cli: `playwright-core` with `channel: "chrome"` (installed Chrome) from the scratchpad.
 - The user removed the "Portfolio project · AI engineering" eyebrow; don't add it back.
+
+## Project write-up (phase 8)
+- `PROJECT.md` (repo root) is the portfolio write-up. The website scans this repo for it and builds its own summary and card; don't edit `../mywebsite` for it. Frontmatter matches the portfolio's content schema (title, summary, date, tags, link, repo) so it also works if dropped into `src/content/projects/`.
+- Its eval numbers come from `evals/results/baseline.md` (first run) and `results.md` (final). Update both together if the eval is rerun.
+- The diagram is inline SVG using the portfolio's CSS variables (with fallbacks), 2×2 so it stays readable on phones. Preview by copying `../mywebsite` to the scratchpad (not the real folder), adding the doc, `npm ci`, `npx astro build`.
+- The portfolio's project template has no table styling, so the two tables render plain. The user chose not to change the website from this repo.
 
 ## Environment
 Windows 11, PowerShell. Python venv at `.venv` (local 3.14; code targets 3.12+).

@@ -51,13 +51,34 @@ $env:SAM_CLI_TELEMETRY = "0"
 
 No `sam build` step: the function has no third-party dependencies, so SAM zips `backend/` as is.
 
-The `ApiUrl` output is the base URL until the custom domain is set up. Smoke test:
+The `ApiUrl` output is the base URL: the custom domain once it's set up, otherwise the default `execute-api` URL. Smoke test:
 
 ```powershell
 $api = "<ApiUrl output>"
 Invoke-RestMethod -Method Post -Uri "$api/generate" -ContentType "application/json" `
   -Body (@{ notes = Get-Content samples\office-move.txt -Raw } | ConvertTo-Json)
 ```
+
+## Custom domain (api.amandapatricks.com)
+
+DNS is at Namecheap, not Route 53, so validation and routing are manual CNAMEs.
+
+1. Request the certificate (same region as the API):
+   ```powershell
+   aws acm request-certificate --domain-name api.amandapatricks.com --validation-method DNS
+   aws acm describe-certificate --certificate-arn <arn> --query "Certificate.DomainValidationOptions[0].ResourceRecord"
+   ```
+2. At Namecheap (**Domain List → Manage → Advanced DNS → Add new record**), add the validation **CNAME**. Namecheap appends the domain itself, so the Host is the record name *without* `.amandapatricks.com.`, e.g. `_88e1…c5d5.api`. Wait for `aws acm describe-certificate ... --query Certificate.Status` to say `ISSUED` (usually minutes, can take up to an hour). Keep this record: ACM uses it to renew the certificate automatically.
+3. Deploy with the domain:
+   ```powershell
+   .\.venv-sam\Scripts\sam deploy --no-execute-changeset --parameter-overrides `
+     IpHashSalt=<salt from samconfig.toml> ApiDomainName=api.amandapatricks.com CertificateArn=<arn>
+   ```
+   (Or add both to `parameter_overrides` in `samconfig.toml` so plain `sam deploy` keeps them.)
+4. Add a second CNAME at Namecheap: Host `api`, Value = the `CustomDomainTarget` stack output (`d-….execute-api.us-east-1.amazonaws.com`).
+5. Switch the frontend: set `PUBLIC_API_BASE=https://api.amandapatricks.com` in `web/.env`.
+
+With a custom domain configured, the template disables the default `execute-api` URL (it returns 404), so the custom domain is the API's only address. Without one, the default URL stays on.
 
 ## What's deployed
 
