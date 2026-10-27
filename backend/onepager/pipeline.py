@@ -9,8 +9,9 @@ from typing import Any
 
 from .bedrock import ModelError, Usage
 from .extract import extract
-from .rules import Scorecard, score
+from .rules import Scorecard, load_thresholds, score
 from .schema import Facts, SchemaError
+from .tables import apply_tables, parse_tables
 from .validate import (
     check_texts,
     ground_facts,
@@ -100,9 +101,16 @@ def generate(client, model_id: str, notes: str, time_left: Callable[[], float] |
         except (SchemaError, ModelError):
             pass  # keep the first extraction; the final check flags what's left
     facts = _drop_duplicate_decisions(_keep_real_asks(facts))
+    # Tables are parsed in code and replace what the model read from them; totals computed here are
+    # grounded by construction, so this runs after ground_facts.
+    t = load_thresholds()
+    facts = apply_tables(facts, parse_tables(notes), notes, t.accomplishment_window_days, t.next_steps_window_days)
+    facts = _drop_change_requests_listed_as_risks(facts, notes)
+    facts = _drop_unforecast_costs_owned_by_change_requests(facts)
 
     # Step 2: score
-    card = score(facts)
+    card = score(facts, t)
+    card = replace(card, gaps=card.gaps + _coverage_gaps(facts, notes))
 
     # Steps 3 and 4: the model writes a one-sentence headline; validate it and retry once with the problems
     # as feedback. Correctness problems become warnings if they survive the retry; style problems only
@@ -121,7 +129,8 @@ def generate(client, model_id: str, notes: str, time_left: Callable[[], float] |
     # or that couldn't be written at all, is dropped: the code-built sentences are a complete summary on their
     # own. Its problems go with it, since it isn't shown.
     headline_dropped = headline is None or bool(style)
-    summary = facts_paragraph(facts, card) if headline_dropped else f"{headline} {facts_paragraph(facts, card)}"
+    summary = (facts_paragraph(facts, card) if headline_dropped
+               else f"{headline} {facts_paragraph(facts, card, already_said=headline)}")
     if headline_dropped:
         headline, problems = "", []
 
@@ -167,6 +176,48 @@ _IDENTIFIER = re.compile(r"\b[a-z]{1,10}-?\d+\b")
 _ASK_VERB = re.compile(r"\b(approv\w*|decid\w*|decision|sign[- ]?off|assign\w*|confirm\w*|authori[sz]\w*|fund\w*|"
                        r"choose|agree\w*|endorse\w*|announce\w*|need\w*|request\w*|allocat\w*|escalat\w*|"
                        r"defer\w*|support)\b", re.IGNORECASE)
+
+
+def _drop_change_requests_listed_as_risks(facts: Facts, notes: str) -> Facts:
+    """A pending change request belongs in scope, not risks (the model turned CR-03 into an inverted risk).
+    Kept only if the notes themselves call that change a risk."""
+    if not facts.risks or not facts.scope_changes:
+        return facts
+    cr_ids = {i.replace("-", "") for c in facts.scope_changes
+              for i in _IDENTIFIER.findall(f"{c.title or ''} {c.description}".lower())}
+    called_risk = {i.replace("-", "") for line in notes.lower().splitlines() if "risk" in line
+                   for i in _IDENTIFIER.findall(line)}
+
+    def is_change_request(r) -> bool:
+        ids = {i.replace("-", "") for i in _IDENTIFIER.findall(f"{r.title or ''} {r.description}".lower())}
+        return bool(ids & cr_ids) and not ids & called_risk
+
+    kept = [r for r in facts.risks if not is_change_request(r)]
+    return replace(facts, risks=kept or None) if len(kept) != len(facts.risks) else facts
+
+
+def _drop_unforecast_costs_owned_by_change_requests(facts: Facts) -> Facts:
+    """A pending change request's cost gets its own 'if approved' gap; don't count it again as a known cost
+    left out of the forecast (Harbor Street showed CR-03's $62,000 twice)."""
+    b = facts.budget
+    if not b or not b.unforecast_costs or not facts.scope_changes:
+        return facts
+    cr_ids = {i.replace("-", "") for c in facts.scope_changes if c.cost
+              for i in _IDENTIFIER.findall(f"{c.title or ''} {c.description}".lower())}
+    kept = [u for u in b.unforecast_costs
+            if not {i.replace("-", "") for i in _IDENTIFIER.findall(u.description.lower())} & cr_ids]
+    return replace(facts, budget=replace(b, unforecast_costs=kept)) if len(kept) != len(b.unforecast_costs) \
+        else facts
+
+
+def _coverage_gaps(facts: Facts, notes: str) -> list[str]:
+    """Topics the notes clearly cover but nothing was read from. Rare now that tables are parsed in code,
+    but a budget mentioned with figures and no planned total is worth flagging rather than staying silent."""
+    gaps = []
+    if (re.search(r"\bbudget\b", notes, re.IGNORECASE) and re.search(r"[$€£]\s?\d|\d[\d,]{3,}", notes)
+            and not (facts.budget and facts.budget.planned is not None)):
+        gaps.append("The notes mention a budget with figures, but no planned total could be read from them.")
+    return gaps
 
 
 def _keep_real_asks(facts: Facts) -> Facts:

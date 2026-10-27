@@ -1,0 +1,18 @@
+{
+  "id": "harbor-street-no-budget",
+  "description": "Harbor Street with the BUDGET section removed: Budget and Risk both Unknown, so the Red overall (from CR-03) is low-confidence.",
+  "expected": {
+    "schedule": "green",
+    "budget": "unknown",
+    "scope": "red",
+    "risk": "unknown"
+  },
+  "expected_overall": "red",
+  "low_confidence": true,
+  "must_mention_risks": [],
+  "must_have_no_risks": true,
+  "must_include_asks": [
+    {"label": "Sponsor decision on CR-03 by 13 November", "all_of": [["CR-03"]]}
+  ],
+  "injection": false
+}

@@ -1,0 +1,56 @@
+From: Dana Whitfield
+Sent: Tuesday, October 27, 2026 9:14 AM
+To: Project Relay Core Team
+Subject: RE: RE: Relay status - cutover date
+
+All - correcting my note from Friday. BrightLine came back with a tighter plan. Phone queue cutover is now Dec 17, not Dec 28. Original date was Dec 7 so we're 10 days late, not 3 weeks. This is still our critical date, everything else is prep for it.
+
+Also confirmed with Dev this morning: no change requests this cycle. Scope is locked per steering decision 10/14.
+
+Honestly I think we're basically green at this point.
+
+Dana
+
+Dana Whitfield | Program Manager, Customer Operations
+Juniper Mutual | 919-555-0142
+
+-----Original Message-----
+From: Raj Patel
+Sent: Monday, October 26, 2026 4:51 PM
+Subject: RE: Relay status - cutover date
+
+Update on the IVR problem. BrightLine's IVR is still failing auth intermittently against our policy lookup API, roughly 1 in 12 calls in test. If this isn't fixed, agents can't see policy details at cutover - that's a showstopper. I'm owning it on our side. Mitigation: we've written manual lookup scripts agents can fall back on, and BrightLine has committed to a fix by Nov 20.
+
+Separately, the data privacy addendum is signed as of Thursday, so we can close that risk.
+
+Raj
+
+> -----Original Message-----
+> From: Lena Ortiz
+> Sent: Monday, October 26, 2026 11:02 AM
+> Subject: RE: Relay status - cutover date
+>
+> Quick finance note. BrightLine invoiced $42,500 for onboarding, paid. I haven't refreshed the overall forecast since the contract amendment went through - will have updated numbers to Dana next week.
+>
+> Also, flagging that BrightLine's holiday staffing plan looks thin for late Dec. Medium risk IMO. Not sure who should chase that.
+>
+> Lena
+>
+>> -----Original Message-----
+>> From: Dana Whitfield
+>> Sent: Friday, October 23, 2026 3:30 PM
+>> Subject: Relay status - cutover date
+>>
+>> Team, rough news. BrightLine says phone queue cutover moves from Dec 7 to Dec 28. Will confirm Monday.
+>>
+>> Wins this week: knowledge base migration finished (all 1,140 articles moved and reviewed). Agent training cohort 1 kicked off.
+>>
+>> Training cohort 1 completion slipped from Nov 9 to Nov 16 because of trainer onboarding. Not on the critical path.
+>>
+>> Two things I need from leadership:
+>> 1. Decision on whether to extend the Callisto contract month-to-month through January as a safety net. About $30K/month. Need an answer by Nov 6.
+>> 2. Exec sponsor sign-off on the customer notification letter by Nov 3.
+>>
+>> Next steps: Raj to send IVR test results Thursday. Lena to send refreshed forecast. Dana to draft cutover runbook.
+>>
+>> Dana

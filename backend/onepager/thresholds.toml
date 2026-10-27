@@ -16,6 +16,12 @@ amber_max_overrun_pct = 10
 # Impact levels that count as "high-impact".
 high_impact_levels = ["high"]
 
+[report]
+# For task tables: a task counts as this period's accomplishment if it finished within this many days
+# before the report date, and as a next step if it's due within this many days after it.
+accomplishment_window_days = 14
+next_steps_window_days = 30
+
 [overall]
 # When this many dimensions (or more) are Unknown, the overall status is marked low-confidence.
 low_confidence_unknown_count = 2

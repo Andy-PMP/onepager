@@ -25,7 +25,7 @@ GOOD_NARRATIVE = {"headline": "Atlas is over budget, with one vendor risk under 
 INVENTED_150K = {"headline": "Atlas's budget forecast is now 150k."}
 # What code builds from FACTS: budget (red), then risk (amber), then coverage, then asks.
 FACTS_PARAGRAPH = ("The budget forecast is 120,000 against a 100,000 plan (+20.0%). 1 high-impact risk or issue is "
-                   "open (Vendor late), with an owner and mitigation. The notes don't cover schedule or scope, "
+                   "open ('Vendor late'), with an owner and mitigation. The notes don't cover schedule or scope, "
                    "so the overall status is low-confidence. Decisions needed: Approve overrun.")
 
 
@@ -77,8 +77,8 @@ def test_writer_gets_a_checklist_for_this_report():
     sent = client.calls[1]["messages"][0]["content"][0]["text"]
     checklist = sent.split("<checklist>")[1]
     assert "One sentence, at most 30 words" in checklist
-    assert f'Code adds these facts right after your sentence, so don\'t repeat their details: "{FACTS_PARAGRAPH}"' \
-        in checklist
+    assert ("Code adds these facts right after your sentence, so don't repeat their details, and don't restate "
+            f'the decisions needed: "{FACTS_PARAGRAPH}"') in checklist
     assert "Don't name status colours" in checklist
 
 
@@ -148,7 +148,7 @@ def test_dates_and_figures_not_in_the_notes_are_dropped():
     assert result.log["dropped_facts"] == 2
     statuses = {d["dimension"]: d["status"] for d in result.onepager["dimensions"]}
     assert statuses["budget"] == "unknown"  # no grounded forecast, so no invented status
-    assert "No date for: Tier rollout" in result.onepager["gaps"]
+    assert "'Tier rollout' has no date." in result.onepager["gaps"]
 
 
 def test_open_decision_repeating_an_ask_is_dropped():
@@ -223,7 +223,7 @@ def test_header_is_always_as_of_the_report_date():
     p = generate(FakeClient(facts, GOOD_NARRATIVE), "model", NOTES + " Go-live 7/1, then phase 2.").onepager
     assert "reporting_period" not in p
     assert "**As of:** 5 June 2026" in p["markdown"] and "Reporting period" not in p["markdown"]
-    assert "No date for: Phase 2" in p["gaps"]
+    assert "'Phase 2' has no date." in p["gaps"]
 
 
 def test_invented_approver_in_summary_is_retried():
@@ -253,14 +253,16 @@ def test_facts_cover_red_before_amber_and_all_green_says_so():
                      "scope_changes": [], "asks": []}
     notes = NOTES + " Go-live 7/1, now 7/3."
     summary = generate(FakeClient(facts, GOOD_NARRATIVE), "model", notes).onepager["executive_summary"]
-    assert ("The budget forecast is 120,000 against a 100,000 plan (+20.0%), and high-impact risk Scanner "
-            "firmware has no owner and mitigation. Go-live slipped 2 days to 3 July.") in summary
+    assert ("The budget forecast is 120,000 against a 100,000 plan (+20.0%), and high-impact risk 'Scanner "
+            "firmware' has no owner and mitigation. Go-live slipped 2 days to 3 July. Scope is unchanged.") in summary
     assert "Decisions needed" not in summary
 
     green = FACTS | {"budget": {"planned": 100000, "forecast": 100000}, "risks": [], "scope_changes": [],
                      "milestones": [{"name": "Go-live", "planned_date": "2026-07-01"}], "asks": []}
     summary = generate(FakeClient(green, GOOD_NARRATIVE), "model", NOTES.replace("120k", "100k") + " 7/1").onepager
-    assert summary["executive_summary"].endswith("Schedule, budget, scope and risk are all within tolerance.")
+    assert summary["executive_summary"].endswith(
+        "The schedule is on track; the budget forecast is 100,000 against a 100,000 plan (+0.0%); scope is "
+        "unchanged; and no risks or issues are open.")
 
 
 def test_conditional_risks_reach_the_writer_as_conditionals():
@@ -273,6 +275,45 @@ def test_conditional_risks_reach_the_writer_as_conditionals():
     checklist = client.calls[1]["messages"][0]["content"][0]["text"].split("<checklist>")[1]
     assert ("Conditional risk, not happening yet: 'Peak season collision' hits only if go-live slips past "
             "February. If you mention it, present it as a possibility with that condition.") in checklist
+
+
+def test_change_request_listed_as_a_risk_is_dropped():
+    # BUG-2: the model turned pending CR-03 into an inverted risk.
+    facts = FACTS | {"scope_changes": [{"description": "CR-03: lab buildout", "status": "pending", "title": "CR-03"}],
+                     "risks": [{"description": "If CR-03 is not approved the move can't be held", "impact": "high"}]}
+    p = generate(FakeClient(facts, GOOD_NARRATIVE), "model", NOTES + " CR-03 pending sponsor.").onepager
+    assert p["risks"] == []
+    assert {d["dimension"]: d["status"] for d in p["dimensions"]}["risk"] == "unknown"
+
+
+def test_change_request_the_notes_call_a_risk_is_kept():
+    facts = FACTS | {"scope_changes": [{"description": "CR-03: lab buildout", "status": "pending", "title": "CR-03"}],
+                     "risks": [{"description": "CR-03 could delay the move", "impact": "high"}]}
+    p = generate(FakeClient(facts, GOOD_NARRATIVE), "model", NOTES + " Risk: CR-03 could delay the move.").onepager
+    assert len(p["risks"]) == 1
+
+
+def test_an_ask_the_headline_states_isnt_repeated():
+    # BUG-6: the CR-03 ask appeared in the headline and again in "Decisions needed".
+    facts = FACTS | {"asks": ["Sponsor decision on CR-03 by 2026-11-13", "Approve overrun"]}
+    headline = {"headline": "Atlas needs a sponsor decision on CR-03 by 2026-11-13."}
+    p = generate(FakeClient(facts, headline), "model", NOTES + " CR-03 decision by 11/13.").onepager
+    assert p["executive_summary"].count("CR-03") == 1
+    assert p["executive_summary"].endswith("Decisions also needed: Approve overrun.")
+
+
+def test_change_request_cost_isnt_also_an_unforecast_cost():
+    facts = FACTS | {"budget": {"planned": 100000, "forecast": 120000,
+                                "unforecast_costs": [{"description": "CR-03 lab buildout", "amount": 62000}]},
+                     "scope_changes": [{"description": "CR-03: lab buildout", "status": "pending", "cost": 62000}]}
+    p = generate(FakeClient(facts, GOOD_NARRATIVE), "model", NOTES + " CR-03 62,000").onepager
+    assert sum("62,000" in g for g in p["gaps"]) == 1
+
+
+def test_coverage_gap_when_a_budget_is_mentioned_but_unread():
+    facts = FACTS | {"budget": None}
+    p = generate(FakeClient(facts, GOOD_NARRATIVE), "model", NOTES + " Budget table: $480,000.").onepager
+    assert "The notes mention a budget with figures, but no planned total could be read from them." in p["gaps"]
 
 
 def test_style_problems_trigger_a_rewrite_but_never_a_warning():

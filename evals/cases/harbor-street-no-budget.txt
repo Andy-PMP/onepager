@@ -1,0 +1,23 @@
+Project: Harbor Street Office Relocation
+Exported: 2026-10-27 from project tracker
+Sponsor: K. Brandt | PM: R. Okafor
+
+ID,Task,Type,Owner,Planned Finish,Forecast Finish,Status,% Complete,Critical,Notes
+1,Lease signed,Milestone,R. Okafor,2026-08-14,2026-08-14,Complete,100,Y,
+2,Space design approved,Milestone,J. Lindqvist,2026-09-18,2026-09-18,Complete,100,N,
+3,Demolition complete,Task,BuildRight GC,2026-10-23,2026-10-23,Complete,100,N,Finished on schedule
+4,Network cabling rough-in,Task,M. Chen,2026-10-30,2026-10-30,In Progress,80,N,
+5,Construction substantially complete,Milestone,BuildRight GC,2026-12-11,2026-12-11,On Track,35,Y,
+6,Furniture delivery,Task,J. Lindqvist,2027-01-05,2026-12-29,On Track,0,N,Vendor offered earlier slot - accepted
+7,IT/AV install,Task,M. Chen,2027-01-08,2027-01-08,Not Started,0,N,
+8,Employee move communications,Task,T. Alvarez,2026-11-20,2026-11-20,In Progress,40,N,
+9,Move weekend,Milestone,R. Okafor,2027-01-16,2027-01-16,On Track,0,Y,
+10,Old space decommissioned,Milestone,R. Okafor,2027-02-26,2027-02-26,Not Started,0,N,
+
+CHANGE REQUESTS
+CR,Description,Requested By,Status,Impacts,Est Cost,Est Schedule Impact
+CR-02,Swap carpet vendor,J. Lindqvist,Approved,Construction substantially complete,-4000,0 days
+CR-03,Build out 2nd floor east wing as lab space,S. Mensah (R&D),Submitted - pending sponsor,Construction substantially complete; Move weekend,62000,+3 weeks
+
+NOTES
+Need sponsor decision on CR-03 by 2026-11-13 to hold move weekend. Forecast dates above do not include CR-03. -R. Okafor

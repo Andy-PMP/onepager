@@ -141,7 +141,7 @@ class TestBudget:
     def test_no_budget_is_unknown(self):
         r = score_budget(Facts(budget=None), T)
         assert (r.status, r.rule) == (Status.UNKNOWN, "budget.no_plan")
-        assert r.gaps == ["No budget figures provided"]
+        assert r.gaps == ["No budget figures are given."]
 
     def test_plan_only_is_unknown(self):
         assert budget(planned=100).rule == "budget.no_actuals"
@@ -266,10 +266,25 @@ class TestRisk:
         r = risk(Risk("Switch failed", kind="issue", impact="high"))
         assert "High-impact issue" in r.reason
 
-    def test_unrated_impact_is_not_high_but_flags_gap(self):
+    # BUG-1 (Harbor Street run): an item with no stated impact used to count as "not high-impact" (Green).
+    def test_single_unrated_item_is_unknown(self):
         r = risk(Risk("Something odd"))
+        assert (r.status, r.rule) == (Status.UNKNOWN, "risk.unrated")
+        assert r.reason == "The one open item has no stated impact."
+        assert r.gaps == ["'Something odd' has no stated impact."]
+
+    def test_unrated_plus_managed_high_is_amber_with_gap(self):
+        r = risk(Risk("Something odd"), Risk("Data loss", impact="high", owner="Priya", mitigation="Backups"))
+        assert r.status is Status.AMBER
+        assert any("has no stated impact" in g for g in r.gaps)
+
+    def test_unrated_plus_low_is_green_with_gap(self):
+        r = risk(Risk("Something odd"), Risk("Typo", impact="low"))
         assert r.status is Status.GREEN
-        assert r.gaps
+        assert any("has no stated impact" in g for g in r.gaps)
+
+    def test_all_unrated_plural_reason(self):
+        assert risk(Risk("A"), Risk("B")).reason == "None of the 2 open items has a stated impact."
 
 
 # --- Overall ------------------------------------------------------------------------------
@@ -306,7 +321,7 @@ class TestOverall:
         card = score(full_facts(budget=None))
         assert card.overall is Status.GREEN
         assert not card.low_confidence
-        assert "No budget figures provided" in card.gaps
+        assert "No budget figures are given." in card.gaps
 
     def test_two_unknowns_is_low_confidence(self):
         card = score(full_facts(budget=None, scope_changes=None))
@@ -337,23 +352,23 @@ class TestReportGaps:
 
     def test_missing_basics(self):
         gaps = report_gaps(Facts())
-        assert "No project name" in gaps
-        assert "No report date" in gaps
-        assert "No accomplishments listed for the period" in gaps
-        assert "No next steps listed" in gaps
+        assert "There's no project name." in gaps
+        assert "There's no report date." in gaps
+        assert "No accomplishments are listed for this period." in gaps
+        assert "No next steps are listed." in gaps
 
     def test_open_risk_without_owner_is_named(self):
         gaps = report_gaps(full_facts(risks=[Risk("Vendor attrition", impact="medium"), Risk("Done", owner="A"),
                                              Risk("Minor leave cover", impact="low")]))
-        assert "No owner for: Vendor attrition" in gaps
+        assert "'Vendor attrition' has no owner." in gaps
         assert not any("Minor leave cover" in g for g in gaps)
 
     def test_owner_gap_skips_items_a_rule_already_named(self):
         facts = full_facts(risks=[Risk("Scanner firmware", impact="high"), Risk("Leave cover", impact="medium")])
         card = score(facts)
         assert "Scanner firmware" in card.dimensions[3].reason
-        assert "No owner for: Leave cover" in card.gaps
-        assert not any("Scanner firmware" in g and g.startswith("No owner") for g in card.gaps)
+        assert "'Leave cover' has no owner." in card.gaps
+        assert not any("Scanner firmware" in g and g.endswith("has no owner.") for g in card.gaps)
 
 
 class TestNewGaps:
@@ -362,7 +377,7 @@ class TestNewGaps:
                      # Regressions from the regenerated samples: these have dates, just not planned ones.
                      ms("Wave 2", planned=None, forecast=date(2026, 11, 6)),
                      ms("Contract signed", planned=None, actual=date(2026, 9, 4)))
-        assert "No date for: Greensboro phase 2" in r.gaps
+        assert "'Greensboro phase 2' has no date." in r.gaps
 
     def test_unforecast_costs_show_adjusted_figure_without_changing_status(self):
         b = Budget(planned=1_200_000, forecast=1_284_000, currency="$",
@@ -376,7 +391,7 @@ class TestNewGaps:
     def test_unpriced_unforecast_costs_are_listed(self):
         b = Budget(planned=100, forecast=100, unforecast_costs=[UnforecastCost("legal review")])
         assert score_budget(Facts(budget=b), T).gaps == [
-            "Known costs not in the forecast, with no amount given: legal review"]
+            "'legal review' isn't in the forecast, and no amount is given."]
 
     @pytest.mark.parametrize("text, expected", [
         ("$20K", True), ("€1.2M extra", True), ("adds 2 weeks", True), ("+10 days", True), ("3 wks", True),
@@ -391,14 +406,14 @@ class TestNewGaps:
         r = scope(ScopeChange("CR-14 returns module", "pending"),
                   ScopeChange("CR-15 dashboards", "pending", impact_estimate="$20K, 2 weeks"),
                   ScopeChange("CR-12 report", "approved"))
-        assert "No cost or schedule estimate for: CR-14 returns module" in r.gaps
+        assert "'CR-14 returns module' has no cost or schedule estimate." in r.gaps
         assert not any("CR-15" in g or "CR-12" in g for g in r.gaps)
 
     def test_high_risk_without_timing(self):
         r = risk(Risk("Firmware not certified", impact="high"),
                  Risk("Peak season", impact="high", owner="Dana", mitigation="No-go call", resolve_by="2027-01-15"),
                  Risk("Minor", impact="low"))
-        assert "No target date for resolving: Firmware not certified" in r.gaps
+        assert "'Firmware not certified' has no target date for resolution." in r.gaps
         assert not any("Peak season" in g or "Minor" in g for g in r.gaps)
 
     def test_titles_are_used_in_reasons_and_gaps(self):
@@ -406,9 +421,9 @@ class TestNewGaps:
         r = risk(Risk("Handheld scanner firmware: units need an update the vendor hasn't certified", kind="issue",
                       impact="high", title="Scanner firmware certification"))
         assert r.reason == "High-impact issue 'Scanner firmware certification' has no owner and mitigation."
-        assert "No target date for resolving: Scanner firmware certification" in r.gaps
+        assert "'Scanner firmware certification' has no target date for resolution." in r.gaps
         s = scope(ScopeChange("CR-14: Add returns processing to phase 1", "pending", title="CR-14 returns module"))
-        assert "No cost or schedule estimate for: CR-14 returns module" in s.gaps
+        assert "'CR-14 returns module' has no cost or schedule estimate." in s.gaps
 
     def test_long_descriptions_are_shortened_in_reasons(self):
         long = "Handheld scanner firmware: units need an update the vendor hasn't certified, so pickers can't " \

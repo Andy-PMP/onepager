@@ -29,6 +29,9 @@ Each input is `<id>.txt`, with labels in `<id>.labels.json` next to it. All cont
   - `must_include_decisions`: open decisions (undecided choices not addressed to leadership) that must appear. If absent, any open decision in the output counts as invented.
   - `expected_gaps`: items the Gaps section must name.
   - `must_not_accomplish`: items that must *not* appear as accomplishments (e.g. work from an earlier period).
+  - `must_accomplish` / `expected_next_steps` / `must_not_next_step`: items that must (or must not) appear in those lists.
+  - `must_have_no_risks`: `true` when the notes contain no risks, so any listed risk was invented.
+  - `expected_reasons`: `{"budget": [["455,500"], ["480,000"]]}`, keyword groups that a dimension's reason must contain.
   - `conditional_risks`: `{"label", "condition"}` items (no keyword groups). An LLM grader (`grader.py`) checks the summary presents each as a possibility under its condition, not as happening.
 
 ## LLM grader
@@ -54,4 +57,7 @@ Expected statuses assume the thresholds in `backend/onepager/thresholds.toml`. `
 | explicit-none | "No scope changes, no risks" but no dates or budget → low-confidence |
 | currency-units | €1.2M / €1.29M and day-first dates |
 | aside-mitigation | High-impact risks whose owner and mitigation appear only as asides ("(Marta already resubmitted…)", "Ines covering"); dropping them would wrongly turn Risk Red |
+| harbor-street | A real user test: task export with budget lines (no total row) and change-request tables. Budget must be summed in code; pending CR-03 must stay a scope change, not become a risk; only this period's work counts as accomplishments |
+| harbor-street-no-budget | The same without the BUDGET section: Budget and Risk Unknown, so low-confidence |
+| relay-email | A real user test: email chain where a later message corrects the cutover date; a "showstopper" with an owner; a closed risk; the PM's "basically green" must be ignored |
 | wms-rollout (also labels conditional risks) | A real user test: an open "tbd" decision, specific gaps (unforecast overtime, undated phase, un-estimated CR, risk with no date), and an item approved last month that isn't this period's work |

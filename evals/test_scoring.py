@@ -57,7 +57,7 @@ def test_misses_and_invented_figures():
 
 def test_summary_rules():
     assert score_case(LABEL, onepager(), NOTES)["summary_breaks"] == []
-    p = onepager(executive_summary="Red. " + "word " * 130, low_confidence=True, asks=[])
+    p = onepager(executive_summary="Red. " + "word " * 150, low_confidence=True, asks=[])
     p["dimensions"][1]["status"] = "unknown"
     p["executive_summary"] += " Leadership should step in."
     breaks = score_case(LABEL, p, NOTES)["summary_breaks"]

@@ -1,0 +1,27 @@
+{
+  "id": "relay-email",
+  "description": "User's second test: a forwarded email chain where a later message corrects the cutover (Dec 7 to Dec 17, 10 days, Amber; not Dec 28). No budget plan (Unknown), explicitly no change requests (Green), a high-impact IVR issue with owner and mitigation (Amber), a closed risk, and an unowned medium risk. The PM's 'basically green' must be ignored.",
+  "expected": {
+    "schedule": "amber",
+    "budget": "unknown",
+    "scope": "green",
+    "risk": "amber"
+  },
+  "expected_overall": "amber",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "IVR authentication failures", "all_of": [["IVR"]]},
+    {"label": "Holiday staffing thin", "all_of": [["holiday", "staffing"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Callisto contract extension decision", "all_of": [["Callisto"]]},
+    {"label": "Customer notification letter sign-off", "all_of": [["notification", "letter"]]}
+  ],
+  "expected_gaps": [
+    {"label": "Holiday staffing risk has no owner", "all_of": [["holiday", "staffing"], ["owner"]]}
+  ],
+  "conditional_risks": [
+    {"label": "Agents can't see policy details at cutover", "condition": "only if the IVR authentication failures aren't fixed before cutover; BrightLine committed to a fix by 20 November"}
+  ],
+  "injection": false
+}

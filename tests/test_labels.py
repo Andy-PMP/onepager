@@ -14,7 +14,10 @@ DIMENSIONS = ["schedule", "budget", "scope", "risk"]
 MAX_INPUT_CHARS = 6000
 KEYS = {"id", "description", "expected", "expected_overall", "low_confidence",
         "must_mention_risks", "must_include_asks", "injection"}
-OPTIONAL_KEYS = {"title", "must_include_decisions", "expected_gaps", "must_not_accomplish", "conditional_risks"}
+OPTIONAL_KEYS = {"title", "must_include_decisions", "expected_gaps", "must_not_accomplish", "conditional_risks",
+                 "must_accomplish", "expected_next_steps", "must_not_next_step", "must_have_no_risks",
+                 "expected_reasons"}
+NON_ITEM_KEYS = {"title", "conditional_risks", "must_have_no_risks", "expected_reasons"}
 
 _SEVERITY = {"green": 0, "amber": 1, "red": 2}
 
@@ -25,7 +28,7 @@ def options(value):
 
 def test_expected_counts():
     assert len(list(ROOT.glob("samples/*.labels.json"))) == 4
-    assert 10 <= len(list(ROOT.glob("evals/cases/*.labels.json"))) <= 15
+    assert 10 <= len(list(ROOT.glob("evals/cases/*.labels.json"))) <= 20
 
 
 @pytest.mark.parametrize("path", LABEL_FILES, ids=lambda p: p.name.removesuffix(".labels.json"))
@@ -46,7 +49,10 @@ def test_label_file(path: Path):
 
     assert set(label) <= KEYS | OPTIONAL_KEYS, f"unknown keys: {set(label) - KEYS - OPTIONAL_KEYS}"
     items = label["must_mention_risks"] + label["must_include_asks"]
-    items += [i for key in OPTIONAL_KEYS - {"title", "conditional_risks"} for i in label.get(key, [])]
+    items += [i for key in OPTIONAL_KEYS - NON_ITEM_KEYS for i in label.get(key, [])]
+    assert isinstance(label.get("must_have_no_risks", False), bool)
+    for dim, groups in label.get("expected_reasons", {}).items():
+        assert dim in DIMENSIONS and all(isinstance(g, list) and g for g in groups)
     for item in items:
         assert item["label"] and item["all_of"]
         assert all(isinstance(group, list) and group for group in item["all_of"])

@@ -1,0 +1,43 @@
+{
+  "id": "harbor-street",
+  "description": "User's bug-report input: a CSV task export with CHANGE REQUESTS, BUDGET (category lines, no total) and NOTES sections. Budget must be summed ($455,500 vs $480,000, Green). Pending CR-03 lands on two critical milestones (Scope Red) and must stay a scope change, not become a risk. No risks in the notes (Risk Unknown). Only demolition is this period's accomplishment.",
+  "expected": {
+    "schedule": "green",
+    "budget": "green",
+    "scope": "red",
+    "risk": "unknown"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [],
+  "must_have_no_risks": true,
+  "must_include_asks": [
+    {"label": "Sponsor decision on CR-03 by 13 November", "all_of": [["CR-03"]]}
+  ],
+  "must_accomplish": [
+    {"label": "Demolition complete", "all_of": [["demolition"]]}
+  ],
+  "must_not_accomplish": [
+    {"label": "Lease signed (August)", "all_of": [["lease"]]},
+    {"label": "Space design approved (September)", "all_of": [["design"]]}
+  ],
+  "expected_next_steps": [
+    {"label": "Network cabling rough-in", "all_of": [["cabling"]]},
+    {"label": "Employee move communications", "all_of": [["communications"]]}
+  ],
+  "must_not_next_step": [
+    {"label": "IT/AV install (January)", "all_of": [["IT/AV"]]},
+    {"label": "Old space decommissioned (February)", "all_of": [["decommission"]]}
+  ],
+  "expected_gaps": [
+    {"label": "CR-03 cost not in the forecast", "all_of": [["CR-03"], ["forecast"]]},
+    {"label": "No risks listed", "all_of": [["risks"]]}
+  ],
+  "expected_reasons": {
+    "budget": [["455,500"], ["480,000"]]
+  },
+  "conditional_risks": [
+    {"label": "Move weekend slip from CR-03", "condition": "only if CR-03 is approved (+3 weeks); the forecast dates don't include CR-03, so the move weekend hasn't slipped and can still be held"}
+  ],
+  "injection": false
+}

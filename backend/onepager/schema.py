@@ -53,6 +53,8 @@ class ScopeChange:
     impact_estimate: str | None = None
     # 3-6 words ("CR-9 audit dashboard"), used in reasons and gaps where the description is too long.
     title: str | None = None
+    # Estimated cost if approved, when the notes give one.
+    cost: float | None = None
 
 
 @dataclass(frozen=True)
@@ -169,6 +171,7 @@ EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
                         "description": "The cost or schedule estimate the notes give for this change "
                                        "(an amount, a number of days, a new date); null if none is given",
                     },
+                    "cost": {**_NUM, "description": "Estimated cost if approved, as a plain number, if stated"},
                 },
                 ["description"],
             ),
@@ -279,6 +282,7 @@ def _scope_change(data: Any, where: str) -> ScopeChange:
         affected_milestone=_opt_str(obj, "affected_milestone", where),
         impact_estimate=_opt_str(obj, "impact_estimate", where),
         title=_opt_str(obj, "title", where),
+        cost=_opt_num(obj, "cost", where),
     )
 
 

@@ -36,7 +36,8 @@ Scope changes:
 
 Risks and issues:
 - kind is "issue" for problems already happening, "risk" for things that might happen.
-- impact is "high", "medium" or "low" only when the notes state it (for example "HIGH", "high impact", "medium"); otherwise null.
+- impact is "high", "medium" or "low" only when the notes state a severity. "HIGH", "high impact", "showstopper", "blocker", "critical" and "severe" mean high; "medium" or "moderate" mean medium; "minor" or "low" mean low. Otherwise null.
+- Change requests belong in scope_changes, never in risks, even when the notes describe what happens if one is or isn't approved. Only list a change request as a risk if the notes themselves call it a risk.
 - owner and mitigation only when stated. If the notes say nobody owns it or there is no plan, leave them null.
 - An aside counts as stated: "Keisha covering" gives an owner (Keisha) and a mitigation (Keisha covering); "(Raj already has a hotfix in testing)" gives an owner and a mitigation. Read the whole item, including parentheses and trailing clauses, before leaving either null.
 - condition: when a risk only hits if something else happens first ("if the vendor misses March, we lose the install window"), record that trigger as the notes state it, and keep the description about the consequence. Don't turn a condition into a fact: a risk "if go-live slips past February" is not happening just because go-live slipped to an earlier date.

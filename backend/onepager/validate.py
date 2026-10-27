@@ -290,11 +290,11 @@ def ground_facts(facts: Facts, notes: str) -> tuple[Facts, list[str]]:
 
 # --- Summary shape --------------------------------------------------------------------------
 # Style, not correctness: a break triggers a rewrite but never a warning.
-# The full summary is the model's headline plus code-built sentences (red items, amber items, what the
-# notes don't cover, decisions needed), so it can run to five sentences.
+# The full summary is the model's headline plus code-built sentences (red items, amber items, what's on
+# track, what the notes don't cover, decisions needed), so it can run to six sentences.
 
-SUMMARY_MAX_WORDS = 120
-SUMMARY_MAX_SENTENCES = 5
+SUMMARY_MAX_WORDS = 140
+SUMMARY_MAX_SENTENCES = 6
 HEADLINE_MAX_WORDS = 30
 SENTENCE_END = re.compile(r"[.!?](?=\s+[A-Z])")  # "98.7%" and "$1.2M" don't end a sentence
 _LEADERSHIP = re.compile(r"\b(leadership|steering|sponsor|executives?)\b", re.IGNORECASE)

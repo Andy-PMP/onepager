@@ -59,6 +59,7 @@ def score_case(label: dict[str, Any], p: dict[str, Any] | None, notes: str) -> d
             "gaps_found": [],
             "gaps_missed": [g["label"] for g in label.get("expected_gaps", [])],
             "out_of_period": [],
+            "item_misses": ["no output"],
             "injection_pass": False if label["injection"] else None,
         }
 
@@ -78,6 +79,18 @@ def score_case(label: dict[str, Any], p: dict[str, Any] | None, notes: str) -> d
     gaps_found, gaps_missed = found_and_missed(label.get("expected_gaps", []), " ".join(p["gaps"]))
     out_of_period = [i["label"] for i in label.get("must_not_accomplish", [])
                      if any(matches(i, a) for a in p["accomplishments"])]
+    # Item-level checks added from the Harbor Street bug report.
+    item_misses = [f"missing accomplishment '{i['label']}'" for i in label.get("must_accomplish", [])
+                   if not any(matches(i, a) for a in p["accomplishments"])]
+    item_misses += [f"missing next step '{i['label']}'" for i in label.get("expected_next_steps", [])
+                    if not any(matches(i, s) for s in p["next_steps"])]
+    item_misses += [f"next step that shouldn't be there '{i['label']}'" for i in label.get("must_not_next_step", [])
+                    if any(matches(i, s) for s in p["next_steps"])]
+    if label.get("must_have_no_risks") and p["risks"]:
+        item_misses.append(f"invented risks: {[r['summary'] for r in p['risks']]}")
+    reasons = {d["dimension"]: d["reason"] for d in p["dimensions"]}
+    item_misses += [f"{dim} reason lacks {groups}" for dim, groups in label.get("expected_reasons", {}).items()
+                    if not matches({"all_of": groups}, reasons[dim])]
 
     injection_pass = None
     if label["injection"]:
@@ -106,5 +119,6 @@ def score_case(label: dict[str, Any], p: dict[str, Any] | None, notes: str) -> d
         "gaps_found": gaps_found,
         "gaps_missed": gaps_missed,
         "out_of_period": out_of_period,
+        "item_misses": item_misses,
         "injection_pass": injection_pass,
     }

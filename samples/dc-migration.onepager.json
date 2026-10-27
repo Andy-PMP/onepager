@@ -30,12 +30,12 @@
       "dimension": "risk",
       "status": "amber",
       "rule": "risk.high_managed",
-      "reason": "1 open high-impact item, each with an owner and mitigation.",
+      "reason": "1 open high-impact item, with an owner and mitigation.",
       "gaps": []
     }
   ],
   "gaps": [],
-  "executive_summary": "DC migration final cutover is delayed 21 days and budget is forecast to overrun by $170,000. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open (Storage array delivery delay), with an owner and mitigation. 2 decisions are needed (listed below).",
+  "executive_summary": "DC migration final cutover is delayed 21 days and budget has grown $170,000, requiring decisions on timing and contingency approval. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open ('Storage array delivery delay'), with an owner and mitigation. Scope is unchanged. 2 decisions are needed (listed below).",
   "accomplishments": [
     "Wave 1 completed with 14 apps moved, no severity 1 incidents"
   ],
@@ -46,7 +46,7 @@
   ],
   "risks": [
     {
-      "summary": "Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest.",
+      "summary": "Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest. Dmitri negotiating loaner array with Veltrex to potentially recover approximately one week.",
       "kind": "issue",
       "impact": "high",
       "owner": "Dmitri",
@@ -57,32 +57,32 @@
       "kind": "risk",
       "impact": "medium",
       "owner": "Kwame",
-      "mitigation": "Borrowed one engineer from service desk through November"
+      "mitigation": "Borrowed 1 engineer from service desk through November"
     },
     {
-      "summary": "Power circuits in cage B not yet certified.",
+      "summary": "Cage B power circuits not yet certified. Kwame chasing facilities for certification.",
       "kind": "risk",
       "impact": "low",
       "owner": "Kwame",
-      "mitigation": "Chasing facilities for certification"
+      "mitigation": "Kwame chasing facilities"
     }
   ],
   "asks": [
     "Approve draw of $170,000 from contingency to cover the overrun",
-    "Decide: hold cutover to 11 December, or split into two cutovers (27 November for tier 2 apps, 11 December for tier 1)"
+    "Decide: hold cutover to 11 December, or split into 2 cutovers (27 November for tier 2 apps, 11 December for tier 1)"
   ],
   "open_decisions": [],
   "warnings": [],
   "validation_problems": [],
-  "markdown": "# DC migration\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ⚠️ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nDC migration final cutover is delayed 21 days and budget is forecast to overrun by $170,000. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open (Storage array delivery delay), with an owner and mitigation. 2 decisions are needed (listed below).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Final cutover' has slipped 21 days (more than 14). |\n| Budget | ⚠️ Amber | Forecast $2,570,000 vs plan $2,400,000 (+7.1%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 1 open high-impact item, each with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Wave 1 completed with 14 apps moved, no severity 1 incidents\n\n## Next steps\n\n- Renata to send revised plan by 20 October\n- Jo to finish billing runbook by Friday\n- Dmitri to confirm loaner array decision by Monday\n\n## Top risks and issues\n\n- **Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest.** (high impact)  \n  Owner: Dmitri · Mitigation: Negotiating loaner array with Veltrex\n- **Network team stretched thin due to concurrent branch refresh project.** (medium impact)  \n  Owner: Kwame · Mitigation: Borrowed one engineer from service desk through November\n- **Power circuits in cage B not yet certified.** (low impact)  \n  Owner: Kwame · Mitigation: Chasing facilities for certification\n\n## Decisions and asks for leadership\n\n- Approve draw of $170,000 from contingency to cover the overrun\n- Decide: hold cutover to 11 December, or split into two cutovers (27 November for tier 2 apps, 11 December for tier 1)\n",
-  "headline": "DC migration final cutover is delayed 21 days and budget is forecast to overrun by $170,000.",
+  "markdown": "# DC migration\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ⚠️ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nDC migration final cutover is delayed 21 days and budget has grown $170,000, requiring decisions on timing and contingency approval. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open ('Storage array delivery delay'), with an owner and mitigation. Scope is unchanged. 2 decisions are needed (listed below).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Final cutover' has slipped 21 days (more than 14). |\n| Budget | ⚠️ Amber | Forecast $2,570,000 vs plan $2,400,000 (+7.1%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 1 open high-impact item, with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Wave 1 completed with 14 apps moved, no severity 1 incidents\n\n## Next steps\n\n- Renata to send revised plan by 20 October\n- Jo to finish billing runbook by Friday\n- Dmitri to confirm loaner array decision by Monday\n\n## Top risks and issues\n\n- **Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest. Dmitri negotiating loaner array with Veltrex to potentially recover approximately one week.** (high impact)  \n  Owner: Dmitri · Mitigation: Negotiating loaner array with Veltrex\n- **Network team stretched thin due to concurrent branch refresh project.** (medium impact)  \n  Owner: Kwame · Mitigation: Borrowed 1 engineer from service desk through November\n- **Cage B power circuits not yet certified. Kwame chasing facilities for certification.** (low impact)  \n  Owner: Kwame · Mitigation: Kwame chasing facilities\n\n## Decisions and asks for leadership\n\n- Approve draw of $170,000 from contingency to cover the overrun\n- Decide: hold cutover to 11 December, or split into 2 cutovers (27 November for tier 2 apps, 11 December for tier 1)\n",
+  "headline": "DC migration final cutover is delayed 21 days and budget has grown $170,000, requiring decisions on timing and contingency approval.",
   "meta": {
     "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
     "usage": {
-      "input_tokens": 8480,
-      "output_tokens": 1086,
+      "input_tokens": 8709,
+      "output_tokens": 1132,
       "calls": 3
     },
-    "latency_ms": 5261
+    "latency_ms": 5294
   }
 }

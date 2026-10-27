@@ -124,6 +124,8 @@ def report(results: list[dict], model_id: str, calibration: list[dict]) -> str:
         f"| Outputs with invented open decisions | {sum(1 for s in scores if s['invented_decisions'])}/{n} |",
         f"| Expected gaps found | {pct(*count(scores, 'gaps'))} |",
         f"| Accomplishments from outside the period | {sum(len(s['out_of_period']) for s in scores)} |",
+        f"| Item-level checks failed (accomplishments, next steps, no invented risks, reason figures) | "
+        f"{sum(len(s['item_misses']) for s in scores)} |",
         f"| Outputs with unsupported figures, dates or approvers | {unsupported_cases}/{n} |",
         f"| Summary follows its checklist | {pct(sum(not s['summary_breaks'] for s in scores), n)} |",
         f"| Grader calibration (known-bad and known-good summaries) | "
@@ -185,6 +187,7 @@ def problems(results: list[dict]) -> list[str]:
         out += [f"{r['id']}: invented open decision '{d}'" for d in s["invented_decisions"]]
         out += [f"{r['id']}: missing gap '{m}'" for m in s["gaps_missed"]]
         out += [f"{r['id']}: out-of-period accomplishment '{m}'" for m in s["out_of_period"]]
+        out += [f"{r['id']}: {m}" for m in s["item_misses"]]
         out += [f"{r['id']}: retried because {reason}" for reason in r["retry_reasons"]]
         out += [f"{r['id']}: dropped ungrounded fact {d}" for d in r["dropped"]]
         if r["graded"]:

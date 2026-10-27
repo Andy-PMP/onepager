@@ -30,29 +30,24 @@
       "dimension": "risk",
       "status": "green",
       "rule": "risk.none_high",
-      "reason": "1 open item, none high-impact.",
+      "reason": "1 open item, not high-impact.",
       "gaps": []
     }
   ],
-  "gaps": [],
-  "executive_summary": "Linden Park Office Relocation is on track with fit-out construction 72% complete and IT installation starting Monday. Schedule, budget, scope and risk are all within tolerance. Decisions needed: Confirm the staff move weekend and approve after-hours building access for movers.",
-  "accomplishments": [
-    "Lease signed",
-    "Space design approved",
-    "Fit-out construction 72% complete",
-    "Huddle rooms scope change approved by steering committee"
+  "gaps": [
+    "No accomplishments are listed for this period.",
+    "No next steps are listed."
   ],
-  "next_steps": [
-    "IT network & AV install starts Monday",
-    "Continue fit-out construction per schedule"
-  ],
+  "executive_summary": "Linden Park Office Relocation is on track for the 13 December staff move weekend with all critical milestones met or forecast on schedule. The schedule is on track; the budget forecast is $652,000 against a $640,000 plan (+1.9%); all scope changes are resolved; and no open risk is high-impact. Decisions needed: Confirm the staff move weekend and approve after-hours building access for movers.",
+  "accomplishments": [],
+  "next_steps": [],
   "risks": [
     {
       "summary": "Vendor lead time is 6 weeks. Order placed 18 September with 2-week buffer.",
       "kind": "risk",
       "impact": "medium",
       "owner": "K. Osei",
-      "mitigation": null
+      "mitigation": "Order placed 18 September with 2-week buffer"
     }
   ],
   "asks": [
@@ -61,15 +56,15 @@
   "open_decisions": [],
   "warnings": [],
   "validation_problems": [],
-  "markdown": "# Linden Park Office Relocation\n\n**As of:** 9 October 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nLinden Park Office Relocation is on track with fit-out construction 72% complete and IT installation starting Monday. Schedule, budget, scope and risk are all within tolerance. Decisions needed: Confirm the staff move weekend and approve after-hours building access for movers.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 8 dated milestones. |\n| Budget | ✅ Green | Forecast $652,000 vs plan $640,000 (+1.9%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- Lease signed\n- Space design approved\n- Fit-out construction 72% complete\n- Huddle rooms scope change approved by steering committee\n\n## Next steps\n\n- IT network & AV install starts Monday\n- Continue fit-out construction per schedule\n\n## Top risks and issues\n\n- **Vendor lead time is 6 weeks. Order placed 18 September with 2-week buffer.** (medium impact)  \n  Owner: K. Osei · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- Confirm the staff move weekend and approve after-hours building access for movers\n",
-  "headline": "Linden Park Office Relocation is on track with fit-out construction 72% complete and IT installation starting Monday.",
+  "markdown": "# Linden Park Office Relocation\n\n**As of:** 9 October 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nLinden Park Office Relocation is on track for the 13 December staff move weekend with all critical milestones met or forecast on schedule. The schedule is on track; the budget forecast is $652,000 against a $640,000 plan (+1.9%); all scope changes are resolved; and no open risk is high-impact. Decisions needed: Confirm the staff move weekend and approve after-hours building access for movers.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 8 dated milestones. |\n| Budget | ✅ Green | Forecast $652,000 vs plan $640,000 (+1.9%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- _None listed_\n\n## Next steps\n\n- _None listed_\n\n## Top risks and issues\n\n- **Vendor lead time is 6 weeks. Order placed 18 September with 2-week buffer.** (medium impact)  \n  Owner: K. Osei · Mitigation: Order placed 18 September with 2-week buffer\n\n## Decisions and asks for leadership\n\n- Confirm the staff move weekend and approve after-hours building access for movers\n\n## Gaps in the notes\n\n- No accomplishments are listed for this period.\n- No next steps are listed.\n",
+  "headline": "Linden Park Office Relocation is on track for the 13 December staff move weekend with all critical milestones met or forecast on schedule.",
   "meta": {
     "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
     "usage": {
-      "input_tokens": 6363,
-      "output_tokens": 979,
+      "input_tokens": 6485,
+      "output_tokens": 1044,
       "calls": 2
     },
-    "latency_ms": 4078
+    "latency_ms": 4490
   }
 }

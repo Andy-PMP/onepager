@@ -25,7 +25,7 @@
       "rule": "scope.pending_changes",
       "reason": "1 change request pending approval.",
       "gaps": [
-        "No cost or schedule estimate for: After-hours coverage tier"
+        "'After-hours coverage tier' has no cost or schedule estimate."
       ]
     },
     {
@@ -34,28 +34,28 @@
       "rule": "risk.high_unmanaged",
       "reason": "High-impact issue 'Knowledge base export quality' has no owner and mitigation.",
       "gaps": [
-        "No target date for resolving: Knowledge base export quality"
+        "'Knowledge base export quality' has no target date for resolution."
       ]
     }
   ],
   "gaps": [
-    "No cost or schedule estimate for: After-hours coverage tier",
-    "No target date for resolving: Knowledge base export quality"
+    "'After-hours coverage tier' has no cost or schedule estimate.",
+    "'Knowledge base export quality' has no target date for resolution."
   ],
-  "executive_summary": "Service desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue Knowledge base export quality has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval (After-hours coverage tier). Decisions needed: Approve the $48,000 budget overrun for an extra month of running both vendors; Assign an owner for the knowledge base cleanup by Monday.",
+  "executive_summary": "Service desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue 'Knowledge base export quality' has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval: 'After-hours coverage tier'. Decisions needed: Approve the $48,000 budget overrun for an extra month of running both vendors; Assign an owner for knowledge base cleanup by Monday.",
   "accomplishments": [
     "Contract with Orrin Tech signed",
     "12 of 18 knowledge transfer sessions completed",
     "Orrin's agents onboarded to ticketing tool"
   ],
   "next_steps": [
-    "Finish the remaining 6 knowledge transfer sessions",
-    "Run the cutover dress rehearsal on 5 November",
-    "Send the communications plan to staff by 23 October"
+    "Finish remaining 6 knowledge transfer sessions",
+    "Run cutover dress rehearsal on 5 November",
+    "Send communications plan to staff by 23 October"
   ],
   "risks": [
     {
-      "summary": "About 30% of articles from Quillmark came over without attachments or are badly out of date. Nobody owns the cleanup. Quillmark says it is the client's responsibility, Orrin says it is not in their SOW. If the KB is not usable at cutover, first-call resolution will drop hard.",
+      "summary": "About 30% of articles from Quillmark came over without attachments or are badly out of date. Nobody owns the cleanup. Quillmark says it's ours, Orrin says it's not in their SOW. If the KB isn't usable at cutover, first-call resolution will drop hard. No plan yet.",
       "kind": "issue",
       "impact": "high",
       "owner": null,
@@ -71,20 +71,20 @@
   ],
   "asks": [
     "Approve the $48,000 budget overrun for an extra month of running both vendors",
-    "Assign an owner for the knowledge base cleanup by Monday"
+    "Assign an owner for knowledge base cleanup by Monday"
   ],
   "open_decisions": [],
   "warnings": [],
   "validation_problems": [],
-  "markdown": "# Service desk transition\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n⚠️ Schedule · ❌ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nService desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue Knowledge base export quality has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval (After-hours coverage tier). Decisions needed: Approve the $48,000 budget overrun for an extra month of running both vendors; Assign an owner for the knowledge base cleanup by Monday.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Knowledge transfer completion', 11 days. |\n| Budget | ❌ Red | Forecast $428,000 vs plan $380,000 (+12.6%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact issue 'Knowledge base export quality' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Contract with Orrin Tech signed\n- 12 of 18 knowledge transfer sessions completed\n- Orrin's agents onboarded to ticketing tool\n\n## Next steps\n\n- Finish the remaining 6 knowledge transfer sessions\n- Run the cutover dress rehearsal on 5 November\n- Send the communications plan to staff by 23 October\n\n## Top risks and issues\n\n- **About 30% of articles from Quillmark came over without attachments or are badly out of date. Nobody owns the cleanup. Quillmark says it is the client's responsibility, Orrin says it is not in their SOW. If the KB is not usable at cutover, first-call resolution will drop hard.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Two of Quillmark's senior analysts gave notice.** (medium impact)  \n  Owner: Ade Mensah · Mitigation: Retention bonuses agreed for 3 key analysts through 30 November\n\n## Decisions and asks for leadership\n\n- Approve the $48,000 budget overrun for an extra month of running both vendors\n- Assign an owner for the knowledge base cleanup by Monday\n\n## Gaps in the notes\n\n- No cost or schedule estimate for: After-hours coverage tier\n- No target date for resolving: Knowledge base export quality\n",
+  "markdown": "# Service desk transition\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n⚠️ Schedule · ❌ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nService desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue 'Knowledge base export quality' has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval: 'After-hours coverage tier'. Decisions needed: Approve the $48,000 budget overrun for an extra month of running both vendors; Assign an owner for knowledge base cleanup by Monday.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Knowledge transfer completion', 11 days. |\n| Budget | ❌ Red | Forecast $428,000 vs plan $380,000 (+12.6%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact issue 'Knowledge base export quality' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Contract with Orrin Tech signed\n- 12 of 18 knowledge transfer sessions completed\n- Orrin's agents onboarded to ticketing tool\n\n## Next steps\n\n- Finish remaining 6 knowledge transfer sessions\n- Run cutover dress rehearsal on 5 November\n- Send communications plan to staff by 23 October\n\n## Top risks and issues\n\n- **About 30% of articles from Quillmark came over without attachments or are badly out of date. Nobody owns the cleanup. Quillmark says it's ours, Orrin says it's not in their SOW. If the KB isn't usable at cutover, first-call resolution will drop hard. No plan yet.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Two of Quillmark's senior analysts gave notice.** (medium impact)  \n  Owner: Ade Mensah · Mitigation: Retention bonuses agreed for 3 key analysts through 30 November\n\n## Decisions and asks for leadership\n\n- Approve the $48,000 budget overrun for an extra month of running both vendors\n- Assign an owner for knowledge base cleanup by Monday\n\n## Gaps in the notes\n\n- 'After-hours coverage tier' has no cost or schedule estimate.\n- 'Knowledge base export quality' has no target date for resolution.\n",
   "headline": "Service desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover.",
   "meta": {
     "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
     "usage": {
-      "input_tokens": 6539,
-      "output_tokens": 889,
+      "input_tokens": 6669,
+      "output_tokens": 949,
       "calls": 2
     },
-    "latency_ms": 4120
+    "latency_ms": 4428
   }
 }

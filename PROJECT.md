@@ -48,7 +48,7 @@ The design decision that matters: **an LLM never decides a status.** Language mo
   </g>
 </svg>
 
-1. **Extract (AI).** A forced tool call turns the notes into a fixed JSON schema: milestones with planned and forecast dates, budget figures, scope changes, risks with owner and mitigation, asks and open decisions. Missing facts stay empty, and the schema separates "not mentioned" from "the notes say there are none", which is how a dimension ends up **Unknown** instead of falsely Green. Code then checks the extraction before anything depends on it: any date or budget figure that doesn't appear in the notes is dropped, so "never infer" is enforced rather than requested.
+1. **Extract (AI).** A forced tool call turns the notes into a fixed JSON schema: milestones with planned and forecast dates, budget figures, scope changes, risks with owner and mitigation, asks and open decisions. Missing facts stay empty, and the schema separates "not mentioned" from "the notes say there are none", which is how a dimension ends up **Unknown** instead of falsely Green. Code then checks the extraction before anything depends on it: any date or budget figure that doesn't appear in the notes is dropped, so "never infer" is enforced rather than requested. Pasted tables (task exports, budget lines, change-request logs) are parsed by code instead: code adds up the budget, reads task dates and completion, and derives this period's accomplishments and the next 30 days' steps from them.
 2. **Score (code).** Pure functions apply the rules below. Each returns a status, the ID of the rule that fired and a plain-language reason, which the page shows under "How status was decided".
 3. **Write (AI and code).** The model writes **one sentence**: the headline takeaway. Everything after it in the executive summary is written by code from the rule results ("Raleigh DC go-live slipped 21 days to 1 February 2027"), so true facts can't be stitched together with invented cause and effect. Statuses show as shape-coded icons above the summary (✓ ▲ ✕ ?), so the prose doesn't need to say "scope is amber".
 4. **Validate (code).** The headline is checked before it's used: every number and date must trace back to the notes, any approver it names must be the one the notes give for that ask, and linking words like "creating" or "to avoid" are rejected unless the notes use them. A failure gets one rewrite with the problems as feedback. If a correctness problem survives, the page shows a warning; if a style problem survives, the headline is dropped and the code-built sentences stand alone.
@@ -64,33 +64,34 @@ Pasted notes are treated strictly as data, wrapped in delimiters the notes can't
 | Scope | No unapproved changes | Change requests pending approval | An unapproved change lands on a critical milestone |
 | Risk | No open high-impact risks | High-impact items, each with an owner and a mitigation | A high-impact item without an owner or a mitigation |
 
-A dimension with no data is **Unknown** and is listed under Gaps. Overall is the worst known dimension; two or more Unknowns mark it low-confidence. The thresholds live in one config file, and every rule branch has unit tests.
+A dimension with no data is **Unknown** and is listed under Gaps; so is Risk when no open item has a stated impact, since an unrated risk could be the worst one. Overall is the worst known dimension; two or more Unknowns mark it low-confidence. The thresholds live in one config file, and every rule branch has unit tests.
 
 The **Gaps** section is also built by code, and names what a reader would ask next: a high-impact risk with no target date, a change request with no cost or schedule estimate, a phase with no date, or known costs left out of the forecast (shown with the adjusted total, without changing the status).
 
 ## How I tested it
 
-I wrote **15 synthetic inputs**: the 4 samples plus 11 edge cases, including notes with no budget, a header claiming "all green" over a 15% overrun, a 28-day critical slip buried in an upbeat bullet list, the prompt injection, a single vague line, and euro amounts with day-first dates. Two more came later from a real test of the live tool (more on that below). Each has a labels file with the expected status per dimension, the risks, asks and decisions that must appear, and for some the gaps they should name and the conditional risks that must stay conditional. A Python script runs every case through the real pipeline and scores it.
+I wrote **15 synthetic inputs**: the 4 samples plus 11 edge cases, including notes with no budget, a header claiming "all green" over a 15% overrun, a 28-day critical slip buried in an upbeat bullet list, the prompt injection, a single vague line, and euro amounts with day-first dates. Five more came later from real tests of the live tool (more on that below). Each has a labels file with the expected status per dimension, the risks, asks and decisions that must appear, and for some the gaps they should name, the accomplishments and next steps they should (and shouldn't) list, and the conditional risks that must stay conditional. A Python script runs every case through the real pipeline and scores it.
 
-| Metric | First run (15 inputs) | Now (17 inputs) |
+| Metric | First run (15 inputs) | Now (20 inputs) |
 |---|---|---|
-| Overall status correct | 15/15 | **17/17** |
-| Dimension statuses correct | 59/60 | **68/68** |
-| Must-mention risks present | 17/17 | **21/21** |
-| Required asks present | 13/13 | **15/15** |
-| Outputs with invented asks | not measured | **0/17** |
+| Overall status correct | 15/15 | **20/20** |
+| Dimension statuses correct | 59/60 | **80/80** |
+| Must-mention risks present | 17/17 | **23/23** |
+| Required asks present | 13/13 | **19/19** |
+| Outputs with invented asks | not measured | **0/20** |
 | Open decisions found / invented | not measured | **1/1 found, 0 invented** |
-| Expected gaps named | not measured | **4/4** |
-| Outputs with unsupported figures, dates or approvers | 2/15 | **1/17** (flagged on the page) |
-| Headlines with invented cause-and-effect words | not measured | **0/17** |
-| Conditional risks kept conditional (LLM-graded) | not measured | **4/5** |
+| Expected gaps named | not measured | **7/7** |
+| Accomplishment, next-step and no-invented-risk checks failed | not measured | **0** |
+| Outputs with unsupported figures, dates or approvers | 2/15 | **1/20** (flagged on the page) |
+| Headlines with invented cause-and-effect words | not measured | **0/20** |
+| Conditional risks kept conditional (LLM-graded) | not measured | **6/7** |
 | Prompt injection resisted | pass | **pass** |
-| Retries needed | 3/15 | **3/17** |
-| Average cost per one-pager | $0.0084 | **$0.0099** |
+| Retries needed | 3/15 | **4/20** |
+| Average cost per one-pager | $0.0084 | **$0.0112** |
 
 The one unsupported attribution is in the prompt-injection case: the headline credits the sponsor with a decision the notes leave unassigned, survives its rewrite, and is shown with a warning. That's the safety net working as intended. The conditional-risk check is graded by Claude Haiku against a known-bad and a known-good summary on every run. It catches the failure it was built for, but it also counts "this risk has no owner" as presenting the risk as happening, so its one miss is a judgment I disagree with. It's the same model family grading itself, so I treat it as a regression check, not proof.
 
-**A real test found what my 15 cases didn't.** Run on notes I hadn't written the tool against, every status came out right, but two rounds of review found weaker spots: an unresolved "eat the overage or push back on the vendor?" question that never reached the decisions list, an item approved last month listed as this period's accomplishment, a dropped mitigation written as an aside, an invented reporting period, an approver borrowed from a different ask, and a first sentence that turned "if go-live slips past February" into something already happening. Each now has a fix and an eval check, and two cases come from those notes.
+**A real test found what my 15 cases didn't.** Run on notes I hadn't written the tool against, every status came out right, but two rounds of review found weaker spots: an unresolved "eat the overage or push back on the vendor?" question that never reached the decisions list, an item approved last month listed as this period's accomplishment, a dropped mitigation written as an aside, an invented reporting period, an approver borrowed from a different ask, and a first sentence that turned "if go-live slips past February" into something already happening. A third test, a task export with budget and change-request tables, found the budget marked Unknown, a pending change request turned into a risk with its meaning inverted, and every task in the plan listed as a next step. Each now has a fix and an eval check, and five cases come from those notes.
 
 What the tuning taught me:
 
@@ -99,9 +100,10 @@ What the tuning taught me:
 - **Measure what you read.** Every metric started at 100% while some summaries still invented leadership asks. Reading the outputs found it; adding a metric kept it found.
 - **Enforce, don't ask.** When the model kept calculating an overage it was told not to, or counting "affects phase 2" as a cost estimate, the fix that held was code: ground extracted figures against the notes, and decide in code what counts as an estimate.
 - **Shrink what the model writes.** Prompt rules against invented cause and effect never held, and stacking more rules on a full summary made it worse. Having code write the facts and the model write one checked sentence cut rewrites from 10 in 17 to 3, and cost and latency with them.
+- **Safeguards interact.** The budget table came out Unknown not because the model failed to add it up (it did, correctly) but because my own "never infer" check dropped the total for not appearing in the notes. The fix was to stop asking the model to do arithmetic at all: tables are parsed and summed in code, after that check.
 - **Calibrate the grader.** The LLM grader first passed the very sentence it was meant to catch. Rephrasing it to quote evidence before judging fixed that, and two harmless clarifications broke it again, so every run now starts by grading a known-bad and a known-good summary.
 
-Beyond the eval there are 260 Python tests (rules, schema, validator, pipeline flow, the Lambda handler and the usage caps, all with fake AWS clients) and 86 frontend tests, including HTML escaping of every field and WCAG AA colour contrast in both themes.
+Beyond the eval there are 295 Python tests (rules, schema, table parser, validator, pipeline flow, the Lambda handler and the usage caps, all with fake AWS clients) and 86 frontend tests, including HTML escaping of every field and WCAG AA colour contrast in both themes.
 
 ## Cost and safety controls
 

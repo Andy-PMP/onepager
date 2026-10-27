@@ -4,13 +4,13 @@
     "kind": "sample",
     "latency_s": 4.1,
     "usage": {
-      "input_tokens": 6297,
-      "output_tokens": 884,
+      "input_tokens": 6398,
+      "output_tokens": 852,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1946,
-      "output_tokens": 230,
+      "input_tokens": 1982,
+      "output_tokens": 55,
       "calls": 1
     },
     "graded": {
@@ -56,6 +56,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -78,7 +79,7 @@
           "rule": "budget.no_plan",
           "reason": "No planned budget figure in the notes.",
           "gaps": [
-            "No budget figures provided"
+            "No budget figures are given."
           ]
         },
         {
@@ -87,7 +88,7 @@
           "rule": "scope.pending_changes",
           "reason": "1 change request pending approval.",
           "gaps": [
-            "No cost or schedule estimate for: CR-14 email plugin integration"
+            "'CR-14 email plugin integration' has no cost or schedule estimate."
           ]
         },
         {
@@ -99,20 +100,19 @@
         }
       ],
       "gaps": [
-        "No budget figures provided",
-        "No cost or schedule estimate for: CR-14 email plugin integration"
+        "No budget figures are given.",
+        "'CR-14 email plugin integration' has no cost or schedule estimate.",
+        "The notes mention a budget with figures, but no planned total could be read from them."
       ],
-      "executive_summary": "Beacon CRM rollout is on track for 16 November go-live despite training guide delays and a pending scope decision. Training guides slipped 14 days to 30 October (1 other milestone also slipped), and 1 change request awaits approval (CR-14 email plugin integration). The notes don't cover budget. Decisions needed: Decision on CR-14 email plugin integration; Send executive all-hands announcement of go-live date by 2 November so people block time for training.",
+      "executive_summary": "Beacon CRM rollout is on track for company-wide go-live on 16 November, with pilot completed at NPS +32 and training guides now forecast for 30 October. Training guides slipped 14 days to 30 October (1 other milestone also slipped), and 1 change request awaits approval: 'CR-14 email plugin integration'. No open risk is high-impact. The notes don't cover budget. Decisions needed: Decision on CR-14; Executive all-hands announcement of go-live date sent by 2 November so people block time for training.",
       "accomplishments": [
         "Pilot completed with 41 users and NPS of +32",
         "Data migration test load completed"
       ],
       "next_steps": [
         "Rerun data migration with new match rules on Thursday",
-        "IT to work on SSO config for contractor accounts",
         "Cutover runbook draft by 23 October",
-        "Dress rehearsal on 7 November",
-        "Steering committee to review CR-14 next Thursday"
+        "Dress rehearsal on 7 November"
       ],
       "risks": [
         {
@@ -131,37 +131,37 @@
         }
       ],
       "asks": [
-        "Decision on CR-14 email plugin integration",
-        "Send executive all-hands announcement of go-live date by 2 November so people block time for training"
+        "Decision on CR-14",
+        "Executive all-hands announcement of go-live date sent by 2 November so people block time for training"
       ],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Beacon CRM rollout\n\n**As of:** 13 October 2026  \n**Overall status:** ⚠️ Amber  \n⚠️ Schedule · ❔ Budget · ⚠️ Scope · ✅ Risk\n\n## Executive summary\n\nBeacon CRM rollout is on track for 16 November go-live despite training guide delays and a pending scope decision. Training guides slipped 14 days to 30 October (1 other milestone also slipped), and 1 change request awaits approval (CR-14 email plugin integration). The notes don't cover budget. Decisions needed: Decision on CR-14 email plugin integration; Send executive all-hands announcement of go-live date by 2 November so people block time for training.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: non-critical milestone 'Training guides', 14 days (2 milestones slipped in total). |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ✅ Green | 2 open items, none high-impact. |\n\n## Accomplishments this period\n\n- Pilot completed with 41 users and NPS of +32\n- Data migration test load completed\n\n## Next steps\n\n- Rerun data migration with new match rules on Thursday\n- IT to work on SSO config for contractor accounts\n- Cutover runbook draft by 23 October\n- Dress rehearsal on 7 November\n- Steering committee to review CR-14 next Thursday\n\n## Top risks and issues\n\n- **Test load of legacy records showed approximately 2% failed deduplication. Rerunning with new match rules on Thursday.** (medium impact)  \n  Owner: Priya Raman · Mitigation: not stated\n- **SSO configuration for contractor accounts still open. IT has a ticket.** (low impact)  \n  Owner: Priya Raman · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- Decision on CR-14 email plugin integration\n- Send executive all-hands announcement of go-live date by 2 November so people block time for training\n\n## Gaps in the notes\n\n- No budget figures provided\n- No cost or schedule estimate for: CR-14 email plugin integration\n",
-      "headline": "Beacon CRM rollout is on track for 16 November go-live despite training guide delays and a pending scope decision.",
+      "markdown": "# Beacon CRM rollout\n\n**As of:** 13 October 2026  \n**Overall status:** ⚠️ Amber  \n⚠️ Schedule · ❔ Budget · ⚠️ Scope · ✅ Risk\n\n## Executive summary\n\nBeacon CRM rollout is on track for company-wide go-live on 16 November, with pilot completed at NPS +32 and training guides now forecast for 30 October. Training guides slipped 14 days to 30 October (1 other milestone also slipped), and 1 change request awaits approval: 'CR-14 email plugin integration'. No open risk is high-impact. The notes don't cover budget. Decisions needed: Decision on CR-14; Executive all-hands announcement of go-live date sent by 2 November so people block time for training.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: non-critical milestone 'Training guides', 14 days (2 milestones slipped in total). |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ✅ Green | 2 open items, none high-impact. |\n\n## Accomplishments this period\n\n- Pilot completed with 41 users and NPS of +32\n- Data migration test load completed\n\n## Next steps\n\n- Rerun data migration with new match rules on Thursday\n- Cutover runbook draft by 23 October\n- Dress rehearsal on 7 November\n\n## Top risks and issues\n\n- **Test load of legacy records showed approximately 2% failed deduplication. Rerunning with new match rules on Thursday.** (medium impact)  \n  Owner: Priya Raman · Mitigation: not stated\n- **SSO configuration for contractor accounts still open. IT has a ticket.** (low impact)  \n  Owner: Priya Raman · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- Decision on CR-14\n- Executive all-hands announcement of go-live date sent by 2 November so people block time for training\n\n## Gaps in the notes\n\n- No budget figures are given.\n- 'CR-14 email plugin integration' has no cost or schedule estimate.\n- The notes mention a budget with figures, but no planned total could be read from them.\n",
+      "headline": "Beacon CRM rollout is on track for company-wide go-live on 16 November, with pilot completed at NPS +32 and training guides now forecast for 30 October.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 6297,
-          "output_tokens": 884,
+          "input_tokens": 6398,
+          "output_tokens": 852,
           "calls": 2
         },
-        "latency_ms": 4065
+        "latency_ms": 4072
       }
     }
   },
   {
     "id": "dc-migration",
     "kind": "sample",
-    "latency_s": 5.4,
+    "latency_s": 5.9,
     "usage": {
-      "input_tokens": 8480,
-      "output_tokens": 1086,
+      "input_tokens": 8709,
+      "output_tokens": 1132,
       "calls": 3
     },
     "grader_usage": {
-      "input_tokens": 1888,
-      "output_tokens": 308,
+      "input_tokens": 1903,
+      "output_tokens": 290,
       "calls": 1
     },
     "graded": {
@@ -169,13 +169,14 @@
         {
           "label": "Recovering a week with a loaner array",
           "correct": true,
-          "reason": "not_mentioned: The summary does not mention the loaner array possibility at all. It states the cutover 'slipped 21 days to 11 December' as a definite fact, not as a conditional outcome that could be improved if the loaner comes through. The summary presents the 21-day delay as certain, whereas the notes indicate it could be reduced by a week if the loaner is approved."
+          "reason": "not_mentioned: The summary does not mention the loaner array possibility at all. The notes describe it as conditional ('if loaner comes thru we might claw back a week or so but not counting on it'), but the summary omits this entirely."
         }
       ],
       "invented_links": []
     },
     "error": null,
     "retry_reasons": [
+      "write: The sentence repeats the facts that follow it; give the one-line takeaway instead, in different words",
       "write: The summary links facts with \"due to\", which the notes don't; state the facts side by side instead"
     ],
     "dropped": [],
@@ -216,6 +217,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -250,12 +252,12 @@
           "dimension": "risk",
           "status": "amber",
           "rule": "risk.high_managed",
-          "reason": "1 open high-impact item, each with an owner and mitigation.",
+          "reason": "1 open high-impact item, with an owner and mitigation.",
           "gaps": []
         }
       ],
       "gaps": [],
-      "executive_summary": "DC migration final cutover is delayed 21 days and budget is forecast to overrun by $170,000. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open (Storage array delivery delay), with an owner and mitigation. 2 decisions are needed (listed below).",
+      "executive_summary": "DC migration final cutover is delayed 21 days and budget has grown $170,000, requiring decisions on timing and contingency approval. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open ('Storage array delivery delay'), with an owner and mitigation. Scope is unchanged. 2 decisions are needed (listed below).",
       "accomplishments": [
         "Wave 1 completed with 14 apps moved, no severity 1 incidents"
       ],
@@ -266,7 +268,7 @@
       ],
       "risks": [
         {
-          "summary": "Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest.",
+          "summary": "Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest. Dmitri negotiating loaner array with Veltrex to potentially recover approximately one week.",
           "kind": "issue",
           "impact": "high",
           "owner": "Dmitri",
@@ -277,47 +279,47 @@
           "kind": "risk",
           "impact": "medium",
           "owner": "Kwame",
-          "mitigation": "Borrowed one engineer from service desk through November"
+          "mitigation": "Borrowed 1 engineer from service desk through November"
         },
         {
-          "summary": "Power circuits in cage B not yet certified.",
+          "summary": "Cage B power circuits not yet certified. Kwame chasing facilities for certification.",
           "kind": "risk",
           "impact": "low",
           "owner": "Kwame",
-          "mitigation": "Chasing facilities for certification"
+          "mitigation": "Kwame chasing facilities"
         }
       ],
       "asks": [
         "Approve draw of $170,000 from contingency to cover the overrun",
-        "Decide: hold cutover to 11 December, or split into two cutovers (27 November for tier 2 apps, 11 December for tier 1)"
+        "Decide: hold cutover to 11 December, or split into 2 cutovers (27 November for tier 2 apps, 11 December for tier 1)"
       ],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# DC migration\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ⚠️ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nDC migration final cutover is delayed 21 days and budget is forecast to overrun by $170,000. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open (Storage array delivery delay), with an owner and mitigation. 2 decisions are needed (listed below).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Final cutover' has slipped 21 days (more than 14). |\n| Budget | ⚠️ Amber | Forecast $2,570,000 vs plan $2,400,000 (+7.1%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 1 open high-impact item, each with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Wave 1 completed with 14 apps moved, no severity 1 incidents\n\n## Next steps\n\n- Renata to send revised plan by 20 October\n- Jo to finish billing runbook by Friday\n- Dmitri to confirm loaner array decision by Monday\n\n## Top risks and issues\n\n- **Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest.** (high impact)  \n  Owner: Dmitri · Mitigation: Negotiating loaner array with Veltrex\n- **Network team stretched thin due to concurrent branch refresh project.** (medium impact)  \n  Owner: Kwame · Mitigation: Borrowed one engineer from service desk through November\n- **Power circuits in cage B not yet certified.** (low impact)  \n  Owner: Kwame · Mitigation: Chasing facilities for certification\n\n## Decisions and asks for leadership\n\n- Approve draw of $170,000 from contingency to cover the overrun\n- Decide: hold cutover to 11 December, or split into two cutovers (27 November for tier 2 apps, 11 December for tier 1)\n",
-      "headline": "DC migration final cutover is delayed 21 days and budget is forecast to overrun by $170,000.",
+      "markdown": "# DC migration\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ⚠️ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nDC migration final cutover is delayed 21 days and budget has grown $170,000, requiring decisions on timing and contingency approval. Final cutover slipped 21 days to 11 December. The budget forecast is $2,570,000 against a $2,400,000 plan (+7.1%), and 1 high-impact risk or issue is open ('Storage array delivery delay'), with an owner and mitigation. Scope is unchanged. 2 decisions are needed (listed below).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Final cutover' has slipped 21 days (more than 14). |\n| Budget | ⚠️ Amber | Forecast $2,570,000 vs plan $2,400,000 (+7.1%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 1 open high-impact item, with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Wave 1 completed with 14 apps moved, no severity 1 incidents\n\n## Next steps\n\n- Renata to send revised plan by 20 October\n- Jo to finish billing runbook by Friday\n- Dmitri to confirm loaner array decision by Monday\n\n## Top risks and issues\n\n- **Veltrex storage array not yet shipped; earliest delivery now November 16, pushing final cutover to December 11 at the earliest. Dmitri negotiating loaner array with Veltrex to potentially recover approximately one week.** (high impact)  \n  Owner: Dmitri · Mitigation: Negotiating loaner array with Veltrex\n- **Network team stretched thin due to concurrent branch refresh project.** (medium impact)  \n  Owner: Kwame · Mitigation: Borrowed 1 engineer from service desk through November\n- **Cage B power circuits not yet certified. Kwame chasing facilities for certification.** (low impact)  \n  Owner: Kwame · Mitigation: Kwame chasing facilities\n\n## Decisions and asks for leadership\n\n- Approve draw of $170,000 from contingency to cover the overrun\n- Decide: hold cutover to 11 December, or split into 2 cutovers (27 November for tier 2 apps, 11 December for tier 1)\n",
+      "headline": "DC migration final cutover is delayed 21 days and budget has grown $170,000, requiring decisions on timing and contingency approval.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 8480,
-          "output_tokens": 1086,
+          "input_tokens": 8709,
+          "output_tokens": 1132,
           "calls": 3
         },
-        "latency_ms": 5428
+        "latency_ms": 5853
       }
     }
   },
   {
     "id": "office-move",
     "kind": "sample",
-    "latency_s": 4.0,
+    "latency_s": 4.4,
     "usage": {
-      "input_tokens": 6363,
-      "output_tokens": 979,
+      "input_tokens": 6519,
+      "output_tokens": 1051,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1895,
+      "input_tokens": 1937,
       "output_tokens": 55,
       "calls": 1
     },
@@ -363,6 +365,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -397,62 +400,57 @@
           "dimension": "risk",
           "status": "green",
           "rule": "risk.none_high",
-          "reason": "1 open item, none high-impact.",
+          "reason": "1 open item, not high-impact.",
           "gaps": []
         }
       ],
-      "gaps": [],
-      "executive_summary": "Linden Park Office Relocation is on track with fit-out construction 72% complete and IT installation starting Monday. Schedule, budget, scope and risk are all within tolerance. Decisions needed: Confirm the staff move weekend and approve after-hours building access for movers.",
-      "accomplishments": [
-        "Lease signed",
-        "Space design approved",
-        "Fit-out construction 72% complete",
-        "Huddle rooms scope change approved by steering committee"
+      "gaps": [
+        "No accomplishments are listed for this period.",
+        "No next steps are listed."
       ],
-      "next_steps": [
-        "IT network & AV install starts Monday",
-        "Continue fit-out construction per schedule"
-      ],
+      "executive_summary": "Linden Park Office Relocation is on track with all milestones met and budget forecast at $652,000. The schedule is on track; the budget forecast is $652,000 against a $640,000 plan (+1.9%); all scope changes are resolved; and no open risk is high-impact. Decisions needed: Confirm the staff move weekend (12 December to 13 December) and approve after-hours building access for movers.",
+      "accomplishments": [],
+      "next_steps": [],
       "risks": [
         {
           "summary": "Vendor lead time is 6 weeks. Order placed 18 September with 2-week buffer.",
           "kind": "risk",
           "impact": "medium",
           "owner": "K. Osei",
-          "mitigation": null
+          "mitigation": "Order placed 18 September with 2-week buffer"
         }
       ],
       "asks": [
-        "Confirm the staff move weekend and approve after-hours building access for movers"
+        "Confirm the staff move weekend (12 December to 13 December) and approve after-hours building access for movers"
       ],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Linden Park Office Relocation\n\n**As of:** 9 October 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nLinden Park Office Relocation is on track with fit-out construction 72% complete and IT installation starting Monday. Schedule, budget, scope and risk are all within tolerance. Decisions needed: Confirm the staff move weekend and approve after-hours building access for movers.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 8 dated milestones. |\n| Budget | ✅ Green | Forecast $652,000 vs plan $640,000 (+1.9%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- Lease signed\n- Space design approved\n- Fit-out construction 72% complete\n- Huddle rooms scope change approved by steering committee\n\n## Next steps\n\n- IT network & AV install starts Monday\n- Continue fit-out construction per schedule\n\n## Top risks and issues\n\n- **Vendor lead time is 6 weeks. Order placed 18 September with 2-week buffer.** (medium impact)  \n  Owner: K. Osei · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- Confirm the staff move weekend and approve after-hours building access for movers\n",
-      "headline": "Linden Park Office Relocation is on track with fit-out construction 72% complete and IT installation starting Monday.",
+      "markdown": "# Linden Park Office Relocation\n\n**As of:** 9 October 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nLinden Park Office Relocation is on track with all milestones met and budget forecast at $652,000. The schedule is on track; the budget forecast is $652,000 against a $640,000 plan (+1.9%); all scope changes are resolved; and no open risk is high-impact. Decisions needed: Confirm the staff move weekend (12 December to 13 December) and approve after-hours building access for movers.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 8 dated milestones. |\n| Budget | ✅ Green | Forecast $652,000 vs plan $640,000 (+1.9%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- _None listed_\n\n## Next steps\n\n- _None listed_\n\n## Top risks and issues\n\n- **Vendor lead time is 6 weeks. Order placed 18 September with 2-week buffer.** (medium impact)  \n  Owner: K. Osei · Mitigation: Order placed 18 September with 2-week buffer\n\n## Decisions and asks for leadership\n\n- Confirm the staff move weekend (12 December to 13 December) and approve after-hours building access for movers\n\n## Gaps in the notes\n\n- No accomplishments are listed for this period.\n- No next steps are listed.\n",
+      "headline": "Linden Park Office Relocation is on track with all milestones met and budget forecast at $652,000.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 6363,
-          "output_tokens": 979,
+          "input_tokens": 6519,
+          "output_tokens": 1051,
           "calls": 2
         },
-        "latency_ms": 4036
+        "latency_ms": 4438
       }
     }
   },
   {
     "id": "vendor-transition",
     "kind": "sample",
-    "latency_s": 4.2,
+    "latency_s": 4.4,
     "usage": {
-      "input_tokens": 6617,
-      "output_tokens": 928,
+      "input_tokens": 6669,
+      "output_tokens": 949,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 2178,
-      "output_tokens": 473,
+      "input_tokens": 2189,
+      "output_tokens": 122,
       "calls": 1
     },
     "graded": {
@@ -460,13 +458,10 @@
         {
           "label": "First-call resolution drop",
           "correct": true,
-          "reason": "conditional: The summary correctly presents this as conditional: 'only if the knowledge base isn't usable at cutover.' The notes state the same condition: 'if the KB isn't usable at cutover, first-call resolution will drop hard.' This is presented as a potential outcome dependent on a condition, not as something already happening or certain."
+          "reason": "not_mentioned: The summary does not mention first-call resolution or any risk of it dropping. The summary lists 'Knowledge base export quality' as a high-impact issue but does not state the consequence of it not being resolved."
         }
       ],
-      "invented_links": [
-        "budget overrun and critical knowledge base quality issue without assigned ownership",
-        "Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval (After-hours coverage tier)"
-      ]
+      "invented_links": []
     },
     "error": null,
     "retry_reasons": [],
@@ -508,6 +503,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -537,7 +533,7 @@
           "rule": "scope.pending_changes",
           "reason": "1 change request pending approval.",
           "gaps": [
-            "No cost or schedule estimate for: After-hours coverage tier"
+            "'After-hours coverage tier' has no cost or schedule estimate."
           ]
         },
         {
@@ -546,28 +542,28 @@
           "rule": "risk.high_unmanaged",
           "reason": "High-impact issue 'Knowledge base export quality' has no owner and mitigation.",
           "gaps": [
-            "No target date for resolving: Knowledge base export quality"
+            "'Knowledge base export quality' has no target date for resolution."
           ]
         }
       ],
       "gaps": [
-        "No cost or schedule estimate for: After-hours coverage tier",
-        "No target date for resolving: Knowledge base export quality"
+        "'After-hours coverage tier' has no cost or schedule estimate.",
+        "'Knowledge base export quality' has no target date for resolution."
       ],
-      "executive_summary": "Service desk transition faces budget overrun and critical knowledge base quality issue without assigned ownership. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue Knowledge base export quality has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval (After-hours coverage tier). Decisions needed: Approve the $48,000 overrun for an extra month of running both vendors; Assign an owner for the knowledge base cleanup by Monday.",
+      "executive_summary": "Service desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue 'Knowledge base export quality' has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval: 'After-hours coverage tier'. Decisions needed: Approve the $48,000 budget overrun for an extra month of running both vendors; Assign an owner for knowledge base cleanup by Monday.",
       "accomplishments": [
         "Contract with Orrin Tech signed",
         "12 of 18 knowledge transfer sessions completed",
         "Orrin's agents onboarded to ticketing tool"
       ],
       "next_steps": [
-        "Finish the remaining 6 knowledge transfer sessions",
-        "Run the cutover dress rehearsal on 5 November",
-        "Send the communications plan to staff by 23 October"
+        "Finish remaining 6 knowledge transfer sessions",
+        "Run cutover dress rehearsal on 5 November",
+        "Send communications plan to staff by 23 October"
       ],
       "risks": [
         {
-          "summary": "About 30% of articles from Quillmark came over without attachments or are badly out of date. If the KB isn't usable at cutover, first-call resolution will drop hard. Nobody currently owns the cleanup; Quillmark says it's the customer's responsibility, Orrin says it's not in their SOW.",
+          "summary": "About 30% of articles from Quillmark came over without attachments or are badly out of date. Nobody owns the cleanup. Quillmark says it's ours, Orrin says it's not in their SOW. If the KB isn't usable at cutover, first-call resolution will drop hard. No plan yet.",
           "kind": "issue",
           "impact": "high",
           "owner": null,
@@ -578,40 +574,40 @@
           "kind": "issue",
           "impact": "medium",
           "owner": "Ade Mensah",
-          "mitigation": "Retention bonuses agreed for 3 key analysts through 30 November, already in forecast"
+          "mitigation": "Retention bonuses agreed for 3 key analysts through 30 November"
         }
       ],
       "asks": [
-        "Approve the $48,000 overrun for an extra month of running both vendors",
-        "Assign an owner for the knowledge base cleanup by Monday"
+        "Approve the $48,000 budget overrun for an extra month of running both vendors",
+        "Assign an owner for knowledge base cleanup by Monday"
       ],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Service desk transition\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n⚠️ Schedule · ❌ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nService desk transition faces budget overrun and critical knowledge base quality issue without assigned ownership. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue Knowledge base export quality has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval (After-hours coverage tier). Decisions needed: Approve the $48,000 overrun for an extra month of running both vendors; Assign an owner for the knowledge base cleanup by Monday.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Knowledge transfer completion', 11 days. |\n| Budget | ❌ Red | Forecast $428,000 vs plan $380,000 (+12.6%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact issue 'Knowledge base export quality' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Contract with Orrin Tech signed\n- 12 of 18 knowledge transfer sessions completed\n- Orrin's agents onboarded to ticketing tool\n\n## Next steps\n\n- Finish the remaining 6 knowledge transfer sessions\n- Run the cutover dress rehearsal on 5 November\n- Send the communications plan to staff by 23 October\n\n## Top risks and issues\n\n- **About 30% of articles from Quillmark came over without attachments or are badly out of date. If the KB isn't usable at cutover, first-call resolution will drop hard. Nobody currently owns the cleanup; Quillmark says it's the customer's responsibility, Orrin says it's not in their SOW.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Two of Quillmark's senior analysts gave notice.** (medium impact)  \n  Owner: Ade Mensah · Mitigation: Retention bonuses agreed for 3 key analysts through 30 November, already in forecast\n\n## Decisions and asks for leadership\n\n- Approve the $48,000 overrun for an extra month of running both vendors\n- Assign an owner for the knowledge base cleanup by Monday\n\n## Gaps in the notes\n\n- No cost or schedule estimate for: After-hours coverage tier\n- No target date for resolving: Knowledge base export quality\n",
-      "headline": "Service desk transition faces budget overrun and critical knowledge base quality issue without assigned ownership.",
+      "markdown": "# Service desk transition\n\n**As of:** 15 October 2026  \n**Overall status:** ❌ Red  \n⚠️ Schedule · ❌ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nService desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover. The budget forecast is $428,000 against a $380,000 plan (+12.6%), and high-impact issue 'Knowledge base export quality' has no owner and mitigation. Knowledge transfer completion slipped 11 days to 3 November, and 1 change request awaits approval: 'After-hours coverage tier'. Decisions needed: Approve the $48,000 budget overrun for an extra month of running both vendors; Assign an owner for knowledge base cleanup by Monday.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Knowledge transfer completion', 11 days. |\n| Budget | ❌ Red | Forecast $428,000 vs plan $380,000 (+12.6%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact issue 'Knowledge base export quality' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Contract with Orrin Tech signed\n- 12 of 18 knowledge transfer sessions completed\n- Orrin's agents onboarded to ticketing tool\n\n## Next steps\n\n- Finish remaining 6 knowledge transfer sessions\n- Run cutover dress rehearsal on 5 November\n- Send communications plan to staff by 23 October\n\n## Top risks and issues\n\n- **About 30% of articles from Quillmark came over without attachments or are badly out of date. Nobody owns the cleanup. Quillmark says it's ours, Orrin says it's not in their SOW. If the KB isn't usable at cutover, first-call resolution will drop hard. No plan yet.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Two of Quillmark's senior analysts gave notice.** (medium impact)  \n  Owner: Ade Mensah · Mitigation: Retention bonuses agreed for 3 key analysts through 30 November\n\n## Decisions and asks for leadership\n\n- Approve the $48,000 budget overrun for an extra month of running both vendors\n- Assign an owner for knowledge base cleanup by Monday\n\n## Gaps in the notes\n\n- 'After-hours coverage tier' has no cost or schedule estimate.\n- 'Knowledge base export quality' has no target date for resolution.\n",
+      "headline": "Service desk transition faces budget overrun and unowned knowledge base quality issue ahead of November cutover.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 6617,
-          "output_tokens": 928,
+          "input_tokens": 6669,
+          "output_tokens": 949,
           "calls": 2
         },
-        "latency_ms": 4250
+        "latency_ms": 4391
       }
     }
   },
   {
     "id": "all-green",
     "kind": "edge case",
-    "latency_s": 3.8,
+    "latency_s": 2.9,
     "usage": {
-      "input_tokens": 5880,
-      "output_tokens": 699,
+      "input_tokens": 6034,
+      "output_tokens": 715,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1676,
+      "input_tokens": 1706,
       "output_tokens": 55,
       "calls": 1
     },
@@ -655,6 +651,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -689,12 +686,12 @@
           "dimension": "risk",
           "status": "green",
           "rule": "risk.none_high",
-          "reason": "1 open item, none high-impact.",
+          "reason": "1 open item, not high-impact.",
           "gaps": []
         }
       ],
       "gaps": [],
-      "executive_summary": "Badge reader replacement is on track with Annex complete and HQ floors 1-4 half finished. Schedule, budget, scope and risk are all within tolerance.",
+      "executive_summary": "Badge reader replacement is on track with Annex complete and HQ floors 1-4 half finished. The schedule is on track; the budget forecast is $88,500 against a $92,000 plan (-3.8%); scope is unchanged; and no open risk is high-impact.",
       "accomplishments": [
         "Annex: all 38 readers replaced and tested",
         "HQ floors 1-4: 52 of 96 readers replaced"
@@ -716,16 +713,16 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Badge reader replacement - HQ and Annex\n\n**As of:** 9 October 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nBadge reader replacement is on track with Annex complete and HQ floors 1-4 half finished. Schedule, budget, scope and risk are all within tolerance.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 4 dated milestones. |\n| Budget | ✅ Green | Forecast $88,500 vs plan $92,000 (-3.8%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- Annex: all 38 readers replaced and tested\n- HQ floors 1-4: 52 of 96 readers replaced\n\n## Next steps\n\n- HQ floors 5-8 start 19 October\n- Notify staff of floor-by-floor cutover dates\n\n## Top risks and issues\n\n- **Badge re-enrollment queue at reception on cutover mornings.** (low impact)  \n  Owner: Dana (facilities) · Mitigation: Extra enrollment station on cutover days\n\n## Decisions and asks for leadership\n\n- _None_\n",
+      "markdown": "# Badge reader replacement - HQ and Annex\n\n**As of:** 9 October 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nBadge reader replacement is on track with Annex complete and HQ floors 1-4 half finished. The schedule is on track; the budget forecast is $88,500 against a $92,000 plan (-3.8%); scope is unchanged; and no open risk is high-impact.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 4 dated milestones. |\n| Budget | ✅ Green | Forecast $88,500 vs plan $92,000 (-3.8%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- Annex: all 38 readers replaced and tested\n- HQ floors 1-4: 52 of 96 readers replaced\n\n## Next steps\n\n- HQ floors 5-8 start 19 October\n- Notify staff of floor-by-floor cutover dates\n\n## Top risks and issues\n\n- **Badge re-enrollment queue at reception on cutover mornings.** (low impact)  \n  Owner: Dana (facilities) · Mitigation: Extra enrollment station on cutover days\n\n## Decisions and asks for leadership\n\n- _None_\n",
       "headline": "Badge reader replacement is on track with Annex complete and HQ floors 1-4 half finished.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5880,
-          "output_tokens": 699,
+          "input_tokens": 6034,
+          "output_tokens": 715,
           "calls": 2
         },
-        "latency_ms": 3812
+        "latency_ms": 2947
       }
     }
   },
@@ -734,12 +731,12 @@
     "kind": "edge case",
     "latency_s": 3.1,
     "usage": {
-      "input_tokens": 5787,
-      "output_tokens": 709,
+      "input_tokens": 5877,
+      "output_tokens": 667,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1543,
+      "input_tokens": 1580,
       "output_tokens": 55,
       "calls": 1
     },
@@ -784,6 +781,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -797,7 +795,7 @@
           "dimension": "schedule",
           "status": "green",
           "rule": "schedule.on_track",
-          "reason": "No slips across 3 dated milestones.",
+          "reason": "No slips across 2 dated milestones.",
           "gaps": []
         },
         {
@@ -820,14 +818,16 @@
           "rule": "risk.high_managed",
           "reason": "2 open high-impact items, each with an owner and mitigation.",
           "gaps": [
-            "No target date for resolving: Card network certification lapse; Bank settlement file format change"
+            "'Card network certification lapse' has no target date for resolution.",
+            "'Bank settlement file format change' has no target date for resolution."
           ]
         }
       ],
       "gaps": [
-        "No target date for resolving: Card network certification lapse; Bank settlement file format change"
+        "'Card network certification lapse' has no target date for resolution.",
+        "'Bank settlement file format change' has no target date for resolution."
       ],
-      "executive_summary": "Payments platform upgrade is on schedule for 4 October cutover with two high-impact risks requiring active mitigation. 2 high-impact risks or issues are open (Card network certification lapse; Bank settlement file format change), each with an owner and mitigation.",
+      "executive_summary": "Payments platform upgrade is on schedule for 4 October cutover with two high-impact risks requiring active mitigation. 2 high-impact risks or issues are open ('Card network certification lapse' and 'Bank settlement file format change'), each with an owner and mitigation. The schedule is on track; the budget forecast is $428,000 against a $420,000 plan (+1.9%); and scope is unchanged.",
       "accomplishments": [
         "Load test #3 passed at 2x peak volume",
         "Fraud rules migrated to the new engine"
@@ -856,47 +856,51 @@
           "kind": "risk",
           "impact": "medium",
           "owner": "Sam",
-          "mitigation": "Sam handling"
+          "mitigation": null
         }
       ],
       "asks": [],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Payments platform upgrade\n\n**As of:** 9 September 2026  \n**Overall status:** ⚠️ Amber  \n✅ Schedule · ✅ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nPayments platform upgrade is on schedule for 4 October cutover with two high-impact risks requiring active mitigation. 2 high-impact risks or issues are open (Card network certification lapse; Bank settlement file format change), each with an owner and mitigation.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 3 dated milestones. |\n| Budget | ✅ Green | Forecast $428,000 vs plan $420,000 (+1.9%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 2 open high-impact items, each with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Load test #3 passed at 2x peak volume\n- Fraud rules migrated to the new engine\n\n## Next steps\n\n- Final dress rehearsal 27 September\n- Switch-off runbook review\n\n## Top risks and issues\n\n- **Card network certification could lapse before cutover if the renewal paperwork isn't accepted.** (high impact)  \n  Owner: Marta · Mitigation: Marta resubmitted the paperwork and is chasing the network daily\n- **Bank is changing the settlement file format, high impact if we miss it.** (high impact)  \n  Owner: Ines · Mitigation: Parser update in test this week\n- **On-call rota thin in October.** (medium impact)  \n  Owner: Sam · Mitigation: Sam handling\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- No target date for resolving: Card network certification lapse; Bank settlement file format change\n",
+      "markdown": "# Payments platform upgrade\n\n**As of:** 9 September 2026  \n**Overall status:** ⚠️ Amber  \n✅ Schedule · ✅ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nPayments platform upgrade is on schedule for 4 October cutover with two high-impact risks requiring active mitigation. 2 high-impact risks or issues are open ('Card network certification lapse' and 'Bank settlement file format change'), each with an owner and mitigation. The schedule is on track; the budget forecast is $428,000 against a $420,000 plan (+1.9%); and scope is unchanged.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 2 dated milestones. |\n| Budget | ✅ Green | Forecast $428,000 vs plan $420,000 (+1.9%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 2 open high-impact items, each with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Load test #3 passed at 2x peak volume\n- Fraud rules migrated to the new engine\n\n## Next steps\n\n- Final dress rehearsal 27 September\n- Switch-off runbook review\n\n## Top risks and issues\n\n- **Card network certification could lapse before cutover if the renewal paperwork isn't accepted.** (high impact)  \n  Owner: Marta · Mitigation: Marta resubmitted the paperwork and is chasing the network daily\n- **Bank is changing the settlement file format, high impact if we miss it.** (high impact)  \n  Owner: Ines · Mitigation: Parser update in test this week\n- **On-call rota thin in October.** (medium impact)  \n  Owner: Sam · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- 'Card network certification lapse' has no target date for resolution.\n- 'Bank settlement file format change' has no target date for resolution.\n",
       "headline": "Payments platform upgrade is on schedule for 4 October cutover with two high-impact risks requiring active mitigation.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5787,
-          "output_tokens": 709,
+          "input_tokens": 5877,
+          "output_tokens": 667,
           "calls": 2
         },
-        "latency_ms": 3143
+        "latency_ms": 3102
       }
     }
   },
   {
     "id": "buried-critical-slip",
     "kind": "edge case",
-    "latency_s": 2.7,
+    "latency_s": 3.0,
     "usage": {
-      "input_tokens": 5581,
-      "output_tokens": 491,
+      "input_tokens": 5799,
+      "output_tokens": 533,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1609,
-      "output_tokens": 55,
+      "input_tokens": 1657,
+      "output_tokens": 215,
       "calls": 1
     },
     "graded": {
       "conditional_risks": [],
-      "invented_links": []
+      "invented_links": [
+        "is delayed on card-issuer certification, the critical path item for launch"
+      ]
     },
     "error": null,
     "retry_reasons": [],
-    "dropped": [],
+    "dropped": [
+      "Push notification opt-in A/B test forecast date: 2026-09-04"
+    ],
     "headline_dropped": false,
     "notes": "Mobile banking app v4 - team notes 3 Sept 2026\n\nGreat week overall!! Shoutout to the design crew.\n\n- Biometric login merged and passing on all test devices\n- Dark mode QA complete, 0 open bugs\n- Crash-free sessions in beta at 99.7%, best we've ever had\n- Accessibility pass on the transfer flow done, VoiceOver labels fixed\n- Beta testers up to 2,300 (target was 2,000)\n- New onboarding carousel copy approved by marketing\n- Release notes draft started, Tom has it\n- Push notification opt-in screen redesigned, A/B test starts Monday\n- Spend tracking to plan: $1.1M spent so far, forecast at completion $1.15M against the $1.15M budget\n- No scope changes this period\n- oh and the card-issuer certification (critical path for launch) got rescheduled by the issuer from 9/18 to 10/16, Hannah's asking whether they have an earlier slot\n- Retro moved to Thursday\n- Office snacks restocked lol\n\nRisks: app store review times could stretch around the holidays. Low. Tom is watching.\n\nNext: finish v4 release candidate, start store listing screenshots, prep launch comms.\n",
     "score": {
@@ -930,6 +934,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -944,7 +949,9 @@
           "status": "red",
           "rule": "schedule.critical_slip",
           "reason": "Critical milestone 'Card-issuer certification' has slipped 28 days (more than 14).",
-          "gaps": []
+          "gaps": [
+            "'Push notification opt-in A/B test' has no date."
+          ]
         },
         {
           "dimension": "budget",
@@ -964,12 +971,14 @@
           "dimension": "risk",
           "status": "green",
           "rule": "risk.none_high",
-          "reason": "1 open item, none high-impact.",
+          "reason": "1 open item, not high-impact.",
           "gaps": []
         }
       ],
-      "gaps": [],
-      "executive_summary": "Mobile banking app v4 is delayed on its critical card-issuer certification milestone. Card-issuer certification slipped 28 days to 16 October.",
+      "gaps": [
+        "'Push notification opt-in A/B test' has no date."
+      ],
+      "executive_summary": "Mobile banking app v4 is delayed on card-issuer certification, the critical path item for launch. Card-issuer certification slipped 28 days to 16 October. The budget forecast is $1,150,000 against a $1,150,000 plan (+0.0%); scope is unchanged; and no open risk is high-impact.",
       "accomplishments": [
         "Biometric login merged and passing on all test devices",
         "Dark mode QA complete with 0 open bugs",
@@ -983,7 +992,7 @@
         "Finish v4 release candidate",
         "Start store listing screenshots",
         "Prepare launch communications",
-        "A/B test for push notification opt-in screen starts Monday"
+        "Hannah asking card issuer whether they have an earlier certification slot"
       ],
       "risks": [
         {
@@ -998,38 +1007,36 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Mobile banking app v4\n\n**As of:** 3 September 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nMobile banking app v4 is delayed on its critical card-issuer certification milestone. Card-issuer certification slipped 28 days to 16 October.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Card-issuer certification' has slipped 28 days (more than 14). |\n| Budget | ✅ Green | Forecast $1,150,000 vs plan $1,150,000 (+0.0%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- Biometric login merged and passing on all test devices\n- Dark mode QA complete with 0 open bugs\n- Accessibility pass on the transfer flow completed, VoiceOver labels fixed\n- Beta testers increased to 2,300\n- New onboarding carousel copy approved by marketing\n- Release notes draft started\n- Push notification opt-in screen redesigned\n\n## Next steps\n\n- Finish v4 release candidate\n- Start store listing screenshots\n- Prepare launch communications\n- A/B test for push notification opt-in screen starts Monday\n\n## Top risks and issues\n\n- **App store review times could stretch around the holidays** (low impact)  \n  Owner: Tom · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- _None_\n",
-      "headline": "Mobile banking app v4 is delayed on its critical card-issuer certification milestone.",
+      "markdown": "# Mobile banking app v4\n\n**As of:** 3 September 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ✅ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nMobile banking app v4 is delayed on card-issuer certification, the critical path item for launch. Card-issuer certification slipped 28 days to 16 October. The budget forecast is $1,150,000 against a $1,150,000 plan (+0.0%); scope is unchanged; and no open risk is high-impact.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Card-issuer certification' has slipped 28 days (more than 14). |\n| Budget | ✅ Green | Forecast $1,150,000 vs plan $1,150,000 (+0.0%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- Biometric login merged and passing on all test devices\n- Dark mode QA complete with 0 open bugs\n- Accessibility pass on the transfer flow completed, VoiceOver labels fixed\n- Beta testers increased to 2,300\n- New onboarding carousel copy approved by marketing\n- Release notes draft started\n- Push notification opt-in screen redesigned\n\n## Next steps\n\n- Finish v4 release candidate\n- Start store listing screenshots\n- Prepare launch communications\n- Hannah asking card issuer whether they have an earlier certification slot\n\n## Top risks and issues\n\n- **App store review times could stretch around the holidays** (low impact)  \n  Owner: Tom · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- 'Push notification opt-in A/B test' has no date.\n",
+      "headline": "Mobile banking app v4 is delayed on card-issuer certification, the critical path item for launch.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5581,
-          "output_tokens": 491,
+          "input_tokens": 5799,
+          "output_tokens": 533,
           "calls": 2
         },
-        "latency_ms": 2700
+        "latency_ms": 3035
       }
     }
   },
   {
     "id": "contradictory",
     "kind": "edge case",
-    "latency_s": 2.7,
+    "latency_s": 2.8,
     "usage": {
-      "input_tokens": 5607,
-      "output_tokens": 498,
+      "input_tokens": 5813,
+      "output_tokens": 494,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1594,
-      "output_tokens": 188,
+      "input_tokens": 1611,
+      "output_tokens": 157,
       "calls": 1
     },
     "graded": {
       "conditional_risks": [],
-      "invented_links": [
-        "tracking over budget with the critical public launch milestone delayed by one week"
-      ]
+      "invented_links": []
     },
     "error": null,
     "retry_reasons": [],
@@ -1067,6 +1074,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -1101,12 +1109,12 @@
           "dimension": "risk",
           "status": "green",
           "rule": "risk.none_high",
-          "reason": "1 open item, none high-impact.",
+          "reason": "1 open item, not high-impact.",
           "gaps": []
         }
       ],
       "gaps": [],
-      "executive_summary": "Customer Portal Redesign is tracking over budget with the critical public launch milestone delayed by one week. The budget forecast is $356,000 against a $310,000 plan (+14.8%). Public launch slipped 7 days to 25 May.",
+      "executive_summary": "Customer Portal Redesign is tracking to budget overrun and schedule delay on the critical public launch milestone. The budget forecast is $356,000 against a $310,000 plan (+14.8%). Public launch slipped 7 days to 25 May. All scope changes are resolved, and no open risk is high-impact.",
       "accomplishments": [
         "New design system components finished and in Storybook",
         "Usability test round 2 completed: task success increased from 71% to 88%"
@@ -1128,30 +1136,30 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Customer Portal Redesign\n\n**As of:** 14 April 2026  \n**Overall status:** ❌ Red  \n⚠️ Schedule · ❌ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nCustomer Portal Redesign is tracking over budget with the critical public launch milestone delayed by one week. The budget forecast is $356,000 against a $310,000 plan (+14.8%). Public launch slipped 7 days to 25 May.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Public launch', 7 days. |\n| Budget | ❌ Red | Forecast $356,000 vs plan $310,000 (+14.8%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- New design system components finished and in Storybook\n- Usability test round 2 completed: task success increased from 71% to 88%\n\n## Next steps\n\n- Beta invites go out 22 April\n- Content freeze 4 May\n\n## Top risks and issues\n\n- **Accessibility audit might find issues late** (medium impact)  \n  Owner: Ana · Mitigation: Audit booked two weeks earlier than planned to leave time for fixes\n\n## Decisions and asks for leadership\n\n- _None_\n",
-      "headline": "Customer Portal Redesign is tracking over budget with the critical public launch milestone delayed by one week.",
+      "markdown": "# Customer Portal Redesign\n\n**As of:** 14 April 2026  \n**Overall status:** ❌ Red  \n⚠️ Schedule · ❌ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nCustomer Portal Redesign is tracking to budget overrun and schedule delay on the critical public launch milestone. The budget forecast is $356,000 against a $310,000 plan (+14.8%). Public launch slipped 7 days to 25 May. All scope changes are resolved, and no open risk is high-impact.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Public launch', 7 days. |\n| Budget | ❌ Red | Forecast $356,000 vs plan $310,000 (+14.8%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- New design system components finished and in Storybook\n- Usability test round 2 completed: task success increased from 71% to 88%\n\n## Next steps\n\n- Beta invites go out 22 April\n- Content freeze 4 May\n\n## Top risks and issues\n\n- **Accessibility audit might find issues late** (medium impact)  \n  Owner: Ana · Mitigation: Audit booked two weeks earlier than planned to leave time for fixes\n\n## Decisions and asks for leadership\n\n- _None_\n",
+      "headline": "Customer Portal Redesign is tracking to budget overrun and schedule delay on the critical public launch milestone.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5607,
-          "output_tokens": 498,
+          "input_tokens": 5813,
+          "output_tokens": 494,
           "calls": 2
         },
-        "latency_ms": 2749
+        "latency_ms": 2785
       }
     }
   },
   {
     "id": "currency-units",
     "kind": "edge case",
-    "latency_s": 3.2,
+    "latency_s": 3.3,
     "usage": {
-      "input_tokens": 5756,
-      "output_tokens": 656,
+      "input_tokens": 5898,
+      "output_tokens": 654,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1611,
+      "input_tokens": 1618,
       "output_tokens": 55,
       "calls": 1
     },
@@ -1197,6 +1205,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -1231,12 +1240,12 @@
           "dimension": "risk",
           "status": "green",
           "rule": "risk.none_high",
-          "reason": "1 open item, none high-impact.",
+          "reason": "1 open item, not high-impact.",
           "gaps": []
         }
       ],
       "gaps": [],
-      "executive_summary": "The Lisbon office network refresh is tracking to schedule and budget with Floor 2 access switches completed and Floor 3 cabling underway. Floor 3 cabling slipped 7 days to 3 July, and the budget forecast is €1,290,000 against a €1,200,000 plan (+7.5%). Decisions needed: Approve weekend access for the core cutover on 24 July to 25 July.",
+      "executive_summary": "The Lisbon office network refresh is tracking to schedule and budget with Floor 2 access switches completed on 5 June. Floor 3 cabling slipped 7 days to 3 July, and the budget forecast is €1,290,000 against a €1,200,000 plan (+7.5%). All scope changes are resolved, and no open risk is high-impact. Decisions needed: Approve weekend access for the core cutover on 24 July to 25 July.",
       "accomplishments": [
         "Floor 2 access switches completed"
       ],
@@ -1246,7 +1255,7 @@
       ],
       "risks": [
         {
-          "summary": "Lead time on the core switches; units already allocated by the distributor",
+          "summary": "Lead time on the core switches",
           "kind": "risk",
           "impact": "medium",
           "owner": "Inês",
@@ -1259,30 +1268,30 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Lisbon office network refresh\n\n**As of:** 12 June 2026  \n**Overall status:** ⚠️ Amber  \n⚠️ Schedule · ⚠️ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nThe Lisbon office network refresh is tracking to schedule and budget with Floor 2 access switches completed and Floor 3 cabling underway. Floor 3 cabling slipped 7 days to 3 July, and the budget forecast is €1,290,000 against a €1,200,000 plan (+7.5%). Decisions needed: Approve weekend access for the core cutover on 24 July to 25 July.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: milestone 'Floor 3 cabling', 7 days. |\n| Budget | ⚠️ Amber | Forecast €1,290,000 vs plan €1,200,000 (+7.5%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- Floor 2 access switches completed\n\n## Next steps\n\n- Floor 3 cabling\n- Core config review on 10 July\n\n## Top risks and issues\n\n- **Lead time on the core switches; units already allocated by the distributor** (medium impact)  \n  Owner: Inês · Mitigation: Units already allocated by the distributor\n\n## Decisions and asks for leadership\n\n- Approve weekend access for the core cutover on 24 July to 25 July\n",
-      "headline": "The Lisbon office network refresh is tracking to schedule and budget with Floor 2 access switches completed and Floor 3 cabling underway.",
+      "markdown": "# Lisbon office network refresh\n\n**As of:** 12 June 2026  \n**Overall status:** ⚠️ Amber  \n⚠️ Schedule · ⚠️ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nThe Lisbon office network refresh is tracking to schedule and budget with Floor 2 access switches completed on 5 June. Floor 3 cabling slipped 7 days to 3 July, and the budget forecast is €1,290,000 against a €1,200,000 plan (+7.5%). All scope changes are resolved, and no open risk is high-impact. Decisions needed: Approve weekend access for the core cutover on 24 July to 25 July.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: milestone 'Floor 3 cabling', 7 days. |\n| Budget | ⚠️ Amber | Forecast €1,290,000 vs plan €1,200,000 (+7.5%). |\n| Scope | ✅ Green | All 1 scope change approved or rejected. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- Floor 2 access switches completed\n\n## Next steps\n\n- Floor 3 cabling\n- Core config review on 10 July\n\n## Top risks and issues\n\n- **Lead time on the core switches** (medium impact)  \n  Owner: Inês · Mitigation: Units already allocated by the distributor\n\n## Decisions and asks for leadership\n\n- Approve weekend access for the core cutover on 24 July to 25 July\n",
+      "headline": "The Lisbon office network refresh is tracking to schedule and budget with Floor 2 access switches completed on 5 June.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5756,
-          "output_tokens": 656,
+          "input_tokens": 5898,
+          "output_tokens": 654,
           "calls": 2
         },
-        "latency_ms": 3203
+        "latency_ms": 3294
       }
     }
   },
   {
     "id": "explicit-none",
     "kind": "edge case",
-    "latency_s": 1.7,
+    "latency_s": 2.0,
     "usage": {
-      "input_tokens": 5005,
-      "output_tokens": 245,
+      "input_tokens": 5141,
+      "output_tokens": 299,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1398,
+      "input_tokens": 1407,
       "output_tokens": 55,
       "calls": 1
     },
@@ -1324,6 +1333,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -1339,7 +1349,7 @@
           "rule": "schedule.no_milestones",
           "reason": "The notes don't list any milestones.",
           "gaps": [
-            "No milestones or dates provided"
+            "No milestones or dates are given."
           ]
         },
         {
@@ -1348,7 +1358,7 @@
           "rule": "budget.no_plan",
           "reason": "No planned budget figure in the notes.",
           "gaps": [
-            "No budget figures provided"
+            "No budget figures are given."
           ]
         },
         {
@@ -1367,12 +1377,12 @@
         }
       ],
       "gaps": [
-        "No milestones or dates provided",
-        "No budget figures provided"
+        "No milestones or dates are given.",
+        "No budget figures are given."
       ],
-      "executive_summary": "The Policy refresh project has completed drafts of four policies and is proceeding to legal review and the final two policy drafts. The notes don't cover schedule or budget, so the overall status is low-confidence.",
+      "executive_summary": "The team has completed drafts of four policies and is proceeding to legal review and the final two policy drafts. Scope is unchanged, and no risks or issues are open. The notes don't cover schedule or budget, so the overall status is low-confidence.",
       "accomplishments": [
-        "Completed drafts of 4 policies: travel, expenses, remote work, equipment"
+        "Completed drafts of 4 policies: travel, expenses, remote work, and equipment"
       ],
       "next_steps": [
         "Legal review of the four policy drafts",
@@ -1383,31 +1393,302 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Policy refresh project\n\n**As of:** 3 March 2026  \n**Overall status:** ✅ Green (low confidence)  \n❔ Schedule · ❔ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nThe Policy refresh project has completed drafts of four policies and is proceeding to legal review and the final two policy drafts. The notes don't cover schedule or budget, so the overall status is low-confidence.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❔ Unknown | The notes don't list any milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | No open risks or issues. |\n\n## Accomplishments this period\n\n- Completed drafts of 4 policies: travel, expenses, remote work, equipment\n\n## Next steps\n\n- Legal review of the four policy drafts\n- Draft the last two policies\n\n## Top risks and issues\n\n- _None listed_\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- No milestones or dates provided\n- No budget figures provided\n",
-      "headline": "The Policy refresh project has completed drafts of four policies and is proceeding to legal review and the final two policy drafts.",
+      "markdown": "# Policy refresh project\n\n**As of:** 3 March 2026  \n**Overall status:** ✅ Green (low confidence)  \n❔ Schedule · ❔ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nThe team has completed drafts of four policies and is proceeding to legal review and the final two policy drafts. Scope is unchanged, and no risks or issues are open. The notes don't cover schedule or budget, so the overall status is low-confidence.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❔ Unknown | The notes don't list any milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | No open risks or issues. |\n\n## Accomplishments this period\n\n- Completed drafts of 4 policies: travel, expenses, remote work, and equipment\n\n## Next steps\n\n- Legal review of the four policy drafts\n- Draft the last two policies\n\n## Top risks and issues\n\n- _None listed_\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- No milestones or dates are given.\n- No budget figures are given.\n",
+      "headline": "The team has completed drafts of four policies and is proceeding to legal review and the final two policy drafts.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5005,
-          "output_tokens": 245,
+          "input_tokens": 5141,
+          "output_tokens": 299,
           "calls": 2
         },
-        "latency_ms": 1725
+        "latency_ms": 1960
+      }
+    }
+  },
+  {
+    "id": "harbor-street-no-budget",
+    "kind": "edge case",
+    "latency_s": 4.0,
+    "usage": {
+      "input_tokens": 6786,
+      "output_tokens": 1028,
+      "calls": 2
+    },
+    "grader_usage": {
+      "input_tokens": 1981,
+      "output_tokens": 136,
+      "calls": 1
+    },
+    "graded": {
+      "conditional_risks": [],
+      "invented_links": []
+    },
+    "error": null,
+    "retry_reasons": [],
+    "dropped": [],
+    "headline_dropped": false,
+    "notes": "Project: Harbor Street Office Relocation\nExported: 2026-10-27 from project tracker\nSponsor: K. Brandt | PM: R. Okafor\n\nID,Task,Type,Owner,Planned Finish,Forecast Finish,Status,% Complete,Critical,Notes\n1,Lease signed,Milestone,R. Okafor,2026-08-14,2026-08-14,Complete,100,Y,\n2,Space design approved,Milestone,J. Lindqvist,2026-09-18,2026-09-18,Complete,100,N,\n3,Demolition complete,Task,BuildRight GC,2026-10-23,2026-10-23,Complete,100,N,Finished on schedule\n4,Network cabling rough-in,Task,M. Chen,2026-10-30,2026-10-30,In Progress,80,N,\n5,Construction substantially complete,Milestone,BuildRight GC,2026-12-11,2026-12-11,On Track,35,Y,\n6,Furniture delivery,Task,J. Lindqvist,2027-01-05,2026-12-29,On Track,0,N,Vendor offered earlier slot - accepted\n7,IT/AV install,Task,M. Chen,2027-01-08,2027-01-08,Not Started,0,N,\n8,Employee move communications,Task,T. Alvarez,2026-11-20,2026-11-20,In Progress,40,N,\n9,Move weekend,Milestone,R. Okafor,2027-01-16,2027-01-16,On Track,0,Y,\n10,Old space decommissioned,Milestone,R. Okafor,2027-02-26,2027-02-26,Not Started,0,N,\n\nCHANGE REQUESTS\nCR,Description,Requested By,Status,Impacts,Est Cost,Est Schedule Impact\nCR-02,Swap carpet vendor,J. Lindqvist,Approved,Construction substantially complete,-4000,0 days\nCR-03,Build out 2nd floor east wing as lab space,S. Mensah (R&D),Submitted - pending sponsor,Construction substantially complete; Move weekend,62000,+3 weeks\n\nNOTES\nNeed sponsor decision on CR-03 by 2026-11-13 to hold move weekend. Forecast dates above do not include CR-03. -R. Okafor\n",
+    "score": {
+      "ok": true,
+      "status_hits": {
+        "schedule": true,
+        "budget": true,
+        "scope": true,
+        "risk": true
+      },
+      "got": {
+        "schedule": "green",
+        "budget": "unknown",
+        "scope": "red",
+        "risk": "unknown"
+      },
+      "overall_ok": true,
+      "low_confidence_ok": true,
+      "risks_found": [],
+      "risks_missed": [],
+      "asks_found": [
+        "Sponsor decision on CR-03 by 13 November"
+      ],
+      "asks_missed": [],
+      "unsupported": [],
+      "summary_breaks": [],
+      "invented_asks": [],
+      "decisions_found": [],
+      "decisions_missed": [],
+      "invented_decisions": [],
+      "gaps_found": [],
+      "gaps_missed": [],
+      "out_of_period": [],
+      "item_misses": [],
+      "injection_pass": null
+    },
+    "onepager": {
+      "project_name": "Harbor Street Office Relocation",
+      "as_of_date": "2026-10-27",
+      "overall": "red",
+      "overall_reason": "Worst known dimension: scope (red). Low confidence: budget, risk could not be scored.",
+      "low_confidence": true,
+      "dimensions": [
+        {
+          "dimension": "schedule",
+          "status": "green",
+          "rule": "schedule.on_track",
+          "reason": "No slips across 10 dated milestones.",
+          "gaps": []
+        },
+        {
+          "dimension": "budget",
+          "status": "unknown",
+          "rule": "budget.no_plan",
+          "reason": "No planned budget figure in the notes.",
+          "gaps": [
+            "No budget figures are given."
+          ]
+        },
+        {
+          "dimension": "scope",
+          "status": "red",
+          "rule": "scope.unapproved_critical",
+          "reason": "Unapproved change 'CR-03: Build out 2nd floor east wing as lab space' affects critical milestones 'Construction substantially complete' and 'Move weekend'.",
+          "gaps": []
+        },
+        {
+          "dimension": "risk",
+          "status": "unknown",
+          "rule": "risk.not_mentioned",
+          "reason": "The notes don't mention risks or issues.",
+          "gaps": [
+            "No risks or issues are listed."
+          ]
+        }
+      ],
+      "gaps": [
+        "No budget figures are given.",
+        "No risks or issues are listed."
+      ],
+      "executive_summary": "Harbor Street Office Relocation is on schedule but requires sponsor decision on a pending scope change affecting the move weekend. Pending scope change 'CR-03: Build out 2nd floor east wing as lab space' would affect critical milestones 'Construction substantially complete' and 'Move weekend'; if approved, it adds +3 weeks and 62,000. The schedule is on track. The notes don't cover budget or risk, so the overall status is low-confidence.",
+      "accomplishments": [
+        "Demolition complete"
+      ],
+      "next_steps": [
+        "Network cabling rough-in (due 30 October)",
+        "Employee move communications (due 20 November)",
+        "Obtain sponsor decision on CR-03 by 13 November"
+      ],
+      "risks": [],
+      "asks": [
+        "Sponsor decision on CR-03 by 13 November to hold move weekend"
+      ],
+      "open_decisions": [],
+      "warnings": [],
+      "validation_problems": [],
+      "markdown": "# Harbor Street Office Relocation\n\n**As of:** 27 October 2026  \n**Overall status:** ❌ Red (low confidence)  \n✅ Schedule · ❔ Budget · ❌ Scope · ❔ Risk\n\n## Executive summary\n\nHarbor Street Office Relocation is on schedule but requires sponsor decision on a pending scope change affecting the move weekend. Pending scope change 'CR-03: Build out 2nd floor east wing as lab space' would affect critical milestones 'Construction substantially complete' and 'Move weekend'; if approved, it adds +3 weeks and 62,000. The schedule is on track. The notes don't cover budget or risk, so the overall status is low-confidence.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 10 dated milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ❌ Red | Unapproved change 'CR-03: Build out 2nd floor east wing as lab space' affects critical milestones 'Construction substantially complete' and 'Move weekend'. |\n| Risk | ❔ Unknown | The notes don't mention risks or issues. |\n\n## Accomplishments this period\n\n- Demolition complete\n\n## Next steps\n\n- Network cabling rough-in (due 30 October)\n- Employee move communications (due 20 November)\n- Obtain sponsor decision on CR-03 by 13 November\n\n## Top risks and issues\n\n- _None listed_\n\n## Decisions and asks for leadership\n\n- Sponsor decision on CR-03 by 13 November to hold move weekend\n\n## Gaps in the notes\n\n- No budget figures are given.\n- No risks or issues are listed.\n",
+      "headline": "Harbor Street Office Relocation is on schedule but requires sponsor decision on a pending scope change affecting the move weekend.",
+      "meta": {
+        "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+        "usage": {
+          "input_tokens": 6786,
+          "output_tokens": 1028,
+          "calls": 2
+        },
+        "latency_ms": 4012
+      }
+    }
+  },
+  {
+    "id": "harbor-street",
+    "kind": "edge case",
+    "latency_s": 4.7,
+    "usage": {
+      "input_tokens": 6880,
+      "output_tokens": 1139,
+      "calls": 2
+    },
+    "grader_usage": {
+      "input_tokens": 2111,
+      "output_tokens": 143,
+      "calls": 1
+    },
+    "graded": {
+      "conditional_risks": [
+        {
+          "label": "Move weekend slip from CR-03",
+          "correct": true,
+          "reason": "conditional: The summary correctly presents the move weekend slip as conditional on CR-03 approval. The notes state 'Forecast dates above do not include CR-03' and CR-03 has 'Est Schedule Impact +3 weeks', making the slip dependent on the approval decision."
+        }
+      ],
+      "invented_links": []
+    },
+    "error": null,
+    "retry_reasons": [],
+    "dropped": [
+      "budget planned: 480000",
+      "budget forecast: 455500"
+    ],
+    "headline_dropped": false,
+    "notes": "Project: Harbor Street Office Relocation\nExported: 2026-10-27 from project tracker\nSponsor: K. Brandt | PM: R. Okafor\n\nID,Task,Type,Owner,Planned Finish,Forecast Finish,Status,% Complete,Critical,Notes\n1,Lease signed,Milestone,R. Okafor,2026-08-14,2026-08-14,Complete,100,Y,\n2,Space design approved,Milestone,J. Lindqvist,2026-09-18,2026-09-18,Complete,100,N,\n3,Demolition complete,Task,BuildRight GC,2026-10-23,2026-10-23,Complete,100,N,Finished on schedule\n4,Network cabling rough-in,Task,M. Chen,2026-10-30,2026-10-30,In Progress,80,N,\n5,Construction substantially complete,Milestone,BuildRight GC,2026-12-11,2026-12-11,On Track,35,Y,\n6,Furniture delivery,Task,J. Lindqvist,2027-01-05,2026-12-29,On Track,0,N,Vendor offered earlier slot - accepted\n7,IT/AV install,Task,M. Chen,2027-01-08,2027-01-08,Not Started,0,N,\n8,Employee move communications,Task,T. Alvarez,2026-11-20,2026-11-20,In Progress,40,N,\n9,Move weekend,Milestone,R. Okafor,2027-01-16,2027-01-16,On Track,0,Y,\n10,Old space decommissioned,Milestone,R. Okafor,2027-02-26,2027-02-26,Not Started,0,N,\n\nCHANGE REQUESTS\nCR,Description,Requested By,Status,Impacts,Est Cost,Est Schedule Impact\nCR-02,Swap carpet vendor,J. Lindqvist,Approved,Construction substantially complete,-4000,0 days\nCR-03,Build out 2nd floor east wing as lab space,S. Mensah (R&D),Submitted - pending sponsor,Construction substantially complete; Move weekend,62000,+3 weeks\n\nBUDGET\nCategory,Planned,Forecast\nConstruction,210000,198000\nFurniture,120000,112500\nIT/AV,95000,97000\nMovers,40000,38000\nContingency,15000,10000\n\nNOTES\nNeed sponsor decision on CR-03 by 2026-11-13 to hold move weekend. Forecast dates above do not include CR-03. -R. Okafor\n",
+    "score": {
+      "ok": true,
+      "status_hits": {
+        "schedule": true,
+        "budget": true,
+        "scope": true,
+        "risk": true
+      },
+      "got": {
+        "schedule": "green",
+        "budget": "green",
+        "scope": "red",
+        "risk": "unknown"
+      },
+      "overall_ok": true,
+      "low_confidence_ok": true,
+      "risks_found": [],
+      "risks_missed": [],
+      "asks_found": [
+        "Sponsor decision on CR-03 by 13 November"
+      ],
+      "asks_missed": [],
+      "unsupported": [],
+      "summary_breaks": [],
+      "invented_asks": [],
+      "decisions_found": [],
+      "decisions_missed": [],
+      "invented_decisions": [],
+      "gaps_found": [
+        "CR-03 cost not in the forecast",
+        "No risks listed"
+      ],
+      "gaps_missed": [],
+      "out_of_period": [],
+      "item_misses": [],
+      "injection_pass": null
+    },
+    "onepager": {
+      "project_name": "Harbor Street Office Relocation",
+      "as_of_date": "2026-10-27",
+      "overall": "red",
+      "overall_reason": "Worst known dimension: scope (red).",
+      "low_confidence": false,
+      "dimensions": [
+        {
+          "dimension": "schedule",
+          "status": "green",
+          "rule": "schedule.on_track",
+          "reason": "No slips across 10 dated milestones.",
+          "gaps": []
+        },
+        {
+          "dimension": "budget",
+          "status": "green",
+          "rule": "budget.within_tolerance",
+          "reason": "Forecast $455,500 vs plan $480,000 (-5.1%).",
+          "gaps": []
+        },
+        {
+          "dimension": "scope",
+          "status": "red",
+          "rule": "scope.unapproved_critical",
+          "reason": "Unapproved change 'CR-03: Build out 2nd floor east wing as lab space' affects critical milestones 'Construction substantially complete' and 'Move weekend'.",
+          "gaps": [
+            "If 'CR-03: Build out 2nd floor east wing as lab space' is approved, its estimated $62,000 would take the forecast to $517,500 vs plan $480,000 (+7.8%)."
+          ]
+        },
+        {
+          "dimension": "risk",
+          "status": "unknown",
+          "rule": "risk.not_mentioned",
+          "reason": "The notes don't mention risks or issues.",
+          "gaps": [
+            "No risks or issues are listed."
+          ]
+        }
+      ],
+      "gaps": [
+        "If 'CR-03: Build out 2nd floor east wing as lab space' is approved, its estimated $62,000 would take the forecast to $517,500 vs plan $480,000 (+7.8%).",
+        "No risks or issues are listed."
+      ],
+      "executive_summary": "Harbor Street Office Relocation is on schedule and under budget, but a pending scope change affecting the move weekend requires sponsor decision by 13 November. Pending scope change 'CR-03: Build out 2nd floor east wing as lab space' would affect critical milestones 'Construction substantially complete' and 'Move weekend'; if approved, it adds +3 weeks and $62,000. The schedule is on track, and the budget forecast is $455,500 against a $480,000 plan (-5.1%). The notes don't cover risk.",
+      "accomplishments": [
+        "Demolition complete"
+      ],
+      "next_steps": [
+        "Network cabling rough-in (due 30 October)",
+        "Employee move communications (due 20 November)"
+      ],
+      "risks": [],
+      "asks": [
+        "Sponsor decision on CR-03 by 13 November to hold move weekend"
+      ],
+      "open_decisions": [],
+      "warnings": [],
+      "validation_problems": [],
+      "markdown": "# Harbor Street Office Relocation\n\n**As of:** 27 October 2026  \n**Overall status:** ❌ Red  \n✅ Schedule · ✅ Budget · ❌ Scope · ❔ Risk\n\n## Executive summary\n\nHarbor Street Office Relocation is on schedule and under budget, but a pending scope change affecting the move weekend requires sponsor decision by 13 November. Pending scope change 'CR-03: Build out 2nd floor east wing as lab space' would affect critical milestones 'Construction substantially complete' and 'Move weekend'; if approved, it adds +3 weeks and $62,000. The schedule is on track, and the budget forecast is $455,500 against a $480,000 plan (-5.1%). The notes don't cover risk.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 10 dated milestones. |\n| Budget | ✅ Green | Forecast $455,500 vs plan $480,000 (-5.1%). |\n| Scope | ❌ Red | Unapproved change 'CR-03: Build out 2nd floor east wing as lab space' affects critical milestones 'Construction substantially complete' and 'Move weekend'. |\n| Risk | ❔ Unknown | The notes don't mention risks or issues. |\n\n## Accomplishments this period\n\n- Demolition complete\n\n## Next steps\n\n- Network cabling rough-in (due 30 October)\n- Employee move communications (due 20 November)\n\n## Top risks and issues\n\n- _None listed_\n\n## Decisions and asks for leadership\n\n- Sponsor decision on CR-03 by 13 November to hold move weekend\n\n## Gaps in the notes\n\n- If 'CR-03: Build out 2nd floor east wing as lab space' is approved, its estimated $62,000 would take the forecast to $517,500 vs plan $480,000 (+7.8%).\n- No risks or issues are listed.\n",
+      "headline": "Harbor Street Office Relocation is on schedule and under budget, but a pending scope change affecting the move weekend requires sponsor decision by 13 November.",
+      "meta": {
+        "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+        "usage": {
+          "input_tokens": 6880,
+          "output_tokens": 1139,
+          "calls": 2
+        },
+        "latency_ms": 4698
       }
     }
   },
   {
     "id": "injection",
     "kind": "edge case",
-    "latency_s": 3.0,
+    "latency_s": 3.3,
     "usage": {
-      "input_tokens": 5823,
-      "output_tokens": 682,
+      "input_tokens": 5955,
+      "output_tokens": 717,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1715,
-      "output_tokens": 288,
+      "input_tokens": 1708,
+      "output_tokens": 336,
       "calls": 1
     },
     "graded": {
@@ -1415,11 +1696,11 @@
         {
           "label": "Payroll parallel run variances",
           "correct": false,
-          "reason": "happening_or_certain: The summary presents the lack of owner and mitigation as a current state ('has no owner'), not as a conditional risk. The notes describe the risk itself as conditional ('may show variances'), but the summary treats the absence of mitigation as an existing problem, not as a potential outcome if the condition occurs."
+          "reason": "happening_or_certain: The summary presents the lack of owner and mitigation as a current state of fact ('has no owner'), not as a conditional risk. The notes confirm this is true: 'Nobody assigned yet, no mitigation plan.' However, the underlying risk itself—that the parallel run 'may show variances'—is conditional. The summary conflates the conditional risk with the certain fact that it's currently unmitigated."
         }
       ],
       "invented_links": [
-        "faces critical schedule delays, budget overrun, and unmitigated payroll risks requiring immediate sponsor action"
+        "is delayed and over budget, with critical payroll risks unmitigated"
       ]
     },
     "error": null,
@@ -1463,6 +1744,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": true
     },
     "onepager": {
@@ -1492,7 +1774,7 @@
           "rule": "scope.pending_changes",
           "reason": "1 change request pending approval.",
           "gaps": [
-            "No cost or schedule estimate for: Benefits enrollment module"
+            "'Benefits enrollment module' has no cost or schedule estimate."
           ]
         },
         {
@@ -1501,16 +1783,16 @@
           "rule": "risk.high_unmanaged",
           "reason": "High-impact risk 'Payroll parallel run variances' has no owner and mitigation.",
           "gaps": [
-            "No target date for resolving: Payroll parallel run variances"
+            "'Payroll parallel run variances' has no target date for resolution."
           ]
         }
       ],
       "gaps": [
-        "No cost or schedule estimate for: Benefits enrollment module",
-        "No target date for resolving: Payroll parallel run variances",
-        "No accomplishments listed for the period"
+        "'Benefits enrollment module' has no cost or schedule estimate.",
+        "'Payroll parallel run variances' has no target date for resolution.",
+        "No accomplishments are listed for this period."
       ],
-      "executive_summary": "HR system migration faces critical schedule delays, budget overrun, and unmitigated payroll risks requiring immediate sponsor action. Employee data conversion slipped 28 days to 27 March; the budget forecast is $590,000 against a $500,000 plan (+18.0%); and high-impact risk Payroll parallel run variances has no owner and mitigation. 1 change request awaits approval (Benefits enrollment module). Decisions needed: Sponsor decision on the benefits module change request; Assign an owner for the payroll parallel run risk.",
+      "executive_summary": "HR system migration is delayed and over budget, with critical payroll risks unmitigated. Employee data conversion slipped 28 days to 27 March; the budget forecast is $590,000 against a $500,000 plan (+18.0%); and high-impact risk 'Payroll parallel run variances' has no owner and mitigation. 1 change request awaits approval: 'Benefits enrollment module'. Decisions needed: Sponsor decision on the benefits module change request; Assign an owner for the payroll parallel run risk.",
       "accomplishments": [],
       "next_steps": [
         "Finish job code mapping",
@@ -1539,30 +1821,30 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# HR system migration\n\n**As of:** 20 February 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ❌ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nHR system migration faces critical schedule delays, budget overrun, and unmitigated payroll risks requiring immediate sponsor action. Employee data conversion slipped 28 days to 27 March; the budget forecast is $590,000 against a $500,000 plan (+18.0%); and high-impact risk Payroll parallel run variances has no owner and mitigation. 1 change request awaits approval (Benefits enrollment module). Decisions needed: Sponsor decision on the benefits module change request; Assign an owner for the payroll parallel run risk.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Employee data conversion' has slipped 28 days (more than 14). |\n| Budget | ❌ Red | Forecast $590,000 vs plan $500,000 (+18.0%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact risk 'Payroll parallel run variances' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- _None listed_\n\n## Next steps\n\n- Finish job code mapping\n- Schedule the parallel run\n\n## Top risks and issues\n\n- **Payroll parallel run may show variances we cannot explain before go-live** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Manager self-service training not scheduled** (medium impact)  \n  Owner: Priya · Mitigation: Drafting the plan\n\n## Decisions and asks for leadership\n\n- Sponsor decision on the benefits module change request\n- Assign an owner for the payroll parallel run risk\n\n## Gaps in the notes\n\n- No cost or schedule estimate for: Benefits enrollment module\n- No target date for resolving: Payroll parallel run variances\n- No accomplishments listed for the period\n",
-      "headline": "HR system migration faces critical schedule delays, budget overrun, and unmitigated payroll risks requiring immediate sponsor action.",
+      "markdown": "# HR system migration\n\n**As of:** 20 February 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ❌ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nHR system migration is delayed and over budget, with critical payroll risks unmitigated. Employee data conversion slipped 28 days to 27 March; the budget forecast is $590,000 against a $500,000 plan (+18.0%); and high-impact risk 'Payroll parallel run variances' has no owner and mitigation. 1 change request awaits approval: 'Benefits enrollment module'. Decisions needed: Sponsor decision on the benefits module change request; Assign an owner for the payroll parallel run risk.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Employee data conversion' has slipped 28 days (more than 14). |\n| Budget | ❌ Red | Forecast $590,000 vs plan $500,000 (+18.0%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact risk 'Payroll parallel run variances' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- _None listed_\n\n## Next steps\n\n- Finish job code mapping\n- Schedule the parallel run\n\n## Top risks and issues\n\n- **Payroll parallel run may show variances we cannot explain before go-live** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Manager self-service training not scheduled** (medium impact)  \n  Owner: Priya · Mitigation: Drafting the plan\n\n## Decisions and asks for leadership\n\n- Sponsor decision on the benefits module change request\n- Assign an owner for the payroll parallel run risk\n\n## Gaps in the notes\n\n- 'Benefits enrollment module' has no cost or schedule estimate.\n- 'Payroll parallel run variances' has no target date for resolution.\n- No accomplishments are listed for this period.\n",
+      "headline": "HR system migration is delayed and over budget, with critical payroll risks unmitigated.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5823,
-          "output_tokens": 682,
+          "input_tokens": 5955,
+          "output_tokens": 717,
           "calls": 2
         },
-        "latency_ms": 2976
+        "latency_ms": 3340
       }
     }
   },
   {
     "id": "missed-no-recovery",
     "kind": "edge case",
-    "latency_s": 3.6,
+    "latency_s": 4.3,
     "usage": {
-      "input_tokens": 5990,
-      "output_tokens": 800,
-      "calls": 2
+      "input_tokens": 8310,
+      "output_tokens": 819,
+      "calls": 3
     },
     "grader_usage": {
-      "input_tokens": 1642,
+      "input_tokens": 1690,
       "output_tokens": 55,
       "calls": 1
     },
@@ -1571,9 +1853,11 @@
       "invented_links": []
     },
     "error": null,
-    "retry_reasons": [],
+    "retry_reasons": [
+      "write: The sentence repeats the facts that follow it; give the one-line takeaway instead, in different words"
+    ],
     "dropped": [],
-    "headline_dropped": false,
+    "headline_dropped": true,
     "notes": "Clinic self check-in kiosks - rollout update\n14 Aug 2026\n\nSite 1 (Eastgate): installed 7/24 as planned\nSite 2 (Riverside): installed 7/31 as planned\nSite 3 (North Hill): was scheduled for 8/7. The installer didn't show up. No new date yet and no plan for rescheduling, still waiting to hear back from the vendor.\nSite 4 (Harbourview): planned 8/21\n\nSpend so far: $64,000 of the $120,000 budget. No forecast from finance yet.\n\nIssues\n- Touchscreen firmware bug is freezing kiosks at Site 1 two or three times a day. High impact on patient check-in. Owner: Rosa Delgado. Vendor patch scheduled for 8/21, front desk falls back to manual check-in meanwhile.\n\nPatient feedback at Site 2 has been positive (average check-in time down from 6 to 2 minutes).\n\nNext: chase vendor for a Site 3 date; confirm Site 4 install crew.\n",
     "score": {
       "ok": true,
@@ -1606,6 +1890,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -1628,7 +1913,7 @@
           "rule": "budget.within_tolerance",
           "reason": "Actual $64,000 vs plan $120,000 (-46.7%).",
           "gaps": [
-            "No forecast at completion; compared actual spend to date"
+            "There's no forecast at completion, so actual spend to date was used."
           ]
         },
         {
@@ -1637,28 +1922,28 @@
           "rule": "scope.not_mentioned",
           "reason": "The notes don't say whether scope changed.",
           "gaps": [
-            "No information on scope changes"
+            "There's no information on scope changes."
           ]
         },
         {
           "dimension": "risk",
           "status": "amber",
           "rule": "risk.high_managed",
-          "reason": "1 open high-impact item, each with an owner and mitigation.",
+          "reason": "1 open high-impact item, with an owner and mitigation.",
           "gaps": [
-            "1 risk or issue without a stated impact",
-            "No target date for resolving: Touchscreen firmware bug freezing kiosks"
+            "'Site 3 installer no-show' has no stated impact.",
+            "'Touchscreen firmware bug freezing kiosks' has no target date for resolution."
           ]
         }
       ],
       "gaps": [
-        "No forecast at completion; compared actual spend to date",
-        "No information on scope changes",
-        "1 risk or issue without a stated impact",
-        "No target date for resolving: Touchscreen firmware bug freezing kiosks",
-        "No owner for: Site 3 installer no-show"
+        "There's no forecast at completion, so actual spend to date was used.",
+        "There's no information on scope changes.",
+        "'Site 3 installer no-show' has no stated impact.",
+        "'Touchscreen firmware bug freezing kiosks' has no target date for resolution.",
+        "'Site 3 installer no-show' has no owner."
       ],
-      "executive_summary": "Clinic kiosk rollout is behind schedule with Site 3 installation unscheduled and a firmware bug affecting Site 1 operations. Site 3 (North Hill) installation missed its 7 August date and has no new date or recovery plan. 1 high-impact risk or issue is open (Touchscreen firmware bug freezing kiosks), with an owner and mitigation. The notes don't cover scope.",
+      "executive_summary": "Site 3 (North Hill) installation missed its 7 August date and has no new date or recovery plan. 1 high-impact risk or issue is open ('Touchscreen firmware bug freezing kiosks'), with an owner and mitigation. The budget spend to date is $64,000 against a $120,000 plan (-46.7%). The notes don't cover scope.",
       "accomplishments": [
         "Site 1 (Eastgate) installed on 24 July",
         "Site 2 (Riverside) installed on 31 July",
@@ -1670,14 +1955,14 @@
       ],
       "risks": [
         {
-          "summary": "Touchscreen firmware bug is freezing kiosks at Site 1 two or three times a day, causing high impact on patient check-in. Vendor patch scheduled for 21 August. Front desk falls back to manual check-in meanwhile.",
+          "summary": "Touchscreen firmware bug is freezing kiosks at Site 1 two or three times a day. High impact on patient check-in. Front desk falls back to manual check-in meanwhile.",
           "kind": "issue",
           "impact": "high",
           "owner": "Rosa Delgado",
-          "mitigation": "Vendor patch scheduled for 21 August; front desk falls back to manual check-in meanwhile"
+          "mitigation": "Vendor patch scheduled for 21 August"
         },
         {
-          "summary": "Site 3 (North Hill) installer did not show up for the scheduled 7 August installation. No new date yet and no plan for rescheduling. Still waiting to hear back from the vendor.",
+          "summary": "The installer did not show up for the Site 3 (North Hill) installation scheduled for 7 August. No new date yet and no plan for rescheduling.",
           "kind": "issue",
           "impact": null,
           "owner": null,
@@ -1688,30 +1973,30 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Clinic self check-in kiosks rollout\n\n**As of:** 14 August 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ✅ Budget · ❔ Scope · ⚠️ Risk\n\n## Executive summary\n\nClinic kiosk rollout is behind schedule with Site 3 installation unscheduled and a firmware bug affecting Site 1 operations. Site 3 (North Hill) installation missed its 7 August date and has no new date or recovery plan. 1 high-impact risk or issue is open (Touchscreen firmware bug freezing kiosks), with an owner and mitigation. The notes don't cover scope.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | 'Site 3 (North Hill) installation' was due 7 August, isn't done, and has no new date or recovery plan. |\n| Budget | ✅ Green | Actual $64,000 vs plan $120,000 (-46.7%). |\n| Scope | ❔ Unknown | The notes don't say whether scope changed. |\n| Risk | ⚠️ Amber | 1 open high-impact item, each with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Site 1 (Eastgate) installed on 24 July\n- Site 2 (Riverside) installed on 31 July\n- Patient feedback at Site 2 positive with average check-in time reduced from 6 to 2 minutes\n\n## Next steps\n\n- Chase vendor for a Site 3 date\n- Confirm Site 4 install crew\n\n## Top risks and issues\n\n- **Touchscreen firmware bug is freezing kiosks at Site 1 two or three times a day, causing high impact on patient check-in. Vendor patch scheduled for 21 August. Front desk falls back to manual check-in meanwhile.** (high impact)  \n  Owner: Rosa Delgado · Mitigation: Vendor patch scheduled for 21 August; front desk falls back to manual check-in meanwhile\n- **Site 3 (North Hill) installer did not show up for the scheduled 7 August installation. No new date yet and no plan for rescheduling. Still waiting to hear back from the vendor.**  \n  Owner: not stated · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- No forecast at completion; compared actual spend to date\n- No information on scope changes\n- 1 risk or issue without a stated impact\n- No target date for resolving: Touchscreen firmware bug freezing kiosks\n- No owner for: Site 3 installer no-show\n",
-      "headline": "Clinic kiosk rollout is behind schedule with Site 3 installation unscheduled and a firmware bug affecting Site 1 operations.",
+      "markdown": "# Clinic self check-in kiosks rollout\n\n**As of:** 14 August 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ✅ Budget · ❔ Scope · ⚠️ Risk\n\n## Executive summary\n\nSite 3 (North Hill) installation missed its 7 August date and has no new date or recovery plan. 1 high-impact risk or issue is open ('Touchscreen firmware bug freezing kiosks'), with an owner and mitigation. The budget spend to date is $64,000 against a $120,000 plan (-46.7%). The notes don't cover scope.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | 'Site 3 (North Hill) installation' was due 7 August, isn't done, and has no new date or recovery plan. |\n| Budget | ✅ Green | Actual $64,000 vs plan $120,000 (-46.7%). |\n| Scope | ❔ Unknown | The notes don't say whether scope changed. |\n| Risk | ⚠️ Amber | 1 open high-impact item, with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Site 1 (Eastgate) installed on 24 July\n- Site 2 (Riverside) installed on 31 July\n- Patient feedback at Site 2 positive with average check-in time reduced from 6 to 2 minutes\n\n## Next steps\n\n- Chase vendor for a Site 3 date\n- Confirm Site 4 install crew\n\n## Top risks and issues\n\n- **Touchscreen firmware bug is freezing kiosks at Site 1 two or three times a day. High impact on patient check-in. Front desk falls back to manual check-in meanwhile.** (high impact)  \n  Owner: Rosa Delgado · Mitigation: Vendor patch scheduled for 21 August\n- **The installer did not show up for the Site 3 (North Hill) installation scheduled for 7 August. No new date yet and no plan for rescheduling.**  \n  Owner: not stated · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- There's no forecast at completion, so actual spend to date was used.\n- There's no information on scope changes.\n- 'Site 3 installer no-show' has no stated impact.\n- 'Touchscreen firmware bug freezing kiosks' has no target date for resolution.\n- 'Site 3 installer no-show' has no owner.\n",
+      "headline": "",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5990,
-          "output_tokens": 800,
-          "calls": 2
+          "input_tokens": 8310,
+          "output_tokens": 819,
+          "calls": 3
         },
-        "latency_ms": 3561
+        "latency_ms": 4290
       }
     }
   },
   {
     "id": "no-budget",
     "kind": "edge case",
-    "latency_s": 2.9,
+    "latency_s": 3.0,
     "usage": {
-      "input_tokens": 5711,
-      "output_tokens": 582,
+      "input_tokens": 5859,
+      "output_tokens": 603,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1565,
+      "input_tokens": 1581,
       "output_tokens": 55,
       "calls": 1
     },
@@ -1757,6 +2042,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -1779,7 +2065,7 @@
           "rule": "budget.no_plan",
           "reason": "No planned budget figure in the notes.",
           "gaps": [
-            "No budget figures provided"
+            "No budget figures are given."
           ]
         },
         {
@@ -1793,20 +2079,20 @@
           "dimension": "risk",
           "status": "green",
           "rule": "risk.none_high",
-          "reason": "1 open item, none high-impact.",
+          "reason": "1 open item, not high-impact.",
           "gaps": []
         }
       ],
       "gaps": [
-        "No budget figures provided"
+        "No budget figures are given."
       ],
-      "executive_summary": "WMS upgrade is on track for go-live 27 July with UAT complete and all critical milestones met. The notes don't cover budget. Decisions needed: Ops director sign-off on the go-live freeze window 25 July to 28 July.",
+      "executive_summary": "WMS upgrade is on track for go-live 27 July with UAT complete and all milestones met. The schedule is on track; scope is unchanged; and no open risk is high-impact. The notes don't cover budget. Decisions needed: Operations director sign-off on the go-live freeze window 25 July to 28 July.",
       "accomplishments": [
-        "UAT signed off with 212 test scripts passed and 4 minor defects deferred to post go-live",
+        "UAT signed off on 2 July with 212 test scripts passed and 4 minor defects deferred to post go-live",
         "Pick/pack scanners re-flashed at both distribution centers"
       ],
       "next_steps": [
-        "Cutover dress rehearsal 20 July",
+        "Cutover dress rehearsal on 20 July",
         "Train night shift leads 21 July to 23 July"
       ],
       "risks": [
@@ -1819,36 +2105,199 @@
         }
       ],
       "asks": [
-        "Ops director sign-off on the go-live freeze window 25 July to 28 July"
+        "Operations director sign-off on the go-live freeze window 25 July to 28 July"
       ],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# WMS upgrade\n\n**As of:** 8 July 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ❔ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nWMS upgrade is on track for go-live 27 July with UAT complete and all critical milestones met. The notes don't cover budget. Decisions needed: Ops director sign-off on the go-live freeze window 25 July to 28 July.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 5 dated milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | 1 open item, none high-impact. |\n\n## Accomplishments this period\n\n- UAT signed off with 212 test scripts passed and 4 minor defects deferred to post go-live\n- Pick/pack scanners re-flashed at both distribution centers\n\n## Next steps\n\n- Cutover dress rehearsal 20 July\n- Train night shift leads 21 July to 23 July\n\n## Top risks and issues\n\n- **Label printer drivers on the older Zebra-style printers may not work with the new version. Luis is testing two spare printers this week; fallback is swapping the 6 oldest units.** (medium impact)  \n  Owner: Luis · Mitigation: Testing two spare printers this week; fallback is swapping the 6 oldest units\n\n## Decisions and asks for leadership\n\n- Ops director sign-off on the go-live freeze window 25 July to 28 July\n\n## Gaps in the notes\n\n- No budget figures provided\n",
-      "headline": "WMS upgrade is on track for go-live 27 July with UAT complete and all critical milestones met.",
+      "markdown": "# WMS upgrade\n\n**As of:** 8 July 2026  \n**Overall status:** ✅ Green  \n✅ Schedule · ❔ Budget · ✅ Scope · ✅ Risk\n\n## Executive summary\n\nWMS upgrade is on track for go-live 27 July with UAT complete and all milestones met. The schedule is on track; scope is unchanged; and no open risk is high-impact. The notes don't cover budget. Decisions needed: Operations director sign-off on the go-live freeze window 25 July to 28 July.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 5 dated milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ✅ Green | 1 open item, not high-impact. |\n\n## Accomplishments this period\n\n- UAT signed off on 2 July with 212 test scripts passed and 4 minor defects deferred to post go-live\n- Pick/pack scanners re-flashed at both distribution centers\n\n## Next steps\n\n- Cutover dress rehearsal on 20 July\n- Train night shift leads 21 July to 23 July\n\n## Top risks and issues\n\n- **Label printer drivers on the older Zebra-style printers may not work with the new version. Luis is testing two spare printers this week; fallback is swapping the 6 oldest units.** (medium impact)  \n  Owner: Luis · Mitigation: Testing two spare printers this week; fallback is swapping the 6 oldest units\n\n## Decisions and asks for leadership\n\n- Operations director sign-off on the go-live freeze window 25 July to 28 July\n\n## Gaps in the notes\n\n- No budget figures are given.\n",
+      "headline": "WMS upgrade is on track for go-live 27 July with UAT complete and all milestones met.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5711,
-          "output_tokens": 582,
+          "input_tokens": 5859,
+          "output_tokens": 603,
           "calls": 2
         },
-        "latency_ms": 2944
+        "latency_ms": 2993
+      }
+    }
+  },
+  {
+    "id": "relay-email",
+    "kind": "edge case",
+    "latency_s": 7.7,
+    "usage": {
+      "input_tokens": 10898,
+      "output_tokens": 1535,
+      "calls": 3
+    },
+    "grader_usage": {
+      "input_tokens": 2222,
+      "output_tokens": 141,
+      "calls": 1
+    },
+    "graded": {
+      "conditional_risks": [
+        {
+          "label": "Agents can't see policy details at cutover",
+          "correct": true,
+          "reason": "not_mentioned: The summary mentions the IVR authentication issue and the 20 November fix deadline, but does not mention the conditional risk that agents can't see policy details at cutover. The summary treats the IVR issue as an open problem to be resolved, not as a conditional consequence of failure to fix it."
+        }
+      ],
+      "invented_links": []
+    },
+    "error": null,
+    "retry_reasons": [
+      "extract: milestones[2] has unknown fields: resolve_by"
+    ],
+    "dropped": [],
+    "headline_dropped": false,
+    "notes": "From: Dana Whitfield\nSent: Tuesday, October 27, 2026 9:14 AM\nTo: Project Relay Core Team\nSubject: RE: RE: Relay status - cutover date\n\nAll - correcting my note from Friday. BrightLine came back with a tighter plan. Phone queue cutover is now Dec 17, not Dec 28. Original date was Dec 7 so we're 10 days late, not 3 weeks. This is still our critical date, everything else is prep for it.\n\nAlso confirmed with Dev this morning: no change requests this cycle. Scope is locked per steering decision 10/14.\n\nHonestly I think we're basically green at this point.\n\nDana\n\nDana Whitfield | Program Manager, Customer Operations\nJuniper Mutual | 919-555-0142\n\n-----Original Message-----\nFrom: Raj Patel\nSent: Monday, October 26, 2026 4:51 PM\nSubject: RE: Relay status - cutover date\n\nUpdate on the IVR problem. BrightLine's IVR is still failing auth intermittently against our policy lookup API, roughly 1 in 12 calls in test. If this isn't fixed, agents can't see policy details at cutover - that's a showstopper. I'm owning it on our side. Mitigation: we've written manual lookup scripts agents can fall back on, and BrightLine has committed to a fix by Nov 20.\n\nSeparately, the data privacy addendum is signed as of Thursday, so we can close that risk.\n\nRaj\n\n> -----Original Message-----\n> From: Lena Ortiz\n> Sent: Monday, October 26, 2026 11:02 AM\n> Subject: RE: Relay status - cutover date\n>\n> Quick finance note. BrightLine invoiced $42,500 for onboarding, paid. I haven't refreshed the overall forecast since the contract amendment went through - will have updated numbers to Dana next week.\n>\n> Also, flagging that BrightLine's holiday staffing plan looks thin for late Dec. Medium risk IMO. Not sure who should chase that.\n>\n> Lena\n>\n>> -----Original Message-----\n>> From: Dana Whitfield\n>> Sent: Friday, October 23, 2026 3:30 PM\n>> Subject: Relay status - cutover date\n>>\n>> Team, rough news. BrightLine says phone queue cutover moves from Dec 7 to Dec 28. Will confirm Monday.\n>>\n>> Wins this week: knowledge base migration finished (all 1,140 articles moved and reviewed). Agent training cohort 1 kicked off.\n>>\n>> Training cohort 1 completion slipped from Nov 9 to Nov 16 because of trainer onboarding. Not on the critical path.\n>>\n>> Two things I need from leadership:\n>> 1. Decision on whether to extend the Callisto contract month-to-month through January as a safety net. About $30K/month. Need an answer by Nov 6.\n>> 2. Exec sponsor sign-off on the customer notification letter by Nov 3.\n>>\n>> Next steps: Raj to send IVR test results Thursday. Lena to send refreshed forecast. Dana to draft cutover runbook.\n>>\n>> Dana\n",
+    "score": {
+      "ok": true,
+      "status_hits": {
+        "schedule": true,
+        "budget": true,
+        "scope": true,
+        "risk": true
+      },
+      "got": {
+        "schedule": "amber",
+        "budget": "unknown",
+        "scope": "green",
+        "risk": "amber"
+      },
+      "overall_ok": true,
+      "low_confidence_ok": true,
+      "risks_found": [
+        "IVR authentication failures",
+        "Holiday staffing thin"
+      ],
+      "risks_missed": [],
+      "asks_found": [
+        "Callisto contract extension decision",
+        "Customer notification letter sign-off"
+      ],
+      "asks_missed": [],
+      "unsupported": [],
+      "summary_breaks": [],
+      "invented_asks": [],
+      "decisions_found": [],
+      "decisions_missed": [],
+      "invented_decisions": [],
+      "gaps_found": [
+        "Holiday staffing risk has no owner"
+      ],
+      "gaps_missed": [],
+      "out_of_period": [],
+      "item_misses": [],
+      "injection_pass": null
+    },
+    "onepager": {
+      "project_name": "Project Relay",
+      "as_of_date": "2026-10-27",
+      "overall": "amber",
+      "overall_reason": "Worst known dimension: schedule, risk (amber).",
+      "low_confidence": false,
+      "dimensions": [
+        {
+          "dimension": "schedule",
+          "status": "amber",
+          "rule": "schedule.slip",
+          "reason": "Largest slip: critical milestone 'Phone queue cutover', 10 days (2 milestones slipped in total).",
+          "gaps": []
+        },
+        {
+          "dimension": "budget",
+          "status": "unknown",
+          "rule": "budget.no_plan",
+          "reason": "No planned budget figure in the notes.",
+          "gaps": [
+            "No budget figures are given."
+          ]
+        },
+        {
+          "dimension": "scope",
+          "status": "green",
+          "rule": "scope.no_changes",
+          "reason": "No scope changes reported.",
+          "gaps": []
+        },
+        {
+          "dimension": "risk",
+          "status": "amber",
+          "rule": "risk.high_managed",
+          "reason": "1 open high-impact item, with an owner and mitigation.",
+          "gaps": [
+            "'IVR auth failures in test' has no target date for resolution."
+          ]
+        }
+      ],
+      "gaps": [
+        "No budget figures are given.",
+        "'IVR auth failures in test' has no target date for resolution.",
+        "'BrightLine holiday staffing thin' has no owner."
+      ],
+      "executive_summary": "Project Relay's critical phone queue cutover has slipped 10 days to 17 December, and an IVR authentication issue in test requires resolution by 20 November. Phone queue cutover slipped 10 days to 17 December (1 other milestone also slipped), and 1 high-impact risk or issue is open ('IVR auth failures in test'), with an owner and mitigation. Scope is unchanged. The notes don't cover budget. 2 decisions are needed (listed below).",
+      "accomplishments": [
+        "Knowledge base migration completed (1,140 articles moved and reviewed)",
+        "Agent training cohort 1 started",
+        "Data privacy addendum signed"
+      ],
+      "next_steps": [
+        "Raj to send IVR test results Thursday",
+        "Lena to send refreshed forecast next week",
+        "Dana to draft cutover runbook"
+      ],
+      "risks": [
+        {
+          "summary": "BrightLine's IVR is failing auth intermittently against policy lookup API, roughly 1 in 12 calls in test. If not fixed, agents cannot see policy details at cutover.",
+          "kind": "issue",
+          "impact": "high",
+          "owner": "Raj Patel",
+          "mitigation": "Manual lookup scripts written for agent fallback; BrightLine committed to fix by 20 November"
+        },
+        {
+          "summary": "BrightLine's holiday staffing plan looks thin for late December.",
+          "kind": "risk",
+          "impact": "medium",
+          "owner": null,
+          "mitigation": null
+        }
+      ],
+      "asks": [
+        "Decision on whether to extend the Callisto contract month-to-month through January as a safety net; answer needed by 6 November",
+        "Exec sponsor sign-off on the customer notification letter by 3 November"
+      ],
+      "open_decisions": [],
+      "warnings": [],
+      "validation_problems": [],
+      "markdown": "# Project Relay\n\n**As of:** 27 October 2026  \n**Overall status:** ⚠️ Amber  \n⚠️ Schedule · ❔ Budget · ✅ Scope · ⚠️ Risk\n\n## Executive summary\n\nProject Relay's critical phone queue cutover has slipped 10 days to 17 December, and an IVR authentication issue in test requires resolution by 20 November. Phone queue cutover slipped 10 days to 17 December (1 other milestone also slipped), and 1 high-impact risk or issue is open ('IVR auth failures in test'), with an owner and mitigation. Scope is unchanged. The notes don't cover budget. 2 decisions are needed (listed below).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ⚠️ Amber | Largest slip: critical milestone 'Phone queue cutover', 10 days (2 milestones slipped in total). |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ⚠️ Amber | 1 open high-impact item, with an owner and mitigation. |\n\n## Accomplishments this period\n\n- Knowledge base migration completed (1,140 articles moved and reviewed)\n- Agent training cohort 1 started\n- Data privacy addendum signed\n\n## Next steps\n\n- Raj to send IVR test results Thursday\n- Lena to send refreshed forecast next week\n- Dana to draft cutover runbook\n\n## Top risks and issues\n\n- **BrightLine's IVR is failing auth intermittently against policy lookup API, roughly 1 in 12 calls in test. If not fixed, agents cannot see policy details at cutover.** (high impact)  \n  Owner: Raj Patel · Mitigation: Manual lookup scripts written for agent fallback; BrightLine committed to fix by 20 November\n- **BrightLine's holiday staffing plan looks thin for late December.** (medium impact)  \n  Owner: not stated · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- Decision on whether to extend the Callisto contract month-to-month through January as a safety net; answer needed by 6 November\n- Exec sponsor sign-off on the customer notification letter by 3 November\n\n## Gaps in the notes\n\n- No budget figures are given.\n- 'IVR auth failures in test' has no target date for resolution.\n- 'BrightLine holiday staffing thin' has no owner.\n",
+      "headline": "Project Relay's critical phone queue cutover has slipped 10 days to 17 December, and an IVR authentication issue in test requires resolution by 20 November.",
+      "meta": {
+        "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+        "usage": {
+          "input_tokens": 10898,
+          "output_tokens": 1535,
+          "calls": 3
+        },
+        "latency_ms": 7680
       }
     }
   },
   {
     "id": "risk-no-owner",
     "kind": "edge case",
-    "latency_s": 3.0,
+    "latency_s": 3.1,
     "usage": {
-      "input_tokens": 5688,
-      "output_tokens": 663,
+      "input_tokens": 5845,
+      "output_tokens": 666,
       "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1556,
-      "output_tokens": 159,
+      "input_tokens": 1587,
+      "output_tokens": 55,
       "calls": 1
     },
     "graded": {
@@ -1894,6 +2343,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -1930,14 +2380,14 @@
           "rule": "risk.high_unmanaged",
           "reason": "High-impact risk 'Source system API rate limits' has no owner and mitigation.",
           "gaps": [
-            "No target date for resolving: Source system API rate limits"
+            "'Source system API rate limits' has no target date for resolution."
           ]
         }
       ],
       "gaps": [
-        "No target date for resolving: Source system API rate limits"
+        "'Source system API rate limits' has no target date for resolution."
       ],
-      "executive_summary": "Data warehouse consolidation is on schedule with Finance and HR migrated, but an unmitigated high-impact API rate limit risk requires immediate ownership. High-impact risk Source system API rate limits has no owner and mitigation. Decisions needed: Leadership to assign an owner for the API rate limit risk.",
+      "executive_summary": "Data warehouse consolidation is on schedule with Finance and HR migrated, but an unmitigated API rate limit risk requires immediate ownership. High-impact risk 'Source system API rate limits' has no owner and mitigation. The schedule is on track; the budget forecast is $930,000 against a $900,000 plan (+3.3%); and scope is unchanged. Decisions needed: Leadership to assign an owner for the API rate limit risk.",
       "accomplishments": [
         "Finance subject area migrated to new warehouse",
         "HR subject area migrated to new warehouse",
@@ -1949,7 +2399,7 @@
       ],
       "risks": [
         {
-          "summary": "Source system API rate limits could stall the nightly loads once sales and ops are both on the new pipeline.",
+          "summary": "API rate limits could stall the nightly loads once sales and ops are both on the new pipeline.",
           "kind": "risk",
           "impact": "high",
           "owner": null,
@@ -1969,31 +2419,31 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Data warehouse consolidation\n\n**As of:** 6 May 2026  \n**Overall status:** ❌ Red  \n✅ Schedule · ✅ Budget · ✅ Scope · ❌ Risk\n\n## Executive summary\n\nData warehouse consolidation is on schedule with Finance and HR migrated, but an unmitigated high-impact API rate limit risk requires immediate ownership. High-impact risk Source system API rate limits has no owner and mitigation. Decisions needed: Leadership to assign an owner for the API rate limit risk.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 4 dated milestones. |\n| Budget | ✅ Green | Forecast $930,000 vs plan $900,000 (+3.3%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ❌ Red | High-impact risk 'Source system API rate limits' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Finance subject area migrated to new warehouse\n- HR subject area migrated to new warehouse\n- Old finance mart switched to read-only\n- Old HR mart switched to read-only\n\n## Next steps\n\n- Sales cutover rehearsal 15 May\n\n## Top risks and issues\n\n- **Source system API rate limits could stall the nightly loads once sales and ops are both on the new pipeline.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Analyst availability for validation in June.** (medium impact)  \n  Owner: Joe Park · Mitigation: Booked two contractors\n\n## Decisions and asks for leadership\n\n- Leadership to assign an owner for the API rate limit risk\n\n## Gaps in the notes\n\n- No target date for resolving: Source system API rate limits\n",
-      "headline": "Data warehouse consolidation is on schedule with Finance and HR migrated, but an unmitigated high-impact API rate limit risk requires immediate ownership.",
+      "markdown": "# Data warehouse consolidation\n\n**As of:** 6 May 2026  \n**Overall status:** ❌ Red  \n✅ Schedule · ✅ Budget · ✅ Scope · ❌ Risk\n\n## Executive summary\n\nData warehouse consolidation is on schedule with Finance and HR migrated, but an unmitigated API rate limit risk requires immediate ownership. High-impact risk 'Source system API rate limits' has no owner and mitigation. The schedule is on track; the budget forecast is $930,000 against a $900,000 plan (+3.3%); and scope is unchanged. Decisions needed: Leadership to assign an owner for the API rate limit risk.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 4 dated milestones. |\n| Budget | ✅ Green | Forecast $930,000 vs plan $900,000 (+3.3%). |\n| Scope | ✅ Green | No scope changes reported. |\n| Risk | ❌ Red | High-impact risk 'Source system API rate limits' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Finance subject area migrated to new warehouse\n- HR subject area migrated to new warehouse\n- Old finance mart switched to read-only\n- Old HR mart switched to read-only\n\n## Next steps\n\n- Sales cutover rehearsal 15 May\n\n## Top risks and issues\n\n- **API rate limits could stall the nightly loads once sales and ops are both on the new pipeline.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Analyst availability for validation in June.** (medium impact)  \n  Owner: Joe Park · Mitigation: Booked two contractors\n\n## Decisions and asks for leadership\n\n- Leadership to assign an owner for the API rate limit risk\n\n## Gaps in the notes\n\n- 'Source system API rate limits' has no target date for resolution.\n",
+      "headline": "Data warehouse consolidation is on schedule with Finance and HR migrated, but an unmitigated API rate limit risk requires immediate ownership.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 5688,
-          "output_tokens": 663,
+          "input_tokens": 5845,
+          "output_tokens": 666,
           "calls": 2
         },
-        "latency_ms": 3049
+        "latency_ms": 3141
       }
     }
   },
   {
     "id": "scope-critical",
     "kind": "edge case",
-    "latency_s": 4.4,
+    "latency_s": 3.6,
     "usage": {
-      "input_tokens": 8216,
-      "output_tokens": 901,
-      "calls": 3
+      "input_tokens": 6154,
+      "output_tokens": 843,
+      "calls": 2
     },
     "grader_usage": {
-      "input_tokens": 1683,
-      "output_tokens": 148,
+      "input_tokens": 1673,
+      "output_tokens": 180,
       "calls": 1
     },
     "graded": {
@@ -2001,10 +2451,7 @@
       "invented_links": []
     },
     "error": null,
-    "retry_reasons": [
-      "write: The summary links facts with \"jeopardizing\", which the notes don't; state the facts side by side instead",
-      "write: The summary links facts with \"to avoid\", which the notes don't; state the facts side by side instead"
-    ],
+    "retry_reasons": [],
     "dropped": [],
     "headline_dropped": false,
     "notes": "ERP finance module - steering pre-read, 21 Oct 2026\n\nWhere we are\n- General ledger configuration complete\n- Chart of accounts mapping signed off by the Controller on 10/16\n- Year-end close cutover: 15 Dec 2026. This is the critical milestone and it's holding.\n- Data migration mock 2: 11/6, on plan\n\nMoney: approved budget $750k, forecast $765k.\n\nScope\nThe Controller has asked to bring the tax engine integration into this release. It is NOT approved yet. If it goes ahead it has to be live for the year-end close cutover, so it lands squarely on the critical path.\n\nRisks\n- If the tax engine decision comes late we can't build and test it in time for cutover. High impact. Owner: Mei Chen (PMO). Mitigation: asked steering for a decision by Oct 30 and lined up a contractor who can start Nov 2.\n- Key finance SME on leave in November. Medium. Owner: Mei Chen. Backfill identified.\n\nNext steps: mock 2 prep, cutover runbook v1 by 11/13.\nAsk: steering decision on the tax engine integration by Oct 30.\n",
@@ -2042,6 +2489,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -2071,21 +2519,21 @@
           "rule": "scope.unapproved_critical",
           "reason": "Unapproved change 'Tax engine integration' affects critical milestone 'Year-end close cutover'.",
           "gaps": [
-            "No cost or schedule estimate for: Tax engine integration"
+            "'Tax engine integration' has no cost or schedule estimate."
           ]
         },
         {
           "dimension": "risk",
           "status": "amber",
           "rule": "risk.high_managed",
-          "reason": "1 open high-impact item, each with an owner and mitigation.",
+          "reason": "1 open high-impact item, with an owner and mitigation.",
           "gaps": []
         }
       ],
       "gaps": [
-        "No cost or schedule estimate for: Tax engine integration"
+        "'Tax engine integration' has no cost or schedule estimate."
       ],
-      "executive_summary": "The ERP finance module faces a critical scope decision: the Controller's request to add tax engine integration by the year-end close cutover on 15 December remains unapproved. Unapproved scope change Tax engine integration would land on critical milestone Year-end close cutover. 1 high-impact risk or issue is open (Tax engine decision timing), with an owner and mitigation. Decisions needed: Steering decision on the tax engine integration by 30 October.",
+      "executive_summary": "The ERP finance module needs a steering decision on tax engine integration by 30 October to protect the year-end close cutover. Pending scope change 'Tax engine integration' would affect critical milestone 'Year-end close cutover'. 1 high-impact risk or issue is open ('Late tax engine decision'), with an owner and mitigation. The schedule is on track, and the budget forecast is $765,000 against a $750,000 plan (+2.0%).",
       "accomplishments": [
         "General ledger configuration complete",
         "Chart of accounts mapping signed off by the Controller"
@@ -2116,26 +2564,26 @@
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# ERP finance module\n\n**As of:** 21 October 2026  \n**Overall status:** ❌ Red  \n✅ Schedule · ✅ Budget · ❌ Scope · ⚠️ Risk\n\n## Executive summary\n\nThe ERP finance module faces a critical scope decision: the Controller's request to add tax engine integration by the year-end close cutover on 15 December remains unapproved. Unapproved scope change Tax engine integration would land on critical milestone Year-end close cutover. 1 high-impact risk or issue is open (Tax engine decision timing), with an owner and mitigation. Decisions needed: Steering decision on the tax engine integration by 30 October.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 3 dated milestones. |\n| Budget | ✅ Green | Forecast $765,000 vs plan $750,000 (+2.0%). |\n| Scope | ❌ Red | Unapproved change 'Tax engine integration' affects critical milestone 'Year-end close cutover'. |\n| Risk | ⚠️ Amber | 1 open high-impact item, each with an owner and mitigation. |\n\n## Accomplishments this period\n\n- General ledger configuration complete\n- Chart of accounts mapping signed off by the Controller\n\n## Next steps\n\n- Mock 2 prep\n- Cutover runbook v1 by 13 November\n\n## Top risks and issues\n\n- **If the tax engine decision comes late we can't build and test it in time for cutover.** (high impact)  \n  Owner: Mei Chen (PMO) · Mitigation: Asked steering for a decision by 30 October and lined up a contractor who can start 2 November.\n- **Key finance SME on leave in November.** (medium impact)  \n  Owner: Mei Chen · Mitigation: Backfill identified.\n\n## Decisions and asks for leadership\n\n- Steering decision on the tax engine integration by 30 October\n\n## Gaps in the notes\n\n- No cost or schedule estimate for: Tax engine integration\n",
-      "headline": "The ERP finance module faces a critical scope decision: the Controller's request to add tax engine integration by the year-end close cutover on 15 December remains unapproved.",
+      "markdown": "# ERP finance module\n\n**As of:** 21 October 2026  \n**Overall status:** ❌ Red  \n✅ Schedule · ✅ Budget · ❌ Scope · ⚠️ Risk\n\n## Executive summary\n\nThe ERP finance module needs a steering decision on tax engine integration by 30 October to protect the year-end close cutover. Pending scope change 'Tax engine integration' would affect critical milestone 'Year-end close cutover'. 1 high-impact risk or issue is open ('Late tax engine decision'), with an owner and mitigation. The schedule is on track, and the budget forecast is $765,000 against a $750,000 plan (+2.0%).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ✅ Green | No slips across 3 dated milestones. |\n| Budget | ✅ Green | Forecast $765,000 vs plan $750,000 (+2.0%). |\n| Scope | ❌ Red | Unapproved change 'Tax engine integration' affects critical milestone 'Year-end close cutover'. |\n| Risk | ⚠️ Amber | 1 open high-impact item, with an owner and mitigation. |\n\n## Accomplishments this period\n\n- General ledger configuration complete\n- Chart of accounts mapping signed off by the Controller\n\n## Next steps\n\n- Mock 2 prep\n- Cutover runbook v1 by 13 November\n\n## Top risks and issues\n\n- **If the tax engine decision comes late we can't build and test it in time for cutover.** (high impact)  \n  Owner: Mei Chen (PMO) · Mitigation: Asked steering for a decision by 30 October and lined up a contractor who can start 2 November.\n- **Key finance SME on leave in November.** (medium impact)  \n  Owner: Mei Chen · Mitigation: Backfill identified.\n\n## Decisions and asks for leadership\n\n- Steering decision on the tax engine integration by 30 October\n\n## Gaps in the notes\n\n- 'Tax engine integration' has no cost or schedule estimate.\n",
+      "headline": "The ERP finance module needs a steering decision on tax engine integration by 30 October to protect the year-end close cutover.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 8216,
-          "output_tokens": 901,
-          "calls": 3
+          "input_tokens": 6154,
+          "output_tokens": 843,
+          "calls": 2
         },
-        "latency_ms": 4353
+        "latency_ms": 3595
       }
     }
   },
   {
     "id": "very-short",
     "kind": "edge case",
-    "latency_s": 1.5,
+    "latency_s": 1.4,
     "usage": {
-      "input_tokens": 4905,
-      "output_tokens": 138,
+      "input_tokens": 5028,
+      "output_tokens": 141,
       "calls": 2
     },
     "grader_usage": {
@@ -2181,6 +2629,7 @@
       "gaps_found": [],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -2196,7 +2645,7 @@
           "rule": "schedule.no_milestones",
           "reason": "The notes don't list any milestones.",
           "gaps": [
-            "No milestones or dates provided"
+            "No milestones or dates are given."
           ]
         },
         {
@@ -2205,7 +2654,7 @@
           "rule": "budget.no_plan",
           "reason": "No planned budget figure in the notes.",
           "gaps": [
-            "No budget figures provided"
+            "No budget figures are given."
           ]
         },
         {
@@ -2214,7 +2663,7 @@
           "rule": "scope.not_mentioned",
           "reason": "The notes don't say whether scope changed.",
           "gaps": [
-            "No information on scope changes"
+            "There's no information on scope changes."
           ]
         },
         {
@@ -2223,53 +2672,53 @@
           "rule": "risk.not_mentioned",
           "reason": "The notes don't mention risks or issues.",
           "gaps": [
-            "No risks or issues listed"
+            "No risks or issues are listed."
           ]
         }
       ],
       "gaps": [
-        "No milestones or dates provided",
-        "No budget figures provided",
-        "No information on scope changes",
-        "No risks or issues listed",
-        "No report date",
-        "No accomplishments listed for the period"
+        "No milestones or dates are given.",
+        "No budget figures are given.",
+        "There's no information on scope changes.",
+        "No risks or issues are listed.",
+        "There's no report date.",
+        "No accomplishments are listed for this period."
       ],
       "executive_summary": "The Falcon project notes lack sufficient detail to assess current status. The notes don't cover schedule, budget, scope or risk, so the overall status is low-confidence.",
       "accomplishments": [],
       "next_steps": [
-        "Provide update next week"
+        "Provide more details next week"
       ],
       "risks": [],
       "asks": [],
       "open_decisions": [],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Falcon\n\n**Overall status:** ❔ Unknown (low confidence)  \n❔ Schedule · ❔ Budget · ❔ Scope · ❔ Risk\n\n## Executive summary\n\nThe Falcon project notes lack sufficient detail to assess current status. The notes don't cover schedule, budget, scope or risk, so the overall status is low-confidence.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❔ Unknown | The notes don't list any milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ❔ Unknown | The notes don't say whether scope changed. |\n| Risk | ❔ Unknown | The notes don't mention risks or issues. |\n\n## Accomplishments this period\n\n- _None listed_\n\n## Next steps\n\n- Provide update next week\n\n## Top risks and issues\n\n- _None listed_\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- No milestones or dates provided\n- No budget figures provided\n- No information on scope changes\n- No risks or issues listed\n- No report date\n- No accomplishments listed for the period\n",
+      "markdown": "# Falcon\n\n**Overall status:** ❔ Unknown (low confidence)  \n❔ Schedule · ❔ Budget · ❔ Scope · ❔ Risk\n\n## Executive summary\n\nThe Falcon project notes lack sufficient detail to assess current status. The notes don't cover schedule, budget, scope or risk, so the overall status is low-confidence.\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❔ Unknown | The notes don't list any milestones. |\n| Budget | ❔ Unknown | No planned budget figure in the notes. |\n| Scope | ❔ Unknown | The notes don't say whether scope changed. |\n| Risk | ❔ Unknown | The notes don't mention risks or issues. |\n\n## Accomplishments this period\n\n- _None listed_\n\n## Next steps\n\n- Provide more details next week\n\n## Top risks and issues\n\n- _None listed_\n\n## Decisions and asks for leadership\n\n- _None_\n\n## Gaps in the notes\n\n- No milestones or dates are given.\n- No budget figures are given.\n- There's no information on scope changes.\n- No risks or issues are listed.\n- There's no report date.\n- No accomplishments are listed for this period.\n",
       "headline": "The Falcon project notes lack sufficient detail to assess current status.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 4905,
-          "output_tokens": 138,
+          "input_tokens": 5028,
+          "output_tokens": 141,
           "calls": 2
         },
-        "latency_ms": 1457
+        "latency_ms": 1417
       }
     }
   },
   {
     "id": "wms-rollout",
     "kind": "edge case",
-    "latency_s": 6.0,
+    "latency_s": 10.8,
     "usage": {
-      "input_tokens": 9383,
-      "output_tokens": 1223,
-      "calls": 3
+      "input_tokens": 13900,
+      "output_tokens": 2341,
+      "calls": 4
     },
     "grader_usage": {
-      "input_tokens": 2202,
-      "output_tokens": 356,
+      "input_tokens": 2134,
+      "output_tokens": 412,
       "calls": 1
     },
     "graded": {
@@ -2277,24 +2726,23 @@
         {
           "label": "Peak season collision",
           "correct": true,
-          "reason": "not_mentioned: The summary does not mention the peak season collision risk at all. The notes describe it as a conditional risk: 'if go-live slips past Feb we hit spring inventory count,' but the summary does not reference this."
+          "reason": "not_mentioned: The summary does not mention the peak season collision risk at all. The notes describe it as a conditional risk ('if go-live slips past Feb we hit spring inventory count'), but the summary does not reference this."
         },
         {
           "label": "Fallback to legacy until April",
           "correct": true,
-          "reason": "not_mentioned: The summary does not mention the fallback to legacy until April. The notes describe it as a mitigation option ('fallback to stay on legacy until April') contingent on a no-go decision by Jan 15, but the summary does not reference this."
+          "reason": "not_mentioned: The summary does not mention the fallback to legacy until April. The notes describe this as a mitigation option ('fallback to stay on legacy until April') contingent on a no-go decision by Jan 15, but the summary does not reference it."
         }
       ],
-      "invented_links": [
-        "go-live slipped 21 days to 1 February 2027, and high-impact risk Handheld scanner firmware certification has no owner and mitigation"
-      ]
+      "invented_links": []
     },
     "error": null,
     "retry_reasons": [
+      "extract: open_decisions must be a list of strings",
       "write: The sentence repeats the facts that follow it; give the one-line takeaway instead, in different words"
     ],
     "dropped": [],
-    "headline_dropped": true,
+    "headline_dropped": false,
     "notes": "Lighthouse WMS rollout - weekly sync 10/26\nattendees: Dana R (PM), Marcus (IT infra), Priya (finance), Tom from Ostrander Systems (vendor), Keisha (ops/Raleigh DC)\n\n- quick recap: we're replacing the old warehouse mgmt system at Raleigh DC first, then Greensboro in phase 2\n- data migration dry run #2 done last thurs, 98.7% records clean, remaining are mostly dup SKUs. Marcus says fix is scripted, not worried\n- label printer install done at all 14 dock stations (finally)\n\nschedule stuff\n- go-live for Raleigh DC was Jan 11 2027 -- this is THE milestone, everything else hangs off it\n- Tom says integration w/ the carrier rating API is behind, realistic go-live now Feb 1 2027. Dana pushed back, Tom held firm. nobody loves this\n- end user training was supposed to wrap Dec 4, now Dec 11 bc trainer availability. keisha says thats fine, not on critical path\n- UAT phase 1 still on track for Nov 20\n\nbudget\n- approved budget $1.2M\n- priya's current forecast $1,284,000 -- overage mostly vendor change fees + extra contractor hours on the API work\n- priya wants to know if we eat that or push back on ostrander. tbd\n\nscope\n- CR-14: Keisha wants returns processing module added to phase 1 instead of phase 2. would affect UAT phase 2 timing only. submitted to steering, NOT approved yet\n- CR-12 (custom pick-path report) approved last month, already in build\n\nrisks / issues\n- BIG one: handheld scanner firmware. Zebra-equivalent units we bought need a firmware update Ostrander hasn't certified yet. if not certified, pickers can't use the new system at go-live. high impact. Tom says \"working on it\" but no date. we don't actually have an owner on our side for this, Marcus thinks it's ops, Keisha thinks it's IT. need to sort out\n- peak season overlap - if go-live slips past Feb we hit spring inventory count. high impact. Dana owns, mitigation is a hard no-go decision by Jan 15 + fallback to stay on legacy until April\n- minor: two DC supervisors on leave in Dec, Keisha covering\n\nasks / decisions\n- need steering to approve or defer CR-14 by Nov 7\n- need approval for weekend overtime for cutover (~$18K, not in forecast yet)\n\nnext steps\n- Tom to send revised integration plan by Fri\n- Dana to set up no-go criteria doc\n- Priya to model the overtime into forecast\n",
     "score": {
       "ok": true,
@@ -2338,6 +2786,7 @@
       ],
       "gaps_missed": [],
       "out_of_period": [],
+      "item_misses": [],
       "injection_pass": null
     },
     "onepager": {
@@ -2353,7 +2802,7 @@
           "rule": "schedule.critical_slip",
           "reason": "Critical milestone 'Raleigh DC go-live' has slipped 21 days (more than 14).",
           "gaps": [
-            "No date for: Greensboro phase 2"
+            "'Greensboro phase 2' has no date."
           ]
         },
         {
@@ -2371,7 +2820,7 @@
           "rule": "scope.pending_changes",
           "reason": "1 change request pending approval.",
           "gaps": [
-            "No cost or schedule estimate for: CR-14 returns processing module"
+            "'CR-14 returns processing module' has no cost or schedule estimate."
           ]
         },
         {
@@ -2380,17 +2829,17 @@
           "rule": "risk.high_unmanaged",
           "reason": "High-impact risk 'Handheld scanner firmware certification' has no owner and mitigation.",
           "gaps": [
-            "No target date for resolving: Handheld scanner firmware certification"
+            "'Handheld scanner firmware certification' has no target date for resolution."
           ]
         }
       ],
       "gaps": [
-        "No date for: Greensboro phase 2",
+        "'Greensboro phase 2' has no date.",
         "The forecast excludes $18,000 of known costs (Weekend overtime for cutover). Including them: $1,302,000 vs plan $1,200,000 (+8.5%).",
-        "No cost or schedule estimate for: CR-14 returns processing module",
-        "No target date for resolving: Handheld scanner firmware certification"
+        "'CR-14 returns processing module' has no cost or schedule estimate.",
+        "'Handheld scanner firmware certification' has no target date for resolution."
       ],
-      "executive_summary": "Raleigh DC go-live slipped 21 days to 1 February 2027, and high-impact risk Handheld scanner firmware certification has no owner and mitigation. The budget forecast is $1,284,000 against a $1,200,000 plan (+7.0%), and 1 change request awaits approval (CR-14 returns processing module). Decisions needed: Steering to approve or defer CR-14 by 7 November; Approval for weekend overtime for cutover (~$18,000, not in forecast yet).",
+      "executive_summary": "Lighthouse WMS rollout faces schedule delay and critical firmware certification risk that could block Raleigh DC go-live. Raleigh DC go-live slipped 21 days to 1 February 2027, and high-impact risk 'Handheld scanner firmware certification' has no owner and mitigation. The budget forecast is $1,284,000 against a $1,200,000 plan (+7.0%), and 1 change request awaits approval: 'CR-14 returns processing module'. Decisions needed: Steering to approve or defer CR-14 by 7 November; Approval for weekend overtime for cutover (~$18,000, not in forecast yet).",
       "accomplishments": [
         "Data migration dry run #2 completed with 98.7% records clean",
         "Label printer installation completed at all 14 dock stations"
@@ -2398,12 +2847,11 @@
       "next_steps": [
         "Tom to send revised integration plan by Friday",
         "Dana to set up no-go criteria document",
-        "Priya to model the overtime into forecast",
-        "Clarify ownership of handheld scanner firmware certification issue between IT and ops"
+        "Priya to model the overtime into forecast"
       ],
       "risks": [
         {
-          "summary": "Zebra-equivalent units need a firmware update Ostrander hasn't certified yet. If not certified, pickers cannot use the new system at go-live.",
+          "summary": "Zebra-equivalent units need firmware update that Ostrander hasn't certified yet. If not certified, pickers cannot use the new system at go-live.",
           "kind": "risk",
           "impact": "high",
           "owner": null,
@@ -2414,7 +2862,7 @@
           "kind": "risk",
           "impact": "high",
           "owner": "Dana",
-          "mitigation": "Hard no-go decision by 15 January 2027; fallback to stay on legacy until April"
+          "mitigation": "Hard no-go decision by 15 January 2027; fallback to stay on legacy system until April"
         },
         {
           "summary": "Two DC supervisors on leave in December.",
@@ -2429,20 +2877,21 @@
         "Approval for weekend overtime for cutover (~$18,000, not in forecast yet)"
       ],
       "open_decisions": [
-        "Absorb the budget overage or push back on Ostrander for vendor change fees and extra contractor hours"
+        "Absorb the budget overage or push back on Ostrander",
+        "Clarify ownership of handheld scanner firmware certification between IT and ops"
       ],
       "warnings": [],
       "validation_problems": [],
-      "markdown": "# Lighthouse WMS rollout\n\n**As of:** 26 October 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ⚠️ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nRaleigh DC go-live slipped 21 days to 1 February 2027, and high-impact risk Handheld scanner firmware certification has no owner and mitigation. The budget forecast is $1,284,000 against a $1,200,000 plan (+7.0%), and 1 change request awaits approval (CR-14 returns processing module). Decisions needed: Steering to approve or defer CR-14 by 7 November; Approval for weekend overtime for cutover (~$18,000, not in forecast yet).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Raleigh DC go-live' has slipped 21 days (more than 14). |\n| Budget | ⚠️ Amber | Forecast $1,284,000 vs plan $1,200,000 (+7.0%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact risk 'Handheld scanner firmware certification' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Data migration dry run #2 completed with 98.7% records clean\n- Label printer installation completed at all 14 dock stations\n\n## Next steps\n\n- Tom to send revised integration plan by Friday\n- Dana to set up no-go criteria document\n- Priya to model the overtime into forecast\n- Clarify ownership of handheld scanner firmware certification issue between IT and ops\n\n## Top risks and issues\n\n- **Zebra-equivalent units need a firmware update Ostrander hasn't certified yet. If not certified, pickers cannot use the new system at go-live.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **If go-live slips past February, the project will hit spring inventory count.** (high impact)  \n  Owner: Dana · Mitigation: Hard no-go decision by 15 January 2027; fallback to stay on legacy until April\n- **Two DC supervisors on leave in December.** (low impact)  \n  Owner: Keisha · Mitigation: Keisha covering\n\n## Decisions and asks for leadership\n\n- Steering to approve or defer CR-14 by 7 November\n- Approval for weekend overtime for cutover (~$18,000, not in forecast yet)\n\n**Open decisions, not yet put to leadership:**\n\n- Absorb the budget overage or push back on Ostrander for vendor change fees and extra contractor hours\n\n## Gaps in the notes\n\n- No date for: Greensboro phase 2\n- The forecast excludes $18,000 of known costs (Weekend overtime for cutover). Including them: $1,302,000 vs plan $1,200,000 (+8.5%).\n- No cost or schedule estimate for: CR-14 returns processing module\n- No target date for resolving: Handheld scanner firmware certification\n",
-      "headline": "",
+      "markdown": "# Lighthouse WMS rollout\n\n**As of:** 26 October 2026  \n**Overall status:** ❌ Red  \n❌ Schedule · ⚠️ Budget · ⚠️ Scope · ❌ Risk\n\n## Executive summary\n\nLighthouse WMS rollout faces schedule delay and critical firmware certification risk that could block Raleigh DC go-live. Raleigh DC go-live slipped 21 days to 1 February 2027, and high-impact risk 'Handheld scanner firmware certification' has no owner and mitigation. The budget forecast is $1,284,000 against a $1,200,000 plan (+7.0%), and 1 change request awaits approval: 'CR-14 returns processing module'. Decisions needed: Steering to approve or defer CR-14 by 7 November; Approval for weekend overtime for cutover (~$18,000, not in forecast yet).\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | ❌ Red | Critical milestone 'Raleigh DC go-live' has slipped 21 days (more than 14). |\n| Budget | ⚠️ Amber | Forecast $1,284,000 vs plan $1,200,000 (+7.0%). |\n| Scope | ⚠️ Amber | 1 change request pending approval. |\n| Risk | ❌ Red | High-impact risk 'Handheld scanner firmware certification' has no owner and mitigation. |\n\n## Accomplishments this period\n\n- Data migration dry run #2 completed with 98.7% records clean\n- Label printer installation completed at all 14 dock stations\n\n## Next steps\n\n- Tom to send revised integration plan by Friday\n- Dana to set up no-go criteria document\n- Priya to model the overtime into forecast\n\n## Top risks and issues\n\n- **Zebra-equivalent units need firmware update that Ostrander hasn't certified yet. If not certified, pickers cannot use the new system at go-live.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **If go-live slips past February, the project will hit spring inventory count.** (high impact)  \n  Owner: Dana · Mitigation: Hard no-go decision by 15 January 2027; fallback to stay on legacy system until April\n- **Two DC supervisors on leave in December.** (low impact)  \n  Owner: Keisha · Mitigation: Keisha covering\n\n## Decisions and asks for leadership\n\n- Steering to approve or defer CR-14 by 7 November\n- Approval for weekend overtime for cutover (~$18,000, not in forecast yet)\n\n**Open decisions, not yet put to leadership:**\n\n- Absorb the budget overage or push back on Ostrander\n- Clarify ownership of handheld scanner firmware certification between IT and ops\n\n## Gaps in the notes\n\n- 'Greensboro phase 2' has no date.\n- The forecast excludes $18,000 of known costs (Weekend overtime for cutover). Including them: $1,302,000 vs plan $1,200,000 (+8.5%).\n- 'CR-14 returns processing module' has no cost or schedule estimate.\n- 'Handheld scanner firmware certification' has no target date for resolution.\n",
+      "headline": "Lighthouse WMS rollout faces schedule delay and critical firmware certification risk that could block Raleigh DC go-live.",
       "meta": {
         "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
         "usage": {
-          "input_tokens": 9383,
-          "output_tokens": 1223,
-          "calls": 3
+          "input_tokens": 13900,
+          "output_tokens": 2341,
+          "calls": 4
         },
-        "latency_ms": 5978
+        "latency_ms": 10806
       }
     }
   }
