@@ -5,8 +5,8 @@ requires-python = ">=3.12"
 # The Lambda itself has no third-party dependencies (boto3 ships with the runtime).
 
 [tool.pytest.ini_options]
-pythonpath = ["backend"]
-testpaths = ["backend/tests"]
+pythonpath = ["backend", "evals"]
+testpaths = ["backend/tests", "evals"]
 
 [tool.ruff]
 line-length = 120
@@ -16,4 +16,4 @@ target-version = "py312"
 select = ["E", "F", "I", "B", "UP"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["onepager"]
+known-first-party = ["onepager", "scoring"]

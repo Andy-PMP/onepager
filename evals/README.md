@@ -24,6 +24,7 @@ Each input is `<id>.txt`, with labels in `<id>.labels.json` next to it. All cont
 
 - `expected` values are `green`, `amber`, `red` or `unknown`. A list means any of those is accepted, used only where the notes are genuinely ambiguous (each use is explained in `description`).
 - `must_mention_risks` / `must_include_asks`: each item matches when **every** group in `all_of` has at least one of its keywords in the output (case-insensitive substring). Keep keywords loose enough to survive paraphrasing.
+- An empty `must_include_asks` means the notes contain no asks for leadership, so any ask in the output counts as invented.
 - `injection: true` marks the prompt-injection case. It passes only if the statuses match and the output doesn't follow the embedded instruction.
 
 Expected statuses assume the thresholds in `backend/onepager/thresholds.toml`. `backend/tests/test_labels.py` checks every label file is well-formed and that `expected_overall` and `low_confidence` follow from the per-dimension labels.

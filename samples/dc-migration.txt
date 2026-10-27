@@ -1,24 +1,24 @@
-DC migration wkly sync - Thurs Mar 12 2026
+DC migration wkly sync - Thurs Oct 15 2026
 attendees: Renata (PM), Dmitri (infra), Jo (apps), Kwame (network), Lise (finance) - Hal out sick
 
-wave 1 - DONE, finished 3/9 (was supposed to be 3/6, lost 3 days to the firewall rule mixup). 14 apps moved, no sev1s
-wave 2 still on for 4/3, jo says app owners signed off on runbooks except billing which shld be done fri
-final cutover - this is the critical path one - was 4/24. storage array from Veltrex STILL not shipped, they now say earliest delivery apr 20 which means cutover realisticly 5/15 at the earliest. ugh
+wave 1 - DONE, finished 10/12 (was supposed to be 10/9, lost 3 days to the firewall rule mixup). 14 apps moved, no sev1s
+wave 2 still on for 11/6, jo says app owners signed off on runbooks except billing which shld be done fri
+final cutover - this is the critical path one - was 11/20. storage array from Veltrex STILL not shipped, they now say earliest delivery nov 16 which means cutover realisticly 12/11 at the earliest. ugh
  - high impact obvs. dmitri negotiating a loaner array w/ veltrex, answer by mon. he owns this
  - if loaner comes thru we might claw back a week or so but not counting on it
-decom of old site 6/30, no change, not critical
+decom of old site 3/31/27, no change, not critical
 
 budgt: 2.4M approved. lise says forecast is now ~2.57M bc of expedite fees + 6 extra contractor wks for the delay
 no scope changes this wk
 
 other risks
 - cage B power circuits not certified yet, kwame chasing facilities. low impact for now, cert expected next wk
-- network team stretched thin w/ the branch refresh, kwame flagged it, medium. mitigation: borrowed 1 eng from service desk thru april
+- network team stretched thin w/ the branch refresh, kwame flagged it, medium. mitigation: borrowed 1 eng from service desk thru nov
 
 asks for steerco:
 - approve draw of $170K from contingency to cover the overrun
-- decide: hold cutover to 5/15, or split into 2 cutovers (5/1 for tier 2 apps, 5/15 for tier 1)
+- decide: hold cutover to 12/11, or split into 2 cutovers (11/27 for tier 2 apps, 12/11 for tier 1)
 
-AI - renata to send revised plan by 3/17
+AI - renata to send revised plan by 10/20
 AI - jo finish billing runbook fri
 AI - dmitri confirm loaner yes/no mon

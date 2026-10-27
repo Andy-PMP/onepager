@@ -27,4 +27,6 @@ py -3.14 -m venv .venv
 $env:MODEL_ID = "us.anthropic.claude-haiku-4-5-20251001-v1:0"; $env:PYTHONPATH = "backend"
 .\.venv\Scripts\python -m onepager.cli samples\dc-migration.txt          # Markdown; add --json for everything
 ```
+Eval (all 15 inputs, ~13 cents, ~1 min): `.\.venv\Scripts\python evals\run_eval.py` → `evals/results/results.md` + `latest.json`. `evals/results/baseline.md` is the first run before prompt tuning (keep for the project page's before/after). Runs at temperature 0 have been identical run-to-run, so a changed result means a changed prompt.
+
 Prompts live in `backend/onepager/prompts/`. The write step only produces the executive summary (Haiku 4.5 garbled multi-array tool calls); lists come from extraction.

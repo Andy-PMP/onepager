@@ -71,6 +71,10 @@ class TestSchedule:
         assert r.status is expected
         assert str(slip) in r.reason
 
+    def test_one_day_slip_reason_is_singular(self):
+        p = date(2026, 7, 1)
+        assert schedule(ms(planned=p, forecast=days_after(p, 1))).reason.endswith("1 day.")
+
     def test_large_non_critical_slip_is_amber(self):
         p = date(2026, 7, 1)
         r = schedule(ms(planned=p, forecast=days_after(p, 60), critical=False))
@@ -170,6 +174,10 @@ class TestBudget:
     def test_reason_shows_figures_and_currency(self):
         r = budget(planned=2_000_000, forecast=2_300_000, currency="USD")
         assert r.reason == "Forecast 2,300,000 USD vs plan 2,000,000 USD (+15.0%)."
+
+    def test_currency_symbol_goes_first(self):
+        r = budget(planned=380_000, forecast=428_000, currency="$")
+        assert r.reason == "Forecast $428,000 vs plan $380,000 (+12.6%)."
 
 
 # --- Scope --------------------------------------------------------------------------------

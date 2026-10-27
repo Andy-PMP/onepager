@@ -152,7 +152,13 @@ EXTRACTION_JSON_SCHEMA: dict[str, Any] = _obj(
         },
         "accomplishments": {"type": "array", "items": {"type": "string"}},
         "next_steps": {"type": "array", "items": {"type": "string"}},
-        "asks": {"type": "array", "items": {"type": "string"}, "description": "Decisions or asks for leadership"},
+        "asks": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Only decisions or requests the notes explicitly direct at leadership, a sponsor or a "
+                           "steering committee. A team member asking a vendor or colleague something is not an "
+                           "ask. Often empty.",
+        },
     },
     ["accomplishments", "next_steps", "asks"],
 )

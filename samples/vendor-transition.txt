@@ -1,5 +1,5 @@
 From: Nadia Ferreira
-Sent: Thursday, August 20, 2026 4:12 PM
+Sent: Thursday, October 15, 2026 4:12 PM
 To: Leadership Team
 Subject: FW: RE: RE: Service desk transition - status + decisions needed
 
@@ -13,7 +13,7 @@ Nadia
 
 -----Original Message-----
 From: Ben Castellano
-Sent: Thursday, August 20, 2026 11:47 AM
+Sent: Thursday, October 15, 2026 11:47 AM
 To: Nadia Ferreira
 Subject: RE: RE: Service desk transition - status + decisions needed
 
@@ -24,31 +24,31 @@ Ben
 
 -----Original Message-----
 From: Ade Mensah
-Sent: Wednesday, August 19, 2026 6:02 PM
+Sent: Wednesday, October 14, 2026 6:02 PM
 To: Nadia Ferreira; Ben Castellano
 Subject: RE: Service desk transition - status + decisions needed
 
 Hi both,
 
 Where we are:
-- Contract with Orrin Tech signed July 10, as planned.
-- Knowledge transfer: 12 of 18 sessions done. KT was meant to finish Aug 28; realistically Sept 8 now. KT completion is on the critical path to cutover.
+- Contract with Orrin Tech signed September 4, as planned.
+- Knowledge transfer: 12 of 18 sessions done. KT was meant to finish Oct 23; realistically Nov 3 now. KT completion is on the critical path to cutover.
 - Orrin's agents are all onboarded to our ticketing tool as of Monday.
-- Service cutover to Orrin is still Sept 14 (critical). Quillmark's contract ends Sept 30 regardless.
+- Service cutover to Orrin is still Nov 9 (critical). Quillmark's contract ends Nov 30 regardless.
 
 Problems:
 - Knowledge base export from Quillmark: about 30% of the articles came over without attachments or are badly out of date. Honestly nobody owns the cleanup. Quillmark says it's ours, Orrin says it's not in their SOW. This is high impact: if the KB isn't usable at cutover, first-call resolution will drop hard. No plan for it yet.
-- Attrition at Quillmark: two of their senior analysts gave notice. Medium impact. I own this one; we agreed retention bonuses for their 3 key analysts through Sept 30 (already in Ben's forecast).
+- Attrition at Quillmark: two of their senior analysts gave notice. Medium impact. I own this one; we agreed retention bonuses for their 3 key analysts through Nov 30 (already in Ben's forecast).
 
-Scope: Orrin proposed adding an after-hours coverage tier starting in Q4, after cutover. I told them it is not approved and would need Finance and leadership sign-off. It's sitting as a pending change request.
+Scope: Orrin proposed adding an after-hours coverage tier starting in January, after cutover. I told them it is not approved and would need Finance and leadership sign-off. It's sitting as a pending change request.
 
-Next steps on my side: finish the remaining 6 KT sessions, run the cutover dress rehearsal Sept 10, and send the comms plan to staff by Aug 28.
+Next steps on my side: finish the remaining 6 KT sessions, run the cutover dress rehearsal Nov 5, and send the comms plan to staff by Oct 23.
 
 Ade
 
 -----Original Message-----
 From: Nadia Ferreira
-Sent: Wednesday, August 19, 2026 5:30 PM
+Sent: Wednesday, October 14, 2026 5:30 PM
 To: Ade Mensah; Ben Castellano
 Subject: Service desk transition - status + decisions needed
 

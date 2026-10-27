@@ -129,16 +129,7 @@ Build a small eval set I can run locally and summarize on the project page.
 
 ## 10. Project page
 
-Add a project write-up matching the format of the existing project pages (see `/projects/neighborly/` and others in the repo). Sections:
-
-- What it does (2–3 sentences)
-- How it works, with a simple diagram of the extract → score → write → validate pipeline
-- How status is decided (the rules table)
-- How I tested it (eval results table)
-- Cost and safety controls
-- Tech stack tags: Python, AWS Lambda, Amazon Bedrock, DynamoDB, TypeScript, Astro (adjust to match what's built)
-
-Also add a card to the Projects section on the homepage.
+Not necessary, the website does this.
 
 ## 11. Build phases
 
@@ -149,7 +140,7 @@ Also add a card to the Projects section on the homepage.
 5. SAM deployment: Lambda, API Gateway, DynamoDB, throttling, caps
 6. Frontend tool page with pre-generated samples
 7. Custom domain
-8. Project page and homepage card
+8. Project page and homepage card (not needed)
 
 Pause after phase 4 to show me the eval results before deploying.
 

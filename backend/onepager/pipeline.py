@@ -1,8 +1,10 @@
 """Extract (LLM) -> score (rules) -> write (LLM) -> validate (code), with one retry per LLM step."""
 
+import re
 import time
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import date
 from typing import Any
 
 from .bedrock import ModelError, Usage
@@ -36,6 +38,8 @@ class Result:
     onepager: dict[str, Any]
     usage: Usage
     log: dict[str, Any]
+    # Why each retry happened. Can quote generated text, so it's for local evals only, never logs.
+    retry_reasons: list[str] = field(default_factory=list)
 
 
 def check_input(notes: Any) -> str:
@@ -51,6 +55,7 @@ def generate(client, model_id: str, notes: str, time_left: Callable[[], float] |
     notes = check_input(notes)
     usage = Usage()
     retries: list[str] = []
+    retry_reasons: list[str] = []
 
     def can_retry() -> bool:
         return time_left is None or time_left() >= MIN_SECONDS_FOR_RETRY
@@ -62,6 +67,7 @@ def generate(client, model_id: str, notes: str, time_left: Callable[[], float] |
         if not can_retry() or not getattr(e, "retryable", True):
             raise PipelineError("Couldn't read the notes.", f"extract: {e}") from e
         retries.append("extract")
+        retry_reasons.append(f"extract: {e}")
         try:
             facts = extract(client, model_id, notes, usage, feedback=str(e))
         except (SchemaError, ModelError) as e2:
@@ -74,6 +80,7 @@ def generate(client, model_id: str, notes: str, time_left: Callable[[], float] |
     summary, problems, retryable = _write_and_check(client, model_id, notes, facts, card, usage)
     if problems and retryable and can_retry():
         retries.append("write")
+        retry_reasons += [f"write: {p}" for p in problems]
         retry_summary, retry_problems, _ = _write_and_check(client, model_id, notes, facts, card, usage,
                                                             feedback="\n".join(f"- {p}" for p in problems))
         if retry_summary is not None and (summary is None or len(retry_problems) <= len(problems)):
@@ -96,7 +103,7 @@ def generate(client, model_id: str, notes: str, time_left: Callable[[], float] |
         "warnings": len(problems),
         "rules": {d.dimension: d.rule for d in card.dimensions},
     }
-    return Result(onepager, usage, log)
+    return Result(onepager, usage, log, retry_reasons)
 
 
 def _write_and_check(client, model_id, notes, facts, card, usage, feedback=None):
@@ -112,22 +119,49 @@ def _list_texts(facts: Facts) -> list[str]:
     return [*facts.accomplishments, *facts.next_steps, *facts.asks, *risks]
 
 
+_ISO_DATE = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
+
+
+def humanize_dates(text: str | None, as_of: date | None) -> str | None:
+    """The model writes YYYY-MM-DD (which it gets right); code turns it into "11 December" for reading."""
+    if text is None:
+        return None
+
+    def fmt(m: re.Match) -> str:
+        try:
+            d = date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        except ValueError:
+            return m.group(0)
+        same_year = as_of is not None and d.year == as_of.year
+        return f"{d.day} {d:%B}" if same_year else f"{d.day} {d:%B %Y}"
+
+    return _ISO_DATE.sub(fmt, text)
+
+
 def assemble(facts: Facts, card: Scorecard, summary: str, problems: list[str]) -> dict[str, Any]:
+    def h(text: str | None) -> str | None:
+        return humanize_dates(text, facts.as_of_date)
+
     risks = [
-        {"summary": r.description, "kind": r.kind or "risk", "impact": r.impact, "owner": r.owner,
-         "mitigation": r.mitigation}
+        {"summary": h(r.description), "kind": r.kind or "risk", "impact": r.impact, "owner": r.owner,
+         "mitigation": h(r.mitigation)}
         for r in top_risks(facts)
     ]
+    scorecard = card.to_dict()
+    for d in scorecard["dimensions"]:
+        d["reason"] = h(d["reason"])
+    # A period needs a date in it; "weekly" or "task export" isn't one.
+    period = facts.reporting_period if facts.reporting_period and re.search(r"\d", facts.reporting_period) else None
     onepager = {
         "project_name": facts.project_name,
-        "reporting_period": facts.reporting_period,
+        "reporting_period": period,
         "as_of_date": facts.as_of_date.isoformat() if facts.as_of_date else None,
-        **card.to_dict(),
-        "executive_summary": summary,
-        "accomplishments": facts.accomplishments,
-        "next_steps": facts.next_steps,
+        **scorecard,
+        "executive_summary": h(summary),
+        "accomplishments": [h(x) for x in facts.accomplishments],
+        "next_steps": [h(x) for x in facts.next_steps],
         "risks": risks,
-        "asks": facts.asks,
+        "asks": [h(x) for x in facts.asks],
         "warnings": (["Some details in this one-pager couldn't be verified against your notes. Check figures "
                       "and dates before using it."] if problems else []),
         "validation_problems": problems,
@@ -143,11 +177,13 @@ def _bullets(items: list[str], empty: str) -> list[str]:
 def to_markdown(p: dict[str, Any]) -> str:
     """The copy-as-Markdown version. Built here so the frontend and the eval use the same text."""
     title = p["project_name"] or "Project status"
-    period = p["reporting_period"] or p["as_of_date"]
     overall = STATUS_LABELS[p["overall"]] + (" (low confidence)" if p["low_confidence"] else "")
     lines = [f"# {title}", ""]
-    if period:
-        lines += [f"**Reporting period:** {period}  "]
+    if p["reporting_period"]:
+        lines += [f"**Reporting period:** {p['reporting_period']}  "]
+    elif p["as_of_date"]:
+        as_of = date.fromisoformat(p["as_of_date"])
+        lines += [f"**As of:** {as_of.day} {as_of:%B %Y}  "]
     lines += [f"**Overall status:** {overall}", "", "## Status by dimension", "",
               "| Dimension | Status | Why |", "|---|---|---|"]
     lines += [f"| {d['dimension'].capitalize()} | {STATUS_LABELS[d['status']]} | {d['reason']} |"

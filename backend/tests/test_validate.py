@@ -80,6 +80,13 @@ class TestFindDates:
         dates, _ = find_dates(text)
         assert [r for _, r in dates] == [{reading}]
 
+    @pytest.mark.parametrize("text", ["move weekend 12-13 December", "move weekend December 12–13",
+                                      "move weekend 12 to 13 December 2026"])
+    def test_day_ranges(self, text):
+        dates, rest = find_dates(text)
+        assert [r for _, r in dates] == [{(12, 12)}, {(12, 13)}]
+        assert find_numbers(rest) == []
+
     def test_numeric_dates_are_ambiguous(self):
         dates, _ = find_dates("cutover 5/1")
         assert dates[0][1] == {(5, 1), (1, 5)}
@@ -102,6 +109,7 @@ class TestFindNumbers:
 
     def test_small_numbers_with_units_are_kept(self):
         assert [v for _, v in find_numbers("5% over")] == [5]
+        assert [v for _, v in find_numbers("within 2 percent")] == [2]
 
     def test_words_with_digits_are_ignored(self):
         assert find_numbers("Q4 and v4") == []
@@ -124,6 +132,14 @@ class TestUnsupportedFigures:
 
     def test_invented_date_is_flagged(self):
         assert unsupported_figures(["Cutover is now June 30."], [self.NOTES]) == ['Date "June 30" isn\'t in the notes']
+
+    def test_small_bare_numbers_in_notes_count_as_sources(self):
+        # Regression: "10%" in the output vs a bare "10" in a CSV % Complete column.
+        assert unsupported_figures(["Huddle rooms 10% complete."], ["6,Huddle rooms,2026-10-05,10,No"]) == []
+
+    def test_range_matches_separate_dates_in_notes(self):
+        # Regression: "21-23 July" was flagged as an invented "21" in the first eval run.
+        assert unsupported_figures(["Training 21-23 July."], ["Train night shift leads 7/21-7/23"]) == []
 
     def test_rule_reasons_count_as_sources(self):
         assert unsupported_figures(["It slipped 21 days."], [self.NOTES, "slipped 21 days"]) == []

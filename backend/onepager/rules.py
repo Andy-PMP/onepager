@@ -128,7 +128,7 @@ def score_schedule(facts: Facts, t: Thresholds) -> RuleResult:
         label = {True: "critical milestone", False: "non-critical milestone", None: "milestone"}[m.is_critical]
         extra = f" ({len(slips)} milestones slipped in total)" if len(slips) > 1 else ""
         return RuleResult(dim, Status.AMBER, "schedule.slip",
-                          f"Largest slip: {label} '{m.name}', {d} days{extra}.", gaps)
+                          f"Largest slip: {label} '{m.name}', {d} day{'s' if d != 1 else ''}{extra}.", gaps)
     if missed:
         return RuleResult(dim, Status.AMBER, "schedule.missed_with_recovery",
                           f"'{missed[0].name}' missed its date but has a recovery plan.", gaps)
@@ -142,7 +142,10 @@ def score_schedule(facts: Facts, t: Thresholds) -> RuleResult:
 
 def _money(value: float, b: Budget) -> str:
     amount = f"{value:,.0f}" if value == int(value) else f"{value:,.2f}"
-    return f"{amount} {b.currency}" if b.currency else amount
+    if not b.currency:
+        return amount
+    # Symbols go in front ($2,400,000); codes go after (2,400,000 USD).
+    return f"{b.currency}{amount}" if len(b.currency) == 1 else f"{amount} {b.currency}"
 
 
 def score_budget(facts: Facts, t: Thresholds) -> RuleResult:

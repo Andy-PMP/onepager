@@ -34,7 +34,7 @@ def parse_summary(data: Any) -> str:
 
 _COLORS = {"green": Status.GREEN, "amber": Status.AMBER, "yellow": Status.AMBER, "red": Status.RED}
 _COLOR_RE = re.compile(r"\b(green|amber|yellow|red)\b", re.IGNORECASE)
-_DIMENSION_WORDS = {
+DIMENSION_WORDS = {
     dim: re.compile(pattern, re.IGNORECASE)
     for dim, pattern in {
         "schedule": r"\b(schedul|timeline|milestone|dates?\b|deadline|go-live|cutover|launch)",
@@ -52,7 +52,7 @@ def find_contradictions(texts: list[str], card: Scorecard) -> list[str]:
     problems = []
     for text in texts:
         for sentence in _SENTENCE_RE.split(text):
-            mentioned = [dim for dim, pattern in _DIMENSION_WORDS.items() if pattern.search(sentence)]
+            mentioned = [dim for dim, pattern in DIMENSION_WORDS.items() if pattern.search(sentence)]
             allowed = {card.overall} | {statuses[d] for d in mentioned}
             for match in _COLOR_RE.finditer(sentence):
                 color = _COLORS[match.group(1).lower()]
@@ -69,15 +69,21 @@ _MONTH = (r"(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|au
 _MONTHS = {m: i for i, m in enumerate(
     ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], start=1)}
 _YEAR = r"(?:,?\s+\d{4})?"
+_DASH = r"\s*(?:-|–|—|to)\s*"
 _DATE_PATTERNS = [
     ("iso", re.compile(r"\b\d{4}-(\d{1,2})-(\d{1,2})\b")),
+    # Ranges first, so "12-13 December" isn't read as a bare 12 followed by 13 December.
+    ("day_range_month", re.compile(rf"\b(\d{{1,2}}){_DASH}(\d{{1,2}})(?:st|nd|rd|th)?\s+{_MONTH}\b\.?{_YEAR}",
+                                   re.IGNORECASE)),
+    ("month_day_range", re.compile(rf"\b{_MONTH}\.?\s+(\d{{1,2}}){_DASH}(\d{{1,2}})(?:st|nd|rd|th)?\b{_YEAR}",
+                                   re.IGNORECASE)),
     ("month_day", re.compile(rf"\b{_MONTH}\.?\s+(\d{{1,2}})(?:st|nd|rd|th)?\b{_YEAR}", re.IGNORECASE)),
     ("day_month", re.compile(rf"\b(\d{{1,2}})(?:st|nd|rd|th)?\s+(?:of\s+)?{_MONTH}\b\.?{_YEAR}", re.IGNORECASE)),
     ("numeric", re.compile(r"\b(\d{1,2})/(\d{1,2})(?:/\d{2,4})?\b")),
 ]
 _TIME = re.compile(r"\b\d{1,2}:\d{2}\b")
 _NUMBER = re.compile(
-    r"(?<![\w.])([$€£])?(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s?(%|bn|billion|million|thousand|k|m)?(?!\w)",
+    r"(?<![\w.])([$€£])?(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s?(%|percent|bn|billion|million|thousand|k|m)?(?!\w)",
     re.IGNORECASE,
 )
 _MULTIPLIERS = {"k": 1e3, "thousand": 1e3, "m": 1e6, "million": 1e6, "bn": 1e9, "billion": 1e9}
@@ -94,6 +100,14 @@ def find_dates(text: str) -> tuple[list[tuple[str, set[tuple[int, int]]]], str]:
     found = []
     for kind, pattern in _DATE_PATTERNS:
         def take(m: re.Match, kind: str = kind) -> str:
+            if kind in ("day_range_month", "month_day_range"):
+                month, first, last = ((m.group(3), m.group(1), m.group(2)) if kind == "day_range_month"
+                                      else (m.group(1), m.group(2), m.group(3)))
+                month_number = _MONTHS[month[:3].lower()]
+                for day in (first, last):
+                    if _valid(month_number, int(day)):
+                        found.append((f"{day} {month}", {(month_number, int(day))}))
+                return " "
             if kind == "iso":
                 readings = {(int(m.group(1)), int(m.group(2)))}
             elif kind == "month_day":
@@ -111,13 +125,16 @@ def find_dates(text: str) -> tuple[list[tuple[str, set[tuple[int, int]]]], str]:
     return found, _TIME.sub(" ", text)
 
 
-def find_numbers(text: str) -> list[tuple[str, float]]:
-    """Numbers in text that has already had dates removed, as (original text, value)."""
+def find_numbers(text: str, include_small: bool = False) -> list[tuple[str, float]]:
+    """Numbers in text that has already had dates removed, as (original text, value).
+
+    Bare small integers are skipped in generated text, but kept (include_small) when reading the notes,
+    so "10% complete" in the output can match a bare "10" in a CSV column."""
     found = []
     for m in _NUMBER.finditer(text):
         currency, whole, decimals, suffix = m.groups()
         value = float(whole.replace(",", "") + (f".{decimals}" if decimals else ""))
-        if not (currency or decimals or suffix) and value <= _IGNORE_BARE_INTS_UP_TO:
+        if not include_small and not (currency or decimals or suffix) and value <= _IGNORE_BARE_INTS_UP_TO:
             continue
         if suffix and suffix.lower() in _MULTIPLIERS:
             value *= _MULTIPLIERS[suffix.lower()]
@@ -139,7 +156,7 @@ def unsupported_figures(texts: list[str], sources: list[str]) -> list[str]:
         dates, rest = find_dates(source)
         for _, readings in dates:
             allowed_dates |= readings
-        allowed_numbers |= {v for _, v in find_numbers(rest)}
+        allowed_numbers |= {v for _, v in find_numbers(rest, include_small=True)}
 
     problems = []
     for text in texts:
