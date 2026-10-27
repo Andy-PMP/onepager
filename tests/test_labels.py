@@ -8,7 +8,7 @@ import pytest
 
 from onepager.rules import Status, Thresholds
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 LABEL_FILES = sorted([*ROOT.glob("samples/*.labels.json"), *ROOT.glob("evals/cases/*.labels.json")])
 DIMENSIONS = ["schedule", "budget", "scope", "risk"]
 MAX_INPUT_CHARS = 6000

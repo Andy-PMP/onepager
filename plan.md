@@ -129,7 +129,7 @@ Build a small eval set I can run locally and summarize on the project page.
 
 ## 10. Project page
 
-Not necessary, the website does this.
+not needed, the website does this.
 
 ## 11. Build phases
 
@@ -140,7 +140,7 @@ Not necessary, the website does this.
 5. SAM deployment: Lambda, API Gateway, DynamoDB, throttling, caps
 6. Frontend tool page with pre-generated samples
 7. Custom domain
-8. Project page and homepage card (not needed)
+8. (not needed) Project page and homepage card
 
 Pause after phase 4 to show me the eval results before deploying.
 

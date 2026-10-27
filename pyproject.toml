@@ -6,7 +6,7 @@ requires-python = ">=3.12"
 
 [tool.pytest.ini_options]
 pythonpath = ["backend", "evals"]
-testpaths = ["backend/tests", "evals"]
+testpaths = ["tests", "evals"]
 
 [tool.ruff]
 line-length = 120

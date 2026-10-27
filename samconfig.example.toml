@@ -1,0 +1,13 @@
+# Template for samconfig.toml (gitignored). Don't copy by hand; run:
+#   .\.venv\Scripts\python scripts\make_samconfig.py
+# which fills in a random salt. Keep the salt stable: changing it resets every visitor's daily count.
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "onepager"
+region = "us-east-1"
+resolve_s3 = true
+s3_prefix = "onepager"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+parameter_overrides = "IpHashSalt=\"REPLACE_WITH_64_HEX_CHARS\""

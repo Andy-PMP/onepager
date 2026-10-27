@@ -1,0 +1,109 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: One-Pager Generator API (POST /generate). Deploy with `sam deploy`; see docs/deploy.md.
+
+Parameters:
+  ModelId:
+    Type: String
+    Default: us.anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: Bedrock inference profile ID
+  FoundationModelId:
+    Type: String
+    Default: anthropic.claude-haiku-4-5-20251001-v1:0
+    Description: The model behind the inference profile (needed for IAM)
+  AllowedOrigins:
+    Type: CommaDelimitedList
+    Default: https://onepager.amandapatricks.com,http://localhost:4321
+  DailyCap:
+    Type: Number
+    Default: 100
+  PerVisitorCap:
+    Type: Number
+    Default: 5
+  IpHashSalt:
+    Type: String
+    NoEcho: true
+    MinLength: 32
+    Description: Random secret mixed into visitor IP hashes. Generate once and keep it.
+
+Resources:
+  Api:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: !Ref AllowedOrigins
+        AllowMethods: [POST]
+        AllowHeaders: [content-type]
+        MaxAge: 600
+      DefaultRouteSettings:
+        ThrottlingRateLimit: 2
+        ThrottlingBurstLimit: 5
+
+  UsageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: expires_at
+        Enabled: true
+
+  GenerateLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${AWS::StackName}-generate
+      RetentionInDays: 14
+
+  GenerateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: backend/
+      Handler: onepager.handler.handler
+      Runtime: python3.13
+      Architectures: [arm64]
+      MemorySize: 256
+      # API Gateway gives up at 30s; leave room to return a clean error first.
+      Timeout: 28
+      LoggingConfig:
+        LogGroup: !Ref GenerateLogGroup
+      Environment:
+        Variables:
+          MODEL_ID: !Ref ModelId
+          TABLE_NAME: !Ref UsageTable
+          DAILY_CAP: !Ref DailyCap
+          PER_VISITOR_CAP: !Ref PerVisitorCap
+          IP_HASH_SALT: !Ref IpHashSalt
+      Policies:
+        - Statement:
+            - Sid: InvokeConfiguredModelOnly
+              Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource:
+                - !Sub arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/${ModelId}
+                # The US profile routes to whichever US region has capacity.
+                - !Sub arn:aws:bedrock:*::foundation-model/${FoundationModelId}
+            - Sid: UsageCounters
+              Effect: Allow
+              Action: dynamodb:UpdateItem
+              Resource: !GetAtt UsageTable.Arn
+      Events:
+        Generate:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Api
+            Path: /generate
+            Method: POST
+
+Outputs:
+  ApiUrl:
+    Description: Base URL for the frontend until the custom domain is ready
+    Value: !Sub https://${Api}.execute-api.${AWS::Region}.amazonaws.com
+  LogGroup:
+    Value: !Ref GenerateLogGroup
+  UsageTableName:
+    Value: !Ref UsageTable

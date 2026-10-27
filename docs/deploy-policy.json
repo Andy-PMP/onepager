@@ -1,0 +1,90 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CloudFormationStacks",
+      "Effect": "Allow",
+      "Action": "cloudformation:*",
+      "Resource": [
+        "arn:aws:cloudformation:us-east-1:733294945955:stack/onepager/*",
+        "arn:aws:cloudformation:us-east-1:733294945955:stack/aws-sam-cli-managed-default/*",
+        "arn:aws:cloudformation:us-east-1:aws:transform/Serverless-2016-10-31"
+      ]
+    },
+    {
+      "Sid": "CloudFormationRead",
+      "Effect": "Allow",
+      "Action": ["cloudformation:ValidateTemplate", "cloudformation:ListStacks", "cloudformation:GetTemplateSummary"],
+      "Resource": "*"
+    },
+    {
+      "Sid": "SamArtifactBucket",
+      "Effect": "Allow",
+      "Action": "s3:*",
+      "Resource": ["arn:aws:s3:::aws-sam-cli-managed-default-*", "arn:aws:s3:::aws-sam-cli-managed-default-*/*"]
+    },
+    {
+      "Sid": "Lambda",
+      "Effect": "Allow",
+      "Action": "lambda:*",
+      "Resource": "arn:aws:lambda:us-east-1:733294945955:function:onepager-*"
+    },
+    {
+      "Sid": "ApiGateway",
+      "Effect": "Allow",
+      "Action": ["apigateway:GET", "apigateway:POST", "apigateway:PUT", "apigateway:PATCH", "apigateway:DELETE",
+                 "apigateway:TagResource", "apigateway:UntagResource"],
+      "Resource": [
+        "arn:aws:apigateway:us-east-1::/apis", "arn:aws:apigateway:us-east-1::/apis/*",
+        "arn:aws:apigateway:us-east-1::/tags/*",
+        "arn:aws:apigateway:us-east-1::/domainnames", "arn:aws:apigateway:us-east-1::/domainnames/*"
+      ]
+    },
+    {
+      "Sid": "DynamoDB",
+      "Effect": "Allow",
+      "Action": ["dynamodb:CreateTable", "dynamodb:DeleteTable", "dynamodb:DescribeTable", "dynamodb:UpdateTable",
+                 "dynamodb:UpdateTimeToLive", "dynamodb:DescribeTimeToLive", "dynamodb:DescribeContinuousBackups",
+                 "dynamodb:TagResource", "dynamodb:UntagResource", "dynamodb:ListTagsOfResource",
+                 "dynamodb:GetItem", "dynamodb:Scan"],
+      "Resource": "arn:aws:dynamodb:us-east-1:733294945955:table/onepager-*"
+    },
+    {
+      "Sid": "FunctionRole",
+      "Effect": "Allow",
+      "Action": ["iam:CreateRole", "iam:DeleteRole", "iam:GetRole", "iam:TagRole", "iam:UntagRole",
+                 "iam:PutRolePolicy", "iam:DeleteRolePolicy", "iam:GetRolePolicy",
+                 "iam:AttachRolePolicy", "iam:DetachRolePolicy"],
+      "Resource": "arn:aws:iam::733294945955:role/onepager-*"
+    },
+    {
+      "Sid": "PassFunctionRoleToLambdaOnly",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::733294945955:role/onepager-*",
+      "Condition": {"StringEquals": {"iam:PassedToService": "lambda.amazonaws.com"}}
+    },
+    {
+      "Sid": "LogGroup",
+      "Effect": "Allow",
+      "Action": ["logs:CreateLogGroup", "logs:DeleteLogGroup", "logs:PutRetentionPolicy", "logs:DeleteRetentionPolicy",
+                 "logs:TagResource", "logs:UntagResource", "logs:ListTagsForResource", "logs:TagLogGroup",
+                 "logs:DescribeLogStreams", "logs:GetLogEvents", "logs:FilterLogEvents"],
+      "Resource": ["arn:aws:logs:us-east-1:733294945955:log-group:/aws/lambda/onepager-*",
+                   "arn:aws:logs:us-east-1:733294945955:log-group:/aws/lambda/onepager-*:*"]
+    },
+    {
+      "Sid": "LogsDescribe",
+      "Effect": "Allow",
+      "Action": "logs:DescribeLogGroups",
+      "Resource": "*"
+    },
+    {
+      "Sid": "CertificateForCustomDomain",
+      "Effect": "Allow",
+      "Action": ["acm:RequestCertificate", "acm:DescribeCertificate", "acm:ListCertificates", "acm:DeleteCertificate",
+                 "acm:AddTagsToCertificate", "acm:ListTagsForCertificate"],
+      "Resource": "*"
+    }
+  ]
+}
