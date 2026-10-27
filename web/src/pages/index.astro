@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { MAX_CHARS, formatCount } from "../lib/format";
+import { loadSamples } from "../lib/samples";
+
+const samples = loadSamples();
+---
+
+<Layout
+  title="One-Pager Generator · Amanda Patricks"
+  description="Paste messy project notes, get an executive status one-pager with RAG status, risks and asks. Rules decide the status; the AI reads and writes."
+>
+  <section class="intro no-print">
+    <h1>One-Pager Generator</h1>
+    <p class="lede">
+      Paste messy project notes and get an executive status one-pager: RAG status, risks and asks. Rules in code
+      decide every status. The AI only reads the notes and writes the summary.
+    </p>
+  </section>
+
+  <section class="panel no-print" aria-labelledby="input-title">
+    <h2 id="input-title">Try a sample</h2>
+    <ul class="samples">
+      {
+        samples.map((s) => (
+          <li>
+            <button type="button" class="sample" data-sample={s.id} aria-pressed="false">
+              <span class="sample-name">{s.name}</span>
+              <span class="sample-format">{s.format}</span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+
+    <label for="notes">Or paste your own notes</label>
+    <textarea
+      id="notes"
+      maxlength={MAX_CHARS * 2}
+      spellcheck="false"
+      aria-describedby="counter notice"
+      placeholder="Meeting notes, a Slack thread, a task export, an email chain…"></textarea>
+    <div class="input-foot">
+      <span>Up to {MAX_CHARS.toLocaleString("en-US")} characters.</span>
+      <span id="counter" class="counter" aria-live="polite">{formatCount(0)}</span>
+    </div>
+    <p class="notice" id="notice">
+      <span aria-hidden="true">ⓘ</span>
+      <span>Use made-up notes. Don't paste confidential information. Inputs are not stored.</span>
+    </p>
+    <div class="actions">
+      <button type="button" class="btn btn-primary" id="generate" disabled>Generate one-pager</button>
+      <p class="status-line" id="status" role="status">Live generations are limited to 5 per visitor per day.</p>
+    </div>
+  </section>
+
+  <section class="result" id="result" hidden aria-label="Your one-pager">
+    <div class="toolbar no-print">
+      <button type="button" class="btn" id="copy">Copy</button>
+      <button type="button" class="btn" id="copy-md">Copy as Markdown</button>
+      <button type="button" class="btn" id="print">Print or save as PDF</button>
+      <p class="status-line" id="copy-status" role="status"></p>
+    </div>
+    <div id="doc"></div>
+    <details class="how no-print">
+      <summary>How status was decided</summary>
+      <div class="how-body" id="how"></div>
+    </details>
+  </section>
+
+  <script type="application/json" id="samples-data" set:html={JSON.stringify(samples).replace(/</g, "\\u003c")} />
+</Layout>
+
+<script>
+  import { generateOnePager } from "../lib/api";
+  import { MAX_CHARS, formatCount } from "../lib/format";
+  import { clipboardHtml, renderExplanation, renderOnePager } from "../lib/render";
+  import type { OnePager, Sample } from "../lib/types";
+
+  const API_BASE: string = import.meta.env.PUBLIC_API_BASE;
+  const samples: Sample[] = JSON.parse(document.getElementById("samples-data")!.textContent!);
+
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const notes = $<HTMLTextAreaElement>("notes");
+  const counter = $("counter");
+  const generateBtn = $<HTMLButtonElement>("generate");
+  const status = $("status");
+  const result = $("result");
+  const doc = $("doc");
+  const how = $("how");
+  const copyStatus = $("copy-status");
+  const sampleButtons = [...document.querySelectorAll<HTMLButtonElement>(".sample")];
+
+  let current: OnePager | null = null;
+  let activeSample: Sample | null = null;
+  let busy = false;
+
+  function setStatus(text: string, error = false) {
+    status.textContent = text;
+    status.classList.toggle("error", error);
+  }
+
+  function updateInput() {
+    const n = notes.value.length;
+    counter.textContent = formatCount(n);
+    counter.classList.toggle("over", n > MAX_CHARS);
+    generateBtn.disabled = busy || !notes.value.trim() || n > MAX_CHARS;
+  }
+
+  function show(p: OnePager, source: "sample" | "live") {
+    current = p;
+    doc.innerHTML = renderOnePager(p, source);
+    how.innerHTML = renderExplanation(p);
+    copyStatus.textContent = "";
+    result.hidden = false;
+    const heading = doc.querySelector<HTMLElement>("#doc-title")!;
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+    result.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+
+  function selectSample(sample: Sample | null) {
+    activeSample = sample;
+    for (const b of sampleButtons) b.setAttribute("aria-pressed", String(b.dataset.sample === sample?.id));
+    const url = new URL(location.href);
+    if (sample) url.searchParams.set("sample", sample.id);
+    else url.searchParams.delete("sample");
+    history.replaceState(null, "", url);
+  }
+
+  for (const button of sampleButtons) {
+    button.addEventListener("click", () => {
+      const sample = samples.find((s) => s.id === button.dataset.sample)!;
+      selectSample(sample);
+      notes.value = sample.notes;
+      updateInput();
+      setStatus("Showing a pre-generated sample. Edit the notes and click Generate to run it live.");
+      show(sample.onepager, "sample");
+    });
+  }
+
+  notes.addEventListener("input", () => {
+    if (activeSample && notes.value !== activeSample.notes) selectSample(null);
+    updateInput();
+  });
+
+  generateBtn.addEventListener("click", async () => {
+    if (activeSample && notes.value === activeSample.notes) {
+      show(activeSample.onepager, "sample");
+      return;
+    }
+    busy = true;
+    updateInput();
+    generateBtn.textContent = "Generating…";
+    setStatus("Reading your notes. This usually takes 5 to 10 seconds.");
+    const outcome = await generateOnePager(API_BASE, notes.value);
+    busy = false;
+    generateBtn.textContent = "Generate one-pager";
+    updateInput();
+    if (outcome.ok) {
+      setStatus("Your one-pager is ready.");
+      show(outcome.onepager, "live");
+    } else {
+      setStatus(outcome.message, true);
+    }
+  });
+
+  async function copy(rich: boolean) {
+    if (!current) return;
+    try {
+      if (rich && "ClipboardItem" in window) {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            "text/html": new Blob([clipboardHtml(current)], { type: "text/html" }),
+            "text/plain": new Blob([current.markdown], { type: "text/plain" }),
+          }),
+        ]);
+        copyStatus.textContent = "Copied. Paste into Word, Outlook or Google Docs.";
+      } else {
+        await navigator.clipboard.writeText(current.markdown);
+        copyStatus.textContent = "Markdown copied.";
+      }
+    } catch {
+      copyStatus.textContent = "Your browser blocked copying. Select the text and copy it instead.";
+    }
+  }
+
+  $("copy").addEventListener("click", () => copy(true));
+  $("copy-md").addEventListener("click", () => copy(false));
+  $("print").addEventListener("click", () => window.print());
+
+  // Deep link: ?sample=<id> opens that sample (used by links from the project write-up).
+  const linked = samples.find((s) => s.id === new URLSearchParams(location.search).get("sample"));
+  if (linked) sampleButtons.find((b) => b.dataset.sample === linked.id)?.click();
+  updateInput();
+</script>

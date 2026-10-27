@@ -1,0 +1,84 @@
+{
+  "project_name": "Service desk transition",
+  "reporting_period": null,
+  "as_of_date": "2026-10-15",
+  "overall": "red",
+  "overall_reason": "Worst known dimension: budget, risk (red).",
+  "low_confidence": false,
+  "dimensions": [
+    {
+      "dimension": "schedule",
+      "status": "amber",
+      "rule": "schedule.slip",
+      "reason": "Largest slip: critical milestone 'Knowledge transfer completion', 11 days.",
+      "gaps": []
+    },
+    {
+      "dimension": "budget",
+      "status": "red",
+      "rule": "budget.major_overrun",
+      "reason": "Forecast $428,000 vs plan $380,000 (+12.6%).",
+      "gaps": []
+    },
+    {
+      "dimension": "scope",
+      "status": "amber",
+      "rule": "scope.pending_changes",
+      "reason": "1 change request pending approval.",
+      "gaps": []
+    },
+    {
+      "dimension": "risk",
+      "status": "red",
+      "rule": "risk.high_unmanaged",
+      "reason": "High-impact issue 'Knowledge base export from Quillmark: approximately 30% of articles missing attachments or out of date. No owner assigned. Quillmark says cleanup is customer responsibility; Orrin says it is not in their statement of work.' has no owner and mitigation.",
+      "gaps": []
+    }
+  ],
+  "gaps": [
+    "Some risks or issues have no owner"
+  ],
+  "executive_summary": "The Service desk transition project is red overall due to budget and risk concerns. The critical knowledge transfer completion milestone is forecast to slip 11 days to 3 November, and the forecast budget is $428,000 against a $380,000 plan. The team has completed 12 of 18 knowledge transfer sessions and signed the Orrin Tech contract on September 4. A high-impact issue remains unresolved: approximately 30% of knowledge base articles are missing attachments or out of date, with no owner assigned and disagreement between vendors on responsibility. Leadership approval is needed for the $48,000 budget overrun and to assign an owner for knowledge base cleanup by Monday.",
+  "accomplishments": [
+    "Contract with Orrin Tech signed September 4",
+    "12 of 18 knowledge transfer sessions completed",
+    "Orrin's agents onboarded to ticketing tool"
+  ],
+  "next_steps": [
+    "Complete remaining 6 knowledge transfer sessions",
+    "Run cutover dress rehearsal on November 5",
+    "Send staff communications plan by October 23"
+  ],
+  "risks": [
+    {
+      "summary": "Knowledge base export from Quillmark: approximately 30% of articles missing attachments or out of date. No owner assigned. Quillmark says cleanup is customer responsibility; Orrin says it is not in their statement of work.",
+      "kind": "issue",
+      "impact": "high",
+      "owner": null,
+      "mitigation": null
+    },
+    {
+      "summary": "Attrition at Quillmark: two senior analysts gave notice.",
+      "kind": "issue",
+      "impact": "medium",
+      "owner": "Ade Mensah",
+      "mitigation": "Retention bonuses agreed for 3 key analysts through 30 November"
+    }
+  ],
+  "asks": [
+    "Approve the $48,000 budget overrun for an extra month of running both vendors",
+    "Assign an owner for knowledge base cleanup by Monday"
+  ],
+  "warnings": [],
+  "validation_problems": [],
+  "markdown": "# Service desk transition\n\n**As of:** 15 October 2026  \n**Overall status:** Red\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | Amber | Largest slip: critical milestone 'Knowledge transfer completion', 11 days. |\n| Budget | Red | Forecast $428,000 vs plan $380,000 (+12.6%). |\n| Scope | Amber | 1 change request pending approval. |\n| Risk | Red | High-impact issue 'Knowledge base export from Quillmark: approximately 30% of articles missing attachments or out of date. No owner assigned. Quillmark says cleanup is customer responsibility; Orrin says it is not in their statement of work.' has no owner and mitigation. |\n\n## Executive summary\n\nThe Service desk transition project is red overall due to budget and risk concerns. The critical knowledge transfer completion milestone is forecast to slip 11 days to 3 November, and the forecast budget is $428,000 against a $380,000 plan. The team has completed 12 of 18 knowledge transfer sessions and signed the Orrin Tech contract on September 4. A high-impact issue remains unresolved: approximately 30% of knowledge base articles are missing attachments or out of date, with no owner assigned and disagreement between vendors on responsibility. Leadership approval is needed for the $48,000 budget overrun and to assign an owner for knowledge base cleanup by Monday.\n\n## Accomplishments this period\n\n- Contract with Orrin Tech signed September 4\n- 12 of 18 knowledge transfer sessions completed\n- Orrin's agents onboarded to ticketing tool\n\n## Next steps\n\n- Complete remaining 6 knowledge transfer sessions\n- Run cutover dress rehearsal on November 5\n- Send staff communications plan by October 23\n\n## Top risks and issues\n\n- **Knowledge base export from Quillmark: approximately 30% of articles missing attachments or out of date. No owner assigned. Quillmark says cleanup is customer responsibility; Orrin says it is not in their statement of work.** (high impact)  \n  Owner: not stated · Mitigation: not stated\n- **Attrition at Quillmark: two senior analysts gave notice.** (medium impact)  \n  Owner: Ade Mensah · Mitigation: Retention bonuses agreed for 3 key analysts through 30 November\n\n## Decisions and asks for leadership\n\n- Approve the $48,000 budget overrun for an extra month of running both vendors\n- Assign an owner for knowledge base cleanup by Monday\n\n## Gaps in the notes\n\n- Some risks or issues have no owner\n",
+  "meta": {
+    "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "usage": {
+      "input_tokens": 5526,
+      "output_tokens": 972,
+      "calls": 2
+    },
+    "latency_ms": 5628
+  }
+}

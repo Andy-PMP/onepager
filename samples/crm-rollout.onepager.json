@@ -1,0 +1,87 @@
+{
+  "project_name": "Beacon CRM rollout",
+  "reporting_period": null,
+  "as_of_date": "2026-10-13",
+  "overall": "amber",
+  "overall_reason": "Worst known dimension: schedule, scope (amber).",
+  "low_confidence": false,
+  "dimensions": [
+    {
+      "dimension": "schedule",
+      "status": "amber",
+      "rule": "schedule.slip",
+      "reason": "Largest slip: non-critical milestone 'Training guides', 14 days (2 milestones slipped in total).",
+      "gaps": []
+    },
+    {
+      "dimension": "budget",
+      "status": "unknown",
+      "rule": "budget.no_plan",
+      "reason": "No planned budget figure in the notes.",
+      "gaps": [
+        "No budget figures provided"
+      ]
+    },
+    {
+      "dimension": "scope",
+      "status": "amber",
+      "rule": "scope.pending_changes",
+      "reason": "1 change request pending approval.",
+      "gaps": []
+    },
+    {
+      "dimension": "risk",
+      "status": "green",
+      "rule": "risk.none_high",
+      "reason": "2 open items, none high-impact.",
+      "gaps": []
+    }
+  ],
+  "gaps": [
+    "No budget figures provided"
+  ],
+  "executive_summary": "Beacon CRM rollout is amber overall due to schedule and scope risks. The pilot completed successfully on 2 October with 41 users and NPS of +32, but training guides have slipped 14 days to 30 October. Data migration testing is underway with new match rules being rerun Thursday to address ~2% deduplication failures. Budget figures are not covered in the current notes. The team needs steering committee decision on CR-14 email plugin integration and an executive all-hands announcement of the go-live date by 2 November.",
+  "accomplishments": [
+    "Pilot completed on 2 October with 41 pilot users and NPS of +32",
+    "Data migration test load of legacy records completed with ~2% deduplication failures",
+    "Training guides drafted"
+  ],
+  "next_steps": [
+    "Rerun data migration with new match rules on Thursday",
+    "Cutover runbook draft by 23 October",
+    "Dress rehearsal on 7 November",
+    "Obtain updated budget numbers from finance"
+  ],
+  "risks": [
+    {
+      "summary": "Data migration deduplication: ~2% of legacy records failed deduplication in test load",
+      "kind": "risk",
+      "impact": "medium",
+      "owner": "Priya Raman",
+      "mitigation": "Rerunning with new match rules on Thursday"
+    },
+    {
+      "summary": "SSO configuration for contractor accounts",
+      "kind": "issue",
+      "impact": "low",
+      "owner": "Priya Raman",
+      "mitigation": null
+    }
+  ],
+  "asks": [
+    "Steering committee decision on CR-14 email plugin integration scope change",
+    "Executive all-hands announcement of go-live date to be sent by 2 November"
+  ],
+  "warnings": [],
+  "validation_problems": [],
+  "markdown": "# Beacon CRM rollout\n\n**As of:** 13 October 2026  \n**Overall status:** Amber\n\n## Status by dimension\n\n| Dimension | Status | Why |\n|---|---|---|\n| Schedule | Amber | Largest slip: non-critical milestone 'Training guides', 14 days (2 milestones slipped in total). |\n| Budget | Unknown | No planned budget figure in the notes. |\n| Scope | Amber | 1 change request pending approval. |\n| Risk | Green | 2 open items, none high-impact. |\n\n## Executive summary\n\nBeacon CRM rollout is amber overall due to schedule and scope risks. The pilot completed successfully on 2 October with 41 users and NPS of +32, but training guides have slipped 14 days to 30 October. Data migration testing is underway with new match rules being rerun Thursday to address ~2% deduplication failures. Budget figures are not covered in the current notes. The team needs steering committee decision on CR-14 email plugin integration and an executive all-hands announcement of the go-live date by 2 November.\n\n## Accomplishments this period\n\n- Pilot completed on 2 October with 41 pilot users and NPS of +32\n- Data migration test load of legacy records completed with ~2% deduplication failures\n- Training guides drafted\n\n## Next steps\n\n- Rerun data migration with new match rules on Thursday\n- Cutover runbook draft by 23 October\n- Dress rehearsal on 7 November\n- Obtain updated budget numbers from finance\n\n## Top risks and issues\n\n- **Data migration deduplication: ~2% of legacy records failed deduplication in test load** (medium impact)  \n  Owner: Priya Raman · Mitigation: Rerunning with new match rules on Thursday\n- **SSO configuration for contractor accounts** (low impact)  \n  Owner: Priya Raman · Mitigation: not stated\n\n## Decisions and asks for leadership\n\n- Steering committee decision on CR-14 email plugin integration scope change\n- Executive all-hands announcement of go-live date to be sent by 2 November\n\n## Gaps in the notes\n\n- No budget figures provided\n",
+  "meta": {
+    "model": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "usage": {
+      "input_tokens": 5238,
+      "output_tokens": 924,
+      "calls": 2
+    },
+    "latency_ms": 4841
+  }
+}

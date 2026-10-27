@@ -1,0 +1,88 @@
+---
+import "../styles/global.css";
+import { PORTFOLIO_URL, PROJECT_PAGE_URL, REPO_URL } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"
+    />
+    <!-- Apply a saved theme before first paint (key: src/lib/site.ts THEME_KEY). -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem("onepager:theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip no-print" href="#main">Skip to content</a>
+    <div class="container no-print">
+      <div class="topbar">
+        <a class="home" href={PORTFOLIO_URL}>Amanda Patricks</a>
+        <nav aria-label="Site">
+          <a href={PROJECT_PAGE_URL}>About this project</a>
+          <a href={REPO_URL}>Code</a>
+          <button type="button" class="link-button" id="theme-toggle" aria-pressed="false">Dark mode</button>
+        </nav>
+      </div>
+    </div>
+    <main id="main" class="container">
+      <slot />
+    </main>
+    <footer class="container no-print">
+      <div class="footer">
+        <p>
+          Built by <a href={PORTFOLIO_URL}>Amanda Patricks</a>. Notes you generate from are sent to Amazon Bedrock to
+          write the one-pager. They aren't stored or logged.
+        </p>
+        <p><a href={PROJECT_PAGE_URL}>How it works and how it was tested</a> · <a href={REPO_URL}>Source code</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<script>
+  import { THEME_KEY } from "../lib/site";
+
+  // Two-state toggle like the portfolio's; the inline head script has already applied any saved choice.
+  const root = document.documentElement;
+  const toggle = document.getElementById("theme-toggle")!;
+  const isDark = () =>
+    root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  const sync = () => toggle.setAttribute("aria-pressed", String(isDark()));
+  sync();
+  toggle.addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {
+      // not saved; fine
+    }
+    sync();
+  });
+</script>
