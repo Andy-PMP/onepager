@@ -1,6 +1,6 @@
 ---
 title: One-Pager Generator
-summary: Turns messy project notes into an executive status one-pager. Rules in code decide every RAG status; the AI only reads the notes and writes the summary.
+summary: Turns messy project notes into an executive status one-pager. Rules in code decide every RAG status; the AI only reads the notes and writes a one-line headline.
 date: 2026-10-27
 tags: [Python, Amazon Bedrock, AWS Lambda, DynamoDB, TypeScript, Astro]
 link: https://onepager.amandapatricks.com/
@@ -15,7 +15,7 @@ Paste raw project notes (meeting notes, a Slack thread, a task export, an email 
 
 The design decision that matters: **an LLM never decides a status.** Language models are good at reading messy text and writing clear prose, and unreliable at applying thresholds consistently. So the work is split.
 
-<svg viewBox="0 0 440 330" role="img" aria-label="Pipeline: 1 Extract (AI) turns notes into facts, 2 Score (rules in code) turns facts into statuses, 3 Write (AI) writes the summary, 4 Validate (code) checks it." style="display:block;width:100%;height:auto;max-width:460px;margin:1.5rem 0;font-family:inherit">
+<svg viewBox="0 0 440 330" role="img" aria-label="Pipeline: 1 Extract (AI) turns notes into facts, 2 Score (rules in code) turns facts into statuses, 3 Write (AI) writes a one-line headline and code writes the rest of the summary, 4 Validate (code) checks it." style="display:block;width:100%;height:auto;max-width:460px;margin:1.5rem 0;font-family:inherit">
   <defs>
     <marker id="op-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted,#5a6170)"/>
