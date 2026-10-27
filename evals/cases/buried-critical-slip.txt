@@ -1,0 +1,21 @@
+Mobile banking app v4 - team notes 3 Sept 2026
+
+Great week overall!! Shoutout to the design crew.
+
+- Biometric login merged and passing on all test devices
+- Dark mode QA complete, 0 open bugs
+- Crash-free sessions in beta at 99.7%, best we've ever had
+- Accessibility pass on the transfer flow done, VoiceOver labels fixed
+- Beta testers up to 2,300 (target was 2,000)
+- New onboarding carousel copy approved by marketing
+- Release notes draft started, Tom has it
+- Push notification opt-in screen redesigned, A/B test starts Monday
+- Spend tracking to plan: $1.1M spent so far, forecast at completion $1.15M against the $1.15M budget
+- No scope changes this period
+- oh and the card-issuer certification (critical path for launch) got rescheduled by the issuer from 9/18 to 10/16, Hannah's asking whether they have an earlier slot
+- Retro moved to Thursday
+- Office snacks restocked lol
+
+Risks: app store review times could stretch around the holidays. Low. Tom is watching.
+
+Next: finish v4 release candidate, start store listing screenshots, prep launch comms.

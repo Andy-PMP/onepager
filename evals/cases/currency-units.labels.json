@@ -1,0 +1,19 @@
+{
+  "id": "currency-units",
+  "description": "Euro amounts written as €1.2M / €1.29M (7.5% over, Amber) and day-first dates. Tests number and date normalisation.",
+  "expected": {
+    "schedule": "amber",
+    "budget": "amber",
+    "scope": "green",
+    "risk": "green"
+  },
+  "expected_overall": "amber",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Core switch lead time", "all_of": [["lead time", "core switch"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Weekend access for cutover", "all_of": [["weekend", "access"]]}
+  ],
+  "injection": false
+}

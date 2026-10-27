@@ -1,0 +1,19 @@
+ERP finance module - steering pre-read, 21 Oct 2026
+
+Where we are
+- General ledger configuration complete
+- Chart of accounts mapping signed off by the Controller on 10/16
+- Year-end close cutover: 15 Dec 2026. This is the critical milestone and it's holding.
+- Data migration mock 2: 11/6, on plan
+
+Money: approved budget $750k, forecast $765k.
+
+Scope
+The Controller has asked to bring the tax engine integration into this release. It is NOT approved yet. If it goes ahead it has to be live for the year-end close cutover, so it lands squarely on the critical path.
+
+Risks
+- If the tax engine decision comes late we can't build and test it in time for cutover. High impact. Owner: Mei Chen (PMO). Mitigation: asked steering for a decision by Oct 30 and lined up a contractor who can start Nov 2.
+- Key finance SME on leave in November. Medium. Owner: Mei Chen. Backfill identified.
+
+Next steps: mock 2 prep, cutover runbook v1 by 11/13.
+Ask: steering decision on the tax engine integration by Oct 30.

@@ -1,0 +1,20 @@
+{
+  "id": "scope-critical",
+  "description": "An unapproved scope change that would land on the critical cutover milestone (Scope Red). Its knock-on risk has an owner and mitigation (Risk Amber).",
+  "expected": {
+    "schedule": "green",
+    "budget": "green",
+    "scope": "red",
+    "risk": "amber"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Late tax engine decision", "all_of": [["tax engine", "tax"]]},
+    {"label": "Finance SME leave", "all_of": [["SME", "leave"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Tax engine decision by Oct 30", "all_of": [["tax engine", "tax"]]}
+  ],
+  "injection": false
+}

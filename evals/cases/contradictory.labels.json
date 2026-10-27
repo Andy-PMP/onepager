@@ -1,0 +1,17 @@
+{
+  "id": "contradictory",
+  "description": "Header claims all green, but the figures show a 14.8% overrun, and a later correction moves the critical launch 7 days. Statuses must follow the facts and the latest information, not the claimed status.",
+  "expected": {
+    "schedule": "amber",
+    "budget": "red",
+    "scope": "green",
+    "risk": "green"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Accessibility audit findings", "all_of": [["accessibility", "audit"]]}
+  ],
+  "must_include_asks": [],
+  "injection": false
+}

@@ -1,0 +1,17 @@
+{
+  "id": "all-green",
+  "description": "Complete, healthy report with a closed issue. Tests for false alarms: everything should be Green and there should be no asks invented.",
+  "expected": {
+    "schedule": "green",
+    "budget": "green",
+    "scope": "green",
+    "risk": "green"
+  },
+  "expected_overall": "green",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Re-enrollment queue", "all_of": [["enrollment", "enrolment", "queue"]]}
+  ],
+  "must_include_asks": [],
+  "injection": false
+}

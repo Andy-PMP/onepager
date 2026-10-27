@@ -1,0 +1,16 @@
+Clinic self check-in kiosks - rollout update
+14 Aug 2026
+
+Site 1 (Eastgate): installed 7/24 as planned
+Site 2 (Riverside): installed 7/31 as planned
+Site 3 (North Hill): was scheduled for 8/7. The installer didn't show up. No new date yet and no plan for rescheduling, still waiting to hear back from the vendor.
+Site 4 (Harbourview): planned 8/21
+
+Spend so far: $64,000 of the $120,000 budget. No forecast from finance yet.
+
+Issues
+- Touchscreen firmware bug is freezing kiosks at Site 1 two or three times a day. High impact on patient check-in. Owner: Rosa Delgado. Vendor patch scheduled for 8/21, front desk falls back to manual check-in meanwhile.
+
+Patient feedback at Site 2 has been positive (average check-in time down from 6 to 2 minutes).
+
+Next: chase vendor for a Site 3 date; confirm Site 4 install crew.

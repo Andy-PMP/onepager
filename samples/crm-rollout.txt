@@ -1,0 +1,43 @@
+#beacon-crm-rollout
+
+——— Tuesday, September 15, 2026 ———
+
+Maya Lindqvist  9:02 AM
+morning all, prepping the weekly status for the steering committee. quick roll call on where we are?
+
+Tom Achebe  9:05 AM
+pilot wrapped on 9/4 ✅ (a week behind the 8/28 plan but we knew that). 41 pilot users, NPS from the pilot survey was +32
+
+Maya Lindqvist  9:06 AM
+nice. go-live still 10/19?
+
+Tom Achebe  9:07 AM
+yep, 10/19 company-wide go-live holding. that's the one that matters
+
+Priya Raman  9:11 AM
+data migration update: test load of the legacy records went through but ~2% failed dedupe. I'm rerunning with the new match rules thurs. medium risk imo, should be sorted well before go-live
+
+Grace Okafor  9:15 AM
+training side: the training guides are going to slip from 9/18 to 10/2, SME reviews took longer than planned. doesn't touch go-live, we have the buffer
+👍 2
+
+Maya Lindqvist  9:16 AM
+ok. anything on scope?
+
+Tom Achebe  9:20 AM
+Sales VP formally submitted CR-14 yesterday, wants the email plugin integration in scope. it's pending, steering committee reviews it next thursday. if approved it'd ship after go-live, not before
+
+Maya Lindqvist  9:21 AM
+and budget? finance still owes us the updated numbers right?
+
+Grace Okafor  9:23 AM
+yeah haven't seen anything from finance yet
+
+Priya Raman  9:26 AM
+also SSO config for the contractor accounts is still open. low risk, IT has a ticket, I'll own it
+
+Maya Lindqvist  9:27 AM
+ok I'll note it. asks for the steering committee: (1) decision on CR-14, (2) we need the exec all-hands announcement of the go-live date sent by 10/5 so people block time for training
+
+Tom Achebe  9:30 AM
+next up from me: cutover runbook draft by 9/25 and dress rehearsal 10/10

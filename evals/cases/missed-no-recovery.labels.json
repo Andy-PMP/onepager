@@ -1,0 +1,17 @@
+{
+  "id": "missed-no-recovery",
+  "description": "A milestone date has passed with no new date or recovery plan (Schedule Red). Budget only has spend to date, which is under plan (Green, with a gap). Scope never mentioned (Unknown).",
+  "expected": {
+    "schedule": "red",
+    "budget": "green",
+    "scope": "unknown",
+    "risk": "amber"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Touchscreen firmware freezes", "all_of": [["firmware", "freez", "touchscreen"]]}
+  ],
+  "must_include_asks": [],
+  "injection": false
+}

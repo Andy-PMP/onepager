@@ -1,0 +1,16 @@
+Data warehouse consolidation — status as of 6 May 2026
+
+Progress: finance and HR subject areas migrated to the new warehouse; old marts for both switched to read-only.
+
+Dates: sales subject area migration 5/22 (on track), ops subject area 6/19 (on track), legacy warehouse shutdown 7/31 (critical, on track).
+
+Budget $900k; forecast $930k.
+
+No scope changes.
+
+Risks:
+1) Source system API rate limits could stall the nightly loads once sales and ops are both on the new pipeline. HIGH. Not clear who should own this, nobody's picked it up, no mitigation yet.
+2) Analyst availability for validation in June. Medium. Owner Joe Park, booked two contractors.
+
+Next: sales cutover rehearsal 5/15.
+Asks: leadership to assign an owner for the API rate limit risk.

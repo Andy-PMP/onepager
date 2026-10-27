@@ -1,0 +1,13 @@
+Project: Linden Park Office Relocation
+Report: Task export (all tasks)   Exported: 2026-05-29 16:40   Exported by: Owen Hartley
+Task ID,Task Name,Owner,Baseline Start,Baseline Finish,Forecast Finish,Actual Finish,% Complete,Critical,Notes
+1,Lease signed,O. Hartley,2026-01-05,2026-02-13,2026-02-13,2026-02-11,100,Yes,
+2,Space design approved,M. Duarte,2026-02-16,2026-03-27,2026-03-27,2026-03-27,100,Yes,
+3,Fit-out construction,Ridgeline Builders,2026-04-01,2026-06-26,2026-06-26,,72,Yes,On schedule per GC weekly report
+4,Furniture order & delivery,K. Osei,2026-04-15,2026-07-03,2026-07-03,,40,No,"RISK: vendor lead time 6 wks - order placed 5/8 with 2 wk buffer. Impact: medium"
+5,IT network & AV install,S. Brandt,2026-06-01,2026-07-10,2026-07-10,,0,Yes,Starts Monday
+6,Huddle rooms (CR-3),M. Duarte,2026-05-25,2026-06-26,2026-06-26,,10,No,"CR-3: add 2 huddle rooms - APPROVED by steering 5/20"
+7,Staff move weekend,O. Hartley,2026-07-18,2026-07-19,2026-07-19,,0,Yes,"Need leadership to confirm the move weekend + approve after-hours building access for movers"
+8,Harbor St lease exit & handback,O. Hartley,2026-07-20,2026-08-31,2026-08-31,,0,No,
+BUDGET SUMMARY,,,,,,,,,"Approved: $640,000 | Committed + forecast at completion: $652,000"
+RISK SUMMARY,,,,,,,,,"1 open risk (task 4). No high-impact risks."

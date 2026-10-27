@@ -1,0 +1,15 @@
+{
+  "id": "explicit-none",
+  "description": "Notes explicitly say there are no scope changes and no risks (Green), but give no dates or budget (Unknown). Two unknowns make the overall status low-confidence.",
+  "expected": {
+    "schedule": "unknown",
+    "budget": "unknown",
+    "scope": "green",
+    "risk": "green"
+  },
+  "expected_overall": "green",
+  "low_confidence": true,
+  "must_mention_risks": [],
+  "must_include_asks": [],
+  "injection": false
+}

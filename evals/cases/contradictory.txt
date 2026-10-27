@@ -1,0 +1,25 @@
+CUSTOMER PORTAL REDESIGN - WEEKLY UPDATE (as of April 14, 2026)
+STATUS: GREEN across the board 🎉
+
+Highlights
+- New design system components finished and in Storybook
+- Usability test round 2 done: task success up from 71% to 88%
+
+Timeline
+- Public launch 5/18 (critical milestone)
+- Beta for 500 customers 4/27
+
+Budget
+- Plan: $310,000
+- Current forecast: $356,000 (design agency change orders)
+
+Scope: the two agency change requests were approved by the sponsor last week. Nothing else pending.
+
+Risks: accessibility audit might find issues late. Medium. Ana owns it, we booked the audit two weeks earlier than planned to leave time for fixes.
+
+Next steps: beta invites go out 4/22; content freeze 5/4.
+
+Asks: none this week.
+
+---
+CORRECTION from Dev lead (added Apr 14 pm): public launch is now 5/25, not 5/18. Payment provider sandbox outage cost us a week of integration testing. Beta date unchanged.

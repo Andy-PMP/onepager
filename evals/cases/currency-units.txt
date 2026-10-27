@@ -1,0 +1,10 @@
+Lisbon office network refresh — fortnightly update, 12/06/2026 (Inês Carvalho)
+
+- Floor 2 access switches done 5 June, on plan
+- Floor 3 planned 26 June, now 3 July (cabling contractor double-booked). Floors are independent so this doesn't move the core cutover
+- Core cutover 24 July, critical, holding
+- Budget: €1.2M approved, tracking to €1.29M at completion (extra cabling + weekend rates)
+- CR-7 (Wi-Fi 7 APs instead of 6E) approved by the sponsor on 2 June
+- Risk: lead time on the core switches; medium; Inês owns it; units already allocated by the distributor
+- Next: floor 3 cabling, core config review 10 July
+- Ask: approve weekend access for the core cutover on 24-25 July

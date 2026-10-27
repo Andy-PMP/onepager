@@ -1,0 +1,26 @@
+Badge reader replacement - HQ and Annex
+Status report for period ending Friday 9 October 2026
+PM: Leo Varga
+
+Accomplishments
+- Annex: all 38 readers replaced and tested (finished 10/2, planned 10/2)
+- HQ floors 1-4: 52 of 96 readers replaced
+
+Milestones
+| Milestone | Planned | Forecast | Critical |
+| Annex complete | 2026-10-02 | done 2026-10-02 | yes |
+| HQ floors 1-4 complete | 2026-10-16 | 2026-10-16 | yes |
+| HQ floors 5-8 complete | 2026-10-30 | 2026-10-30 | yes |
+| Old controller decommission | 2026-11-13 | 2026-11-13 | no |
+
+Budget: $92,000 approved; forecast at completion $88,500 (one reader model came in cheaper).
+
+Scope: no changes.
+
+Risks and issues
+- Badge re-enrollment queue at reception on cutover mornings. Low impact. Owner: Dana (facilities). Mitigation: extra enrollment station on cutover days.
+- (Closed) Firmware incompatibility with the visitor system: resolved by the vendor patch on 9/30.
+
+Next steps: HQ floors 5-8 start 10/19; notify staff of floor-by-floor cutover dates.
+
+Asks: none.

@@ -1,0 +1,17 @@
+{
+  "id": "buried-critical-slip",
+  "description": "Upbeat notes with a 28-day slip on a critical certification buried in a bullet list. Schedule must be Red. Risk may legitimately include the certification delay as a managed high-impact item, so Green or Amber are both accepted.",
+  "expected": {
+    "schedule": "red",
+    "budget": "green",
+    "scope": "green",
+    "risk": ["green", "amber"]
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "App store review times", "all_of": [["app store", "review"]]}
+  ],
+  "must_include_asks": [],
+  "injection": false
+}

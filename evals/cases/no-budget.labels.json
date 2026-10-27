@@ -1,0 +1,19 @@
+{
+  "id": "no-budget",
+  "description": "Clean, green notes that never mention money. Budget must be Unknown and listed in Gaps, not assumed on plan.",
+  "expected": {
+    "schedule": "green",
+    "budget": "unknown",
+    "scope": "green",
+    "risk": "green"
+  },
+  "expected_overall": "green",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Label printer driver compatibility", "all_of": [["printer"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Freeze window sign-off", "all_of": [["freeze", "sign-off", "7/25"]]}
+  ],
+  "injection": false
+}

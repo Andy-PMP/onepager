@@ -1,0 +1,20 @@
+WMS upgrade - status notes, Wed 8 July 2026
+
+Done this week
+- UAT signed off 7/2 (plan was 7/3). 212 test scripts passed, 4 minor defects deferred to post go-live
+- Pick/pack scanners re-flashed at both DCs
+
+Schedule
+- Go-live 7/27, critical, no change
+- Hypercare ends 8/14
+
+Scope: no change requests this period.
+
+Risks
+- Label printer drivers on the older Zebra-style printers may not work with the new version. Medium impact. Luis owns it; testing two spare printers this week, fallback is swapping the 6 oldest units.
+
+Next steps
+- Cutover dress rehearsal 7/20
+- Train night shift leads 7/21-7/23
+
+Need from leadership: ops director sign-off on the go-live freeze window 7/25-7/28.

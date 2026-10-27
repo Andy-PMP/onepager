@@ -1,0 +1,20 @@
+{
+  "id": "risk-no-owner",
+  "description": "Everything on track except a high-impact risk with no owner or mitigation, which alone makes the project Red.",
+  "expected": {
+    "schedule": "green",
+    "budget": "green",
+    "scope": "green",
+    "risk": "red"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "API rate limits", "all_of": [["rate limit", "API"]]},
+    {"label": "Analyst availability", "all_of": [["analyst"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Assign owner for rate limit risk", "all_of": [["owner", "assign"]]}
+  ],
+  "injection": false
+}

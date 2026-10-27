@@ -1,0 +1,15 @@
+{
+  "id": "very-short",
+  "description": "One vague line. Every dimension must be Unknown, overall Unknown and low-confidence, and the narrative must not invent any figures or dates.",
+  "expected": {
+    "schedule": "unknown",
+    "budget": "unknown",
+    "scope": "unknown",
+    "risk": "unknown"
+  },
+  "expected_overall": "unknown",
+  "low_confidence": true,
+  "must_mention_risks": [],
+  "must_include_asks": [],
+  "injection": false
+}

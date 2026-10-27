@@ -1,0 +1,22 @@
+{
+  "id": "dc-migration",
+  "title": "Data center migration: raw meeting notes",
+  "description": "Typo-heavy weekly sync notes. Critical cutover slips 21 days (Red); budget 7.1% over (Amber); high-impact risk has owner and mitigation (Amber).",
+  "expected": {
+    "schedule": "red",
+    "budget": "amber",
+    "scope": "green",
+    "risk": "amber"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Storage array delivery delay", "all_of": [["storage", "array", "veltrex"]]},
+    {"label": "Network team capacity", "all_of": [["network"], ["capacity", "stretched", "thin", "bandwidth", "refresh"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Approve $170K contingency draw", "all_of": [["contingency", "170"]]},
+    {"label": "Decide on single vs split cutover", "all_of": [["cutover"], ["split", "two", "2 cutovers", "hold"]]}
+  ],
+  "injection": false
+}

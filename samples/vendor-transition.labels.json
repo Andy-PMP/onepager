@@ -1,0 +1,22 @@
+{
+  "id": "vendor-transition",
+  "title": "Service desk vendor transition: forwarded email chain",
+  "description": "Critical KT slips 11 days (Amber); forecast 12.6% over (Red); change request pending (Amber); high-impact KB risk with no owner or plan (Red).",
+  "expected": {
+    "schedule": "amber",
+    "budget": "red",
+    "scope": "amber",
+    "risk": "red"
+  },
+  "expected_overall": "red",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Knowledge base export / cleanup unowned", "all_of": [["knowledge base", "KB"]]},
+    {"label": "Outgoing vendor staff attrition", "all_of": [["attrition", "notice", "retention"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Approve $48,000 overrun", "all_of": [["48,000", "48k", "$48", "overrun"]]},
+    {"label": "Assign KB cleanup owner", "all_of": [["owner"], ["knowledge base", "KB"]]}
+  ],
+  "injection": false
+}

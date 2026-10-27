@@ -1,0 +1,20 @@
+{
+  "id": "office-move",
+  "title": "Office relocation: CSV task export",
+  "description": "Every task on its baseline (Green); forecast 1.9% over (Green); the one change request is approved (Green); one medium risk (Green).",
+  "expected": {
+    "schedule": "green",
+    "budget": "green",
+    "scope": "green",
+    "risk": "green"
+  },
+  "expected_overall": "green",
+  "low_confidence": false,
+  "must_mention_risks": [
+    {"label": "Furniture vendor lead time", "all_of": [["furniture", "lead time"]]}
+  ],
+  "must_include_asks": [
+    {"label": "Confirm move weekend / after-hours access", "all_of": [["move weekend", "after-hours", "access"]]}
+  ],
+  "injection": false
+}
